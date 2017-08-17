@@ -1,0 +1,13 @@
+Package: Rsrat
+Type: Package
+Title: A Software Reliability Assessment Tool
+Version: 0.9.0
+Date: 2017-8-17
+Author: Hiroyuki OKAMURA
+Maintainer: Hiroyuki OKAMURA <okamu@hiroshima-u.ac.jp>
+Description: This package provides estimation programs for software
+  reliability growth models, metrics-based software reliability growth
+  models with logistic regression for dynamic metrics and Poisson regression
+  for static metrics.
+Imports: R6
+License: MIT + file LICENSE
