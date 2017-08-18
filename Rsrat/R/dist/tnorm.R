@@ -1,7 +1,8 @@
 ## truncated normal distribution
 
 dtnorm <- function(x, mean = 0, sd = 1, log = FALSE) {
-  v <- dnorm(x, mean=mean, sd=sd, log=FALSE) / pnorm(0, mean=mean, sd=sd, lower.tail=FALSE)
+  v <- dnorm(x, mean=mean, sd=sd, log=FALSE) /
+    pnorm(0, mean=mean, sd=sd, lower.tail=FALSE)
   if (log) {
     log(v)
   } else {
@@ -11,9 +12,11 @@ dtnorm <- function(x, mean = 0, sd = 1, log = FALSE) {
 
 ptnorm <- function(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE) {
   if (lower.tail) {
-    v <- 1 - pnorm(q, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE) / pnorm(0, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE)
+    v <- 1 - pnorm(q, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE) /
+      pnorm(0, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE)
   } else {
-    v <- pnorm(q, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE) / pnorm(0, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE)
+    v <- pnorm(q, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE) /
+      pnorm(0, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE)
   }
   if (log.p) {
     log(v)

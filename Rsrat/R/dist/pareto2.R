@@ -8,7 +8,8 @@ dpareto2 <- function(x, shape = 1, scale = 1, log = FALSE) {
   }
 }
 
-ppareto2 <- function (q, shape = 1, scale = 1, lower.tail = TRUE, log.p = FALSE) {
+ppareto2 <- function (q, shape = 1, scale = 1, lower.tail = TRUE,
+  log.p = FALSE) {
   p <- (scale / (q + scale))^shape
   if (lower.tail == TRUE) {
     p <- 1 - p
@@ -19,7 +20,8 @@ ppareto2 <- function (q, shape = 1, scale = 1, lower.tail = TRUE, log.p = FALSE)
   p
 }
 
-qpareto2 <- function (p, shape = 1, scale = 1, lower.tail = TRUE, log.p = FALSE) {
+qpareto2 <- function (p, shape = 1, scale = 1, lower.tail = TRUE,
+  log.p = FALSE) {
   if (log.p) {
     p <- exp(p)
   }

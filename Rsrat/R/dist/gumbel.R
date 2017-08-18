@@ -43,7 +43,8 @@ dgumbel.min <- function (x, loc = 0, scale = 1, log = FALSE) {
   }
 }
 
-pgumbel.min <- function (q, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE) {
+pgumbel.min <- function (q, loc = 0, scale = 1, lower.tail = TRUE,
+  log.p = FALSE) {
   z <- ((-q) - loc) / scale
   p <- exp(-exp(-z))
   if (lower.tail == FALSE) {
@@ -55,7 +56,8 @@ pgumbel.min <- function (q, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE
   p
 }
 
-qgumbel.min <- function (p, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE) {
+qgumbel.min <- function (p, loc = 0, scale = 1, lower.tail = TRUE,
+  log.p = FALSE) {
   if (log.p) {
     p <- exp(p)
   }
