@@ -26,13 +26,16 @@ faultdata.gen <- function(time, fault, type) {
   if (any(time == 0 & fault != 0L & type != 0L))
     stop("Invalid data: zero time exits.")
 
-  total <- sum(fault)
-  tmean <- sum(cumsum(time) * (fault + type)) / total
-  tmax <- max(cumsum(time)[(fault + type) >= 1L])
+  tmpdf <- data.frame(time=time, fault=fault, type=type)
+
+  tmp <- tmpdf$fault + tmpdf$type
+  total <- sum(tmp)
+  tmean <- sum(cumsum(tmpdf$time) * tmp) / total
+  tmax <- max(cumsum(tmpdf$time)[tmp >= 1L])
   result <- list(
-    fault=fault,
-    time=time,
-    type=type,
+    time=tmpdf$time,
+    fault=tmpdf$fault,
+    type=tmpdf$type,
     total=total,
     len=length(time),
     mean=tmean,

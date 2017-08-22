@@ -52,15 +52,18 @@ emfit.srm <- function(srm, data,
       }
       if ((error[1] < atol) && (error[2] < rtol)) {
         conv <- TRUE
+        srm$set_params(res1$param)
         break
       }
       if (iter >= maxiter) {
         warning("Did not converge to MLE by max iteration.")
+        srm$set_params(res1$param)
         break
       }
       iter <- iter + 1
       res0 <- res1
     }
+
 
     result <- list(
       initial = param,
@@ -76,6 +79,9 @@ emfit.srm <- function(srm, data,
 }
 
 em.exp <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 2)
   res <- .C("em_exp_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -83,7 +89,7 @@ em.exp <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,2)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -91,6 +97,9 @@ em.exp <- function(params, data, ...) {
 }
 
 em.gamma <- function(params, data, divide, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_gamma_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -99,7 +108,7 @@ em.gamma <- function(params, data, divide, ...) {
             divide=as.integer(divide),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -107,6 +116,9 @@ em.gamma <- function(params, data, divide, ...) {
 }
 
 em.pareto <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_pareto_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -114,7 +126,7 @@ em.pareto <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -122,6 +134,9 @@ em.pareto <- function(params, data, ...) {
 }
 
 em.tnorm <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_tnorm_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -129,7 +144,7 @@ em.tnorm <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -137,6 +152,9 @@ em.tnorm <- function(params, data, ...) {
 }
 
 em.lnorm <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_lnorm_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -144,7 +162,7 @@ em.lnorm <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -152,6 +170,9 @@ em.lnorm <- function(params, data, ...) {
 }
 
 em.tlogist <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_tlogist_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -159,7 +180,7 @@ em.tlogist <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -167,6 +188,9 @@ em.tlogist <- function(params, data, ...) {
 }
 
 em.llogist <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_llogist_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -174,7 +198,7 @@ em.llogist <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -182,6 +206,9 @@ em.llogist <- function(params, data, ...) {
 }
 
 em.txvmax <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_txvmax_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -189,7 +216,7 @@ em.txvmax <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -197,6 +224,9 @@ em.txvmax <- function(params, data, ...) {
 }
 
 em.lxvmax <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_lxvmax_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -204,7 +234,7 @@ em.lxvmax <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -212,6 +242,9 @@ em.lxvmax <- function(params, data, ...) {
 }
 
 em.txvmin <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_txvmin_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -219,7 +252,7 @@ em.txvmin <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )
@@ -227,6 +260,9 @@ em.txvmin <- function(params, data, ...) {
 }
 
 em.lxvmin <- function(params, data, ...) {
+  stopifnot(all(length(data$time) == data$len,
+    length(data$type) == data$len, length(data$type) == data$len))
+  stopifnot(length(params) == 3)
   res <- .C("em_lxvmin_emstep", PACKAGE="Rsrat",
             dsize=as.integer(data$len),
             time=as.double(data$time),
@@ -234,7 +270,7 @@ em.lxvmin <- function(params, data, ...) {
             type=as.integer(data$type),
             npara=as.integer(length(params)),
             para=as.double(params),
-            pdiff=as.double(array(0,3)),
+            pdiff=as.double(array(0,length(params))),
             retllf=as.double(array(0,1)),
             total=as.double(array(0,1))
   )

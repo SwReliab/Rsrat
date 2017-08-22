@@ -3,8 +3,8 @@
 <project name="Rsrat" default="check" basedir=".">
 
 	<property name="package" value="Rsrat"/>
-	<property name="version" value="0.9.0"/>
-	<property name="date" value="2017-8-18"/>
+	<property name="version" value="0.9.1"/>
+	<property name="date" value="2017-8-22"/>
 
 	<filterset id="replace_version">
 		<filter token="version" value="${version}"/>
