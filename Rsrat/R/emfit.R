@@ -1,7 +1,11 @@
-#' Estimate SRM parameters
+#' Estimate SRM parameters.
 #'
-#' @param srm An NHPP model
-#' @param data A faultdata
+#' This function provides the maximum likelihood (ML) estiamtes for a given SRM with a given data.
+#' The ML estimates are computed with the EM algorithm. The initial parameters for the EM algorithm
+#' are automatically decided if the flag \emph{initialize} is TRUE.
+#'
+#' @param srm An NHPP model.
+#' @param data A faultdata.
 #' @param initialize Either TRUE or FALSE. If TRUE, the model parameters are
 #' initilized with a given data before executing the fitting algorithm.
 #' @param maxiter An integer for the maximum number of iterations in the fitting algorithm.
@@ -12,8 +16,13 @@
 #' @param termination A character string. \emph{termination} gives the criterion
 #' for the stop condition of the algorithm. Either llf or parameter is selected.
 #' @return A list with components;
-#' \item{x}{a stationary vector.}
-#' \item{iter}{the number of iterations in GS and CG methods.}
+#' \item{initial}{A vector for initial parameters.}
+#' \item{srm}{A class of NHPP. The SRM with the estiamted parameters.}
+#' \item{llf}{A numeric value for the maximum log-likelihood function.}
+#' \item{convergence}{A boolean meaning the alorigthm is converged or not.}
+#' \item{iter}{An integer for the number of iterations.}
+#' \item{aerror}{A numeric value for absolute error.}
+#' \item{rerror}{A numeric value for relative error.}
 #' @export
 
 emfit <- function(srm, data,

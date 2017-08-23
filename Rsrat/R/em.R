@@ -1,5 +1,20 @@
+#' EM step
+#'
+#' Execute one EM step for software reliability models.
+#'
+#' @name em
+#' @param params A numeric vector for model parameters
+#' @param data A faultdata
+#' @param divide An integer for the number of integration points.
+#' @param ... Other parameters
+#' @return A list with an updated parameter vector (param),
+#' absolute difference of parameter vector (pdiff),
+#' log-likelihood function for a given parameter vector (llf),
+#' the number of total faults (total).
+NULL
+#> NULL
 
-
+#' @rdname em
 em.exp <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -18,6 +33,7 @@ em.exp <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.gamma <- function(params, data, divide, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -37,6 +53,7 @@ em.gamma <- function(params, data, divide, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.pareto <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -55,6 +72,7 @@ em.pareto <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.tnorm <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -73,6 +91,7 @@ em.tnorm <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.lnorm <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -91,6 +110,7 @@ em.lnorm <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.tlogist <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -109,6 +129,7 @@ em.tlogist <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.llogist <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -127,6 +148,7 @@ em.llogist <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.txvmax <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -145,6 +167,7 @@ em.txvmax <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.lxvmax <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -163,6 +186,7 @@ em.lxvmax <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.txvmin <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))
@@ -181,6 +205,7 @@ em.txvmin <- function(params, data, ...) {
   list(param=res$para, pdiff=res$pdiff, llf=res$retllf, total=res$total)
 }
 
+#' @rdname em
 em.lxvmin <- function(params, data, ...) {
   stopifnot(all(length(data$time) == data$len,
     length(data$type) == data$len, length(data$type) == data$len))

@@ -1,48 +1,34 @@
-# R6 classes
+#' Class for NHPP-based software reliability model
+#'
+#' @docType class
+#' @name NHPP
+#' @return Object of \code{\link{R6Class}} with methods for NHPP-based software reliability model.
+#' @format \code{\link{R6Class}} object.
+#' @field name A character string for the name of model.
+#' @field params A numeric vector for the model parameters.
+#' @field df An integer for the degrees of freedom of the model.
+#'
+#' @section Methods:
+#' \describe{
+#'   \item{\code{omega()}}{This method returns the number of total faults.}
+#'   \item{\code{mvf(t)}}{This method returns the mean value function at time t.}
+#'   \item{\code{intensity(t)}}{This method returns the intensity function at time t.}
+#'   \item{\code{reliab(t, s)}}{This method returns the software reliability at time t from the orign s.}
+#'   \item{\code{residual(t)}}{This method returns the expected residual number of faults at time t.}
+#'   \item{\code{ffp(t)}}{This method returns the fault-free probability at time t.}
+#'   \item{\code{median(s, p = 0.5)}}{This method returns the time at which the software reliability attains the proability p from the orign s.}
+#'   \item{\code{init_params(data)}}{This method changes the model parameters based on a given data. This is used to set the initial value for the fitting algorithm.}
+#'   \item{\code{set_params(params)}}{This method sets the model parameters.}
+#'   \item{\code{em(params, data)}}{This method returns a list with an updated parameter vector (param),
+#'          absolute difference of parameter vector (pdiff),
+#'          log-likelihood function for a given parameter vector (llf),
+#'          the number of total faults (total) via EM algorithm for a given data. \emph{divide} in GammaSRM is the number of integration points.}
+#' }
+NULL
+#> NULL
 
-srm.names <- c(
-  "exp",
-  "gamma",
-  "pareto",
-  "tnorm",
-  "lnorm",
-  "tlogis",
-  "llogis",
-  "txvmax",
-  "lxvmax",
-  "txvmin",
-  "lxvmin"
-)
-
-srm <- function(names) {
-  if (length(names) == 1L) {
-    create.srm.model(names)
-  }
-  else {
-    result <- lapply(names, create.srm.model)
-    names(result) <- names
-    result
-  }
-}
-
-create.srm.model <- function(name) {
-  switch(name,
-    "exp"=ExpSRM$new(),
-    "gamma"=GammaSRM$new(),
-    "pareto"=ParetoSRM$new(),
-    "tnorm"=TNormSRM$new(),
-    "lnorm"=LNormSRM$new(),
-    "tlogis"=TLogisSRM$new(),
-    "llogis"=LLogisSRM$new(),
-    "txvmax"=TXVMaxSRM$new(),
-    "lxvmax"=LXVMaxSRM$new(),
-    "txvmin"=TXVMinSRM$new(),
-    "lxvmin"=LXVMinSRM$new(),
-    NA
-  )
-}
-
-NHPP <- R6Class("NHPP",
+#' @rdname NHPP
+NHPP <- R6::R6Class("NHPP",
   private = list(
     Ft = function(t, lower.tail = TRUE) { NA },
     invFt = function(p) { NA },
@@ -71,7 +57,9 @@ NHPP <- R6Class("NHPP",
   )
 )
 
-ExpSRM <- R6Class("ExpSRM",
+#' @rdname NHPP
+#' @export
+ExpSRM <- R6::R6Class("ExpSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -96,7 +84,9 @@ ExpSRM <- R6Class("ExpSRM",
   )
 )
 
-GammaSRM <- R6Class("GammaSRM",
+#' @rdname NHPP
+#' @export
+GammaSRM <- R6::R6Class("GammaSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -122,7 +112,9 @@ GammaSRM <- R6Class("GammaSRM",
   )
 )
 
-ParetoSRM <- R6Class("ParetoSRM",
+#' @rdname NHPP
+#' @export
+ParetoSRM <- R6::R6Class("ParetoSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -153,7 +145,9 @@ ParetoSRM <- R6Class("ParetoSRM",
   )
 )
 
-TNormSRM <- R6Class("TNormSRM",
+#' @rdname NHPP
+#' @export
+TNormSRM <- R6::R6Class("TNormSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -179,7 +173,9 @@ TNormSRM <- R6Class("TNormSRM",
   )
 )
 
-LNormSRM <- R6Class("LNormSRM",
+#' @rdname NHPP
+#' @export
+LNormSRM <- R6::R6Class("LNormSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -210,7 +206,9 @@ LNormSRM <- R6Class("LNormSRM",
   )
 )
 
-TLogisSRM <- R6Class("TLogisSRM",
+#' @rdname NHPP
+#' @export
+TLogisSRM <- R6::R6Class("TLogisSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -241,7 +239,9 @@ TLogisSRM <- R6Class("TLogisSRM",
   )
 )
 
-LLogisSRM <- R6Class("LLogisSRM",
+#' @rdname NHPP
+#' @export
+LLogisSRM <- R6::R6Class("LLogisSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -272,7 +272,9 @@ LLogisSRM <- R6Class("LLogisSRM",
   )
 )
 
-TXVMaxSRM <- R6Class("TXVMaxSRM",
+#' @rdname NHPP
+#' @export
+TXVMaxSRM <- R6::R6Class("TXVMaxSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -298,7 +300,9 @@ TXVMaxSRM <- R6Class("TXVMaxSRM",
   )
 )
 
-LXVMaxSRM <- R6Class("LXVMaxSRM",
+#' @rdname NHPP
+#' @export
+LXVMaxSRM <- R6::R6Class("LXVMaxSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -329,7 +333,9 @@ LXVMaxSRM <- R6Class("LXVMaxSRM",
   )
 )
 
-TXVMinSRM <- R6Class("TXVMinSRM",
+#' @rdname NHPP
+#' @export
+TXVMinSRM <- R6::R6Class("TXVMinSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {
@@ -360,7 +366,9 @@ TXVMinSRM <- R6Class("TXVMinSRM",
   )
 )
 
-LXVMinSRM <- R6Class("LXVMinSRM",
+#' @rdname NHPP
+#' @export
+LXVMinSRM <- R6::R6Class("LXVMinSRM",
   inherit = NHPP,
   private = list(
     Ft = function(t, lower.tail = TRUE) {

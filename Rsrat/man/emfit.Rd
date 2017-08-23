@@ -2,15 +2,15 @@
 % Please edit documentation in R/emfit.R
 \name{emfit}
 \alias{emfit}
-\title{Estimate SRM parameters}
+\title{Estimate SRM parameters.}
 \usage{
 emfit(srm, data, initialize = TRUE, maxiter = 2000, rtol = 1e-06,
   atol = 0.001, termination = "llf")
 }
 \arguments{
-\item{srm}{An NHPP model}
+\item{srm}{An NHPP model.}
 
-\item{data}{A faultdata}
+\item{data}{A faultdata.}
 
 \item{initialize}{Either TRUE or FALSE. If TRUE, the model parameters are
 initilized with a given data before executing the fitting algorithm.}
@@ -28,9 +28,16 @@ for the stop condition of the algorithm. Either llf or parameter is selected.}
 }
 \value{
 A list with components;
-\item{x}{a stationary vector.}
-\item{iter}{the number of iterations in GS and CG methods.}
+\item{initial}{A vector for initial parameters.}
+\item{srm}{A class of NHPP. The SRM with the estiamted parameters.}
+\item{llf}{A numeric value for the maximum log-likelihood function.}
+\item{convergence}{A boolean meaning the alorigthm is converged or not.}
+\item{iter}{An integer for the number of iterations.}
+\item{aerror}{A numeric value for absolute error.}
+\item{rerror}{A numeric value for relative error.}
 }
 \description{
-Estimate SRM parameters
+This function provides the maximum likelihood (ML) estiamtes for a given SRM with a given data.
+The ML estimates are computed with the EM algorithm. The initial parameters for the EM algorithm
+are automatically decided if the flag \emph{initialize} is TRUE.
 }
