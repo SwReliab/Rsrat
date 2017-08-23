@@ -1,5 +1,5 @@
 
-emfit.srm <- function(srm, data,
+emfit <- function(srm, data,
   initialize = TRUE,
   maxiter = 1000, rtol = 1.0e-6, atol = 1.0e-3,
   termination = "llf") {

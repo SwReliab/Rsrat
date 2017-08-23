@@ -11,31 +11,27 @@ faultdata.time <- function(time, te) {
     type <- rep(1L, len)
     type[len] <- 0L
   }
-  faultdata.gen(time, fault, type)
+  faultdata(time, fault, type)
 }
 
-faultdata.group <- function(time, fault) {
+faultdata <- function(time, fault = rep.int(0L, length(time)),
+  type = rep.int(0L, length(time))) {
+
   if (length(time) != length(fault))
     stop("Invalid data")
-
-  type <- rep(0L, length(time))
-  faultdata.gen(time, fault, type)
-}
-
-faultdata.gen <- function(time, fault, type) {
+  if (length(time) != length(type))
+      stop("Invalid data")
   if (any(time == 0 & fault != 0L & type != 0L))
     stop("Invalid data: zero time exits.")
 
-  tmpdf <- data.frame(time=time, fault=fault, type=type)
-
-  tmp <- tmpdf$fault + tmpdf$type
+  tmp <- fault + type
   total <- sum(tmp)
-  tmean <- sum(cumsum(tmpdf$time) * tmp) / total
-  tmax <- max(cumsum(tmpdf$time)[tmp >= 1L])
+  tmean <- sum(cumsum(time) * tmp) / total
+  tmax <- max(cumsum(time)[tmp >= 1L])
   result <- list(
-    time=tmpdf$time,
-    fault=tmpdf$fault,
-    type=tmpdf$type,
+    time=time,
+    fault=fault,
+    type=type,
     total=total,
     len=length(time),
     mean=tmean,

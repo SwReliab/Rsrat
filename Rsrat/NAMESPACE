@@ -1,8 +1,23 @@
 # Default NAMESPACE created by R
 # Remove the previous line if you edit this file
 
-# Export all names
-exportPattern(".")
-
 import("R6")
 importFrom("stats", "dlogis", "dnorm", "plogis", "pnorm", "qlogis", "qnorm")
+
+# Export all names
+#exportPattern(".")
+
+export(faultdata, faultdata.time)
+export(emfit)
+export(srm, srm.names)
+export(ExpSRM)
+export(GammaSRM)
+export(ParetoSRM)
+export(TNormSRM)
+export(LNormSRM)
+export(TLogisSRM)
+export(LLogisSRM)
+export(TXVMaxSRM)
+export(TXVMinSRM)
+export(LXVMaxSRM)
+export(LXVMinSRM)
