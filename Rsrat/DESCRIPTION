@@ -11,3 +11,4 @@ Description: This package provides estimation programs for software
   for static metrics.
 Imports: R6
 License: MIT + file LICENSE
+RoxygenNote: 6.0.1
