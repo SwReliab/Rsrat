@@ -1,0 +1,13 @@
+---
+title: Rsrat README
+author: Hiroyuki Okamura
+output: md_document
+---
+
+```{r global_options, echo=FALSE}
+knitr::opts_chunk$set(fig.path="figure/", warning=FALSE, message=FALSE,
+                      error=FALSE)
+```
+
+# Rsrat
+Software Reliability Assessment Tool on R

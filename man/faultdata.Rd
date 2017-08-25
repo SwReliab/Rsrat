@@ -19,7 +19,7 @@ The fault detected just at the end of time interal is not counted.}
 \item{type}{Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 This is used to represent the fault time data. If 0, no fault is detected at the end of interval.}
 
-\item{te}{A numeric value for the last observation time}
+\item{te}{A numeric value for the time interval from the last fault to the observation time.}
 }
 \value{
 A list with the attribute class='Rsrat.faultdata';
@@ -38,6 +38,6 @@ count data.
 }
 \section{Functions}{
 \itemize{
-\item \code{faultdata.time}: Create fault data from a time series of fault detection time.
+\item \code{faultdata.time}: Create fault data from fault time data.
 }}
 

@@ -34,3 +34,4 @@ vignettes/*.pdf
 *.o
 *.so
 *.rds
+.Rproj.user

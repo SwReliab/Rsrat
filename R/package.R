@@ -8,4 +8,5 @@
 #' @name Rsrat
 #' @import R6
 #' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm
+#' @useDynLib Rsrat
 NULL
