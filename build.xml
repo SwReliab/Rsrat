@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Rsrat" default="check" basedir=".">
+
+	<target name="check">
+		<exec dir="." executable="Rscript">
+			<arg line="-e 'devtools::check()'"/>
+		</exec>
+	</target>
+
+	<target name="cran-check">
+		<exec dir="." executable="R">
+			<arg line="CMD check --as-cran"/>
+			<arg file="${package}"/>
+		</exec>
+	</target>
+
+	<target name="build">
+		<exec dir="." executable="Rscript">
+			<arg line="-e 'devtools::build()'"/>
+		</exec>
+	</target>
+
+	<target name="install">
+		<exec dir="." executable="Rscript">
+			<arg line="-e 'devtools::install()'"/>
+		</exec>
+	</target>
+
+	<target name="clean">
+		<exec dir="." executable="Rscript">
+			<arg line="-e 'devtools::clean_dll()'"/>
+		</exec>
+	</target>
+</project>
