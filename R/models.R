@@ -12,10 +12,13 @@
 #' \describe{
 #'   \item{\code{omega()}}{This method returns the number of total faults.}
 #'   \item{\code{mvf(t)}}{This method returns the mean value function at time t.}
+#'   \item{\code{inv_mvf(x)}}{This method returns the time at which the mean value function attains x.}
 #'   \item{\code{intensity(t)}}{This method returns the intensity function at time t.}
 #'   \item{\code{reliab(t, s)}}{This method returns the software reliability at time t from the orign s.}
 #'   \item{\code{residual(t)}}{This method returns the expected residual number of faults at time t.}
 #'   \item{\code{ffp(t)}}{This method returns the fault-free probability at time t.}
+#'   \item{\code{imtbf(t)}}{This method returns the instantaneous MTBF at time t.}
+#'   \item{\code{cmtbf(t)}}{This method returns the cumulative MTBF at time t.}
 #'   \item{\code{median(s, p = 0.5)}}{This method returns the time at which the software reliability attains the proability p from the orign s.}
 #'   \item{\code{init_params(data)}}{This method changes the model parameters based on a given data. This is used to set the initial value for the fitting algorithm.}
 #'   \item{\code{set_params(params)}}{This method sets the model parameters.}
@@ -23,6 +26,7 @@
 #'          absolute difference of parameter vector (pdiff),
 #'          log-likelihood function for a given parameter vector (llf),
 #'          the number of total faults (total) via EM algorithm for a given data. \emph{divide} in GammaSRM is the number of integration points.}
+#'   \item{\code{llf(data)}}{This method returns the log-likelihood function for a given data.}
 #' }
 #' @seealso \code{\link{srm}}
 NULL
@@ -40,10 +44,22 @@ NHPP <- R6::R6Class("NHPP",
     df = NA,
     omega = function() { self$params[1L] },
     mvf = function(t) { self$omega() * private$Ft(t) },
+    inv_mvf = function(x) {
+      p <- x / self$omega()
+      sapply(p, function(pp) {
+        if (pp > 0 && pp < 1) {
+          private$invFt(pp)
+        } else {
+          NA
+        }
+      })
+    },
     intensity = function(t) { self$omega() * private$ft(t) },
     reliab = function(t, s) { exp(-(self$mvf(t+s) - self$mvf(s))) },
     residual = function(t) { self$omega() * private$Ft(t, lower.tail=FALSE) },
     ffp = function(t) { exp(-self$residual(t)) },
+    imtbf = function(t) { 1 / self$intensity(t) },
+    cmtbf = function(t) { t / self$mvf(t) },
     median = function(s, p = 0.5) {
       if (p > self$ffp(s)) {
         private$invFt((self$mvf(s) - log(p)) / self$omega())
@@ -53,7 +69,29 @@ NHPP <- R6::R6Class("NHPP",
     },
     init_params = function(data) { NA },
     set_params = function(params) { self$params <- params },
-    em = function(params, data) { NA }
+    em = function(params, data) { NA },
+    llf = function(data) {
+      n <- data$len
+      te <- sum(data$time)
+      ct1 <- cumsum(data$time)
+      ct0 <- c(0,ct1)[1:n]
+
+      tt <- ct1[data$type != 0]
+      ct1 <- ct1[data$fault != 0]
+      ct0 <- ct0[data$fault != 0]
+      fn <- data$fault[data$fault != 0]
+
+      retval <- data$total * log(self$omega())
+      if (length(tt) != 0) {
+        retval <- retval + sum(log(private$ft(tt)))
+      }
+      retval <- retval +
+        sum(apply(cbind(fn, ct1, ct0), 1,
+                  function(v) v[1] * log(private$Ft(v[2]) - private$Ft(v[3]))
+                        - lgamma(v[1] + 1)))
+      retval <- retval - self$omega() * private$Ft(te)
+      retval
+    }
   )
 )
 
