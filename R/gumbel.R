@@ -3,6 +3,9 @@
 #' Density, distribution function, and quantile function for
 #' Gumbel distribution (maximum).
 #'
+#' The Gumbel distribution (maximum) has the cumulative distribution function
+#' F(q) = exp(-exp(-z)) where z = (q-loc)/scale
+#'
 #' @name gumbel
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -12,11 +15,7 @@
 #' @param log,log.p A logical; if TRUE, the probability p is given as log(p).
 #' @return 'dgumble' gives the desity, 'pgumbel' gives the distribution, and
 #' 'qgumbel' gives the quantile function.
-#' @details
-#' The Gumbel distribution (maximum) has the cumulative distribution function
-#' F(q) = exp(-exp(-z)) where z = (q-loc)/scale
 NULL
-#> NULL
 
 #' @rdname gumbel
 dgumbel <- function (x, loc = 0, scale = 1, log = FALSE) {
@@ -58,6 +57,9 @@ qgumbel <- function (p, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE) {
 #' Density, distribution function, and quantile function for
 #' Gumbel distribution (minimum).
 #'
+#' The Gumbel distribution (minimum) has the cumulative distribution function
+#' F(q) = 1-exp(-exp(-z)) where z = (-q-loc)/scale
+#'
 #' @name gumbel.min
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -68,10 +70,7 @@ qgumbel <- function (p, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE) {
 #' @return 'dgumble.min' gives the desity, 'pgumbel.min' gives the distribution, and
 #' 'qgumbel.min' gives the quantile function.
 #' @details
-#' The Gumbel distribution (minimum) has the cumulative distribution function
-#' F(q) = 1-exp(-exp(-z)) where z = (-q-loc)/scale
 NULL
-#> NULL
 
 #' @rdname gumbel.min
 dgumbel.min <- function (x, loc = 0, scale = 1, log = FALSE) {

@@ -1,6 +1,26 @@
-# R6 classes
+#' Model names
+#'
+#' All software reliablity models.
+#'
+#' Return a list of all models.
+#' \describe{
+#' \item{exp}{Exponential model (Goel-Okumoto model).}
+#' \item{gamma}{Gamma model.}
+#' \item{pareto}{Pareto model (Littlewood model).}
+#' \item{tnorm}{Truncated normal model.}
+#' \item{lnorm}{Log-normal model.}
+#' \item{tlogis}{Truncated logisitc model (Inflection S-shpaed model, Logistic curve).}
+#' \item{txvmax}{Truncated exttreme-value max model (Gompertz curve).}
+#' \item{lxvmax}{Log-exttreme-value max model (Frechet typed).}
+#' \item{txvmin}{Truncated exttreme-value min model.}
+#' \item{lxvmin}{Log-exttreme-value min model (Goel model, Weibull model).}
+#' }
+#'
+#' @return A list of all software reliability models (exp, gamma,
+#' pareto, tnorm, lnorm, tlogis, llogis, txvmax, lxvmax, txvmin, lxvmin).
+#' @export
 
-srm.names <- c(
+srm.models <- c(
   "exp",
   "gamma",
   "pareto",
@@ -13,6 +33,16 @@ srm.names <- c(
   "txvmin",
   "lxvmin"
 )
+
+#' Software reliability model
+#'
+#' Generate a software reliability model.
+#'
+#' Return a class of NHPP.
+#'
+#' @param names A character vector, indicating the model (\code{\link{srm.models}}).
+#' @return A class of NHPP (\code{\link{NHPP}}).
+#' @export
 
 srm <- function(names) {
   if (length(names) == 1L) {

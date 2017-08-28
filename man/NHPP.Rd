@@ -77,4 +77,7 @@ Class for NHPP-based software reliability model
 }
 }
 
+\seealso{
+\code{\link{srm}}
+}
 \keyword{datasets}

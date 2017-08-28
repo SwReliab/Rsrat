@@ -12,7 +12,6 @@
 #' log-likelihood function for a given parameter vector (llf),
 #' the number of total faults (total).
 NULL
-#> NULL
 
 #' @rdname em
 em.exp <- function(params, data, ...) {

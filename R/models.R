@@ -24,8 +24,8 @@
 #'          log-likelihood function for a given parameter vector (llf),
 #'          the number of total faults (total) via EM algorithm for a given data. \emph{divide} in GammaSRM is the number of integration points.}
 #' }
+#' @seealso \code{\link{srm}}
 NULL
-#> NULL
 
 #' @rdname NHPP
 NHPP <- R6::R6Class("NHPP",

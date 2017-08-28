@@ -23,6 +23,9 @@
 #' \item{iter}{An integer for the number of iterations.}
 #' \item{aerror}{A numeric value for absolute error.}
 #' \item{rerror}{A numeric value for relative error.}
+#' @examples
+#' data(musa)
+#' emfit(srm("exp"), musa.sys1.group)
 #' @export
 
 emfit <- function(srm, data,

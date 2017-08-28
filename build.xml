@@ -15,6 +15,12 @@
 		</exec>
 	</target>
 
+	<target name="doc">
+		<exec dir="." executable="Rscript">
+			<arg line="-e 'devtools::document()'"/>
+		</exec>
+	</target>
+
 	<target name="build">
 		<exec dir="." executable="Rscript">
 			<arg line="-e 'devtools::build()'"/>

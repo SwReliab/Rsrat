@@ -3,6 +3,10 @@
 #' Density, distribution function, and quantile function for
 #' truncated logistic distribution.
 #'
+#' The truncated logistic distribution has the cumulative distribution function
+#' F(q) = 1-(1-G(q))/(1-G(0)) where G(q) is the cumulative distribution function
+#' of the logistic distribution with location and scale.
+#'
 #' @name tlogis
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -12,13 +16,8 @@
 #' @param log,log.p A logical; if TRUE, the probability p is given as log(p).
 #' @return 'dtlogis' gives the desity, 'ptlogis' gives the distribution, and
 #' 'qtlogis' gives the quantile function.
-#' @details
-#' The truncated logistic distribution has the cumulative distribution function
-#' F(q) = 1-(1-G(q))/(1-G(0)) where G(q) is the cumulative distribution function
-#' of the logistic distribution with location and scale.
 #' @importFrom stats dlogis plogis qlogis
 NULL
-#> NULL
 
 #' @rdname tlogis
 dtlogis <- function(x, location = 0, scale = 1, log = FALSE) {

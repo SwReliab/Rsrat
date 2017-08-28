@@ -17,6 +17,9 @@
 #' \item{len}{An integer for the number of time intervals.}
 #' \item{mean}{A numeric value for mean fault detection time from data.}
 #' \item{max}{A numeric value for maximum of fault detection time.}
+#' @examples
+#' faultdata(time=c(1,1,1,1), fault=c(0,1,0,5))
+#' faultdata.time(time=c(3,1,7,15,12), te=3)
 #' @export
 
 faultdata <- function(time, fault = rep.int(0L, length(time)),
@@ -47,6 +50,7 @@ faultdata <- function(time, fault = rep.int(0L, length(time)),
 
 #' @describeIn faultdata Create fault data from fault time data.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
+#' @export
 faultdata.time <- function(time, te) {
   if (missing(te)) {
     len <- length(time)
@@ -61,6 +65,19 @@ faultdata.time <- function(time, te) {
   }
   faultdata(time, fault, type)
 }
+
+#' Printing software fault data
+#'
+#' Print a data frame.
+#'
+#' @param x An object of Rsrat.faultdata.
+#' @param ... Other parameters
+#' @param digits The minimum number of significant digits.
+#' @param quote A logical, indicating whether or not entries are printed with quotes.
+#' @param right A logical, indicating whether or not strings are right-aligned.
+#' @param row.names A logical or a character vector, indicating whether or not row names are printed.
+#' @details This function calls print.data.frame to forms the fault data with three columns.
+#' @export
 
 print.Rsrat.faultdata <- function (x, ..., digits = NULL, quote = FALSE,
   right = TRUE, row.names = TRUE) {

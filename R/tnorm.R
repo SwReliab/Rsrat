@@ -3,6 +3,10 @@
 #' Density, distribution function, and quantile function for
 #' truncated normal distribution.
 #'
+#' The truncated normal distribution has the cumulative distribution function
+#' F(q) = 1-(1-G(q))/(1-G(0)), where G(q) is the cumulative distribution function of
+#' normal distribution with mean and sd.
+#'
 #' @name tnorm
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -12,13 +16,8 @@
 #' @param log,log.p A logical; if TRUE, the probability p is given as log(p).
 #' @return 'dtnorm' gives the desity, 'ptnorm' gives the distribution, and
 #' 'qtnorm' gives the quantile function.
-#' @details
-#' The truncated normal distribution has the cumulative distribution function
-#' F(q) = 1-(1-G(q))/(1-G(0)), where G(q) is the cumulative distribution function of
-#' normal distribution with mean and sd.
 #' @importFrom stats dnorm pnorm qnorm
 NULL
-#> NULL
 
 #' @rdname tnorm
 dtnorm <- function(x, mean = 0, sd = 1, log = FALSE) {

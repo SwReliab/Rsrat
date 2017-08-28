@@ -41,3 +41,7 @@ This function provides the maximum likelihood (ML) estiamtes for a given SRM wit
 The ML estimates are computed with the EM algorithm. The initial parameters for the EM algorithm
 are automatically decided if the flag \emph{initialize} is TRUE.
 }
+\examples{
+data(musa)
+emfit(srm("exp"), musa.sys1.group)
+}

@@ -3,6 +3,10 @@
 #' Density, distribution function, and quantile function for
 #' log-logistic distribution.
 #'
+#' The log-logistic distribution has the cumulative distribution function
+#' F(q) = G(log(q)) where G(q) is the cumulative distribution function
+#' of the logistic distribution with location and scale.
+#'
 #' @name llogis
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -12,13 +16,8 @@
 #' @param log,log.p A logical; if TRUE, the probability p is given as log(p).
 #' @return 'dllogis' gives the desity, 'pllogis' gives the distribution, and
 #' 'qllogis' gives the quantile function.
-#' @details
-#' The log-logistic distribution has the cumulative distribution function
-#' F(q) = G(log(q)) where G(q) is the cumulative distribution function
-#' of the logistic distribution with location and scale.
 #' @importFrom stats dlogis plogis qlogis
 NULL
-#> NULL
 
 #' @rdname llogis
 dllogis <- function(x, locationlog = 0, scalelog = 1, log = FALSE) {

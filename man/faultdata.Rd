@@ -41,3 +41,7 @@ count data.
 \item \code{faultdata.time}: Create fault data from fault time data.
 }}
 
+\examples{
+faultdata(time=c(1,1,1,1), fault=c(0,1,0,5))
+faultdata.time(time=c(3,1,7,15,12), te=3)
+}

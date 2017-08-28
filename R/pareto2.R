@@ -3,6 +3,9 @@
 #' Density, distribution function, and quantile function for
 #' Pareto (type 2) distribution.
 #'
+#' The Pareto type 2distribution has the cumulative distribution function
+#' F(q) = 1 - (scale / (q + scale))^shape
+#'
 #' @name pareto2
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -12,11 +15,7 @@
 #' @param log,log.p A logical; if TRUE, the probability p is given as log(p).
 #' @return 'dpareto2' gives the desity, 'ppareto2' gives the distribution, and
 #' 'qpareto2' gives the quantile function.
-#' @details
-#' The Pareto type 2distribution has the cumulative distribution function
-#' F(q) = 1 - (scale / (q + scale))^shape
 NULL
-#> NULL
 
 #' @rdname pareto2
 dpareto2 <- function(x, shape = 1, scale = 1, log = FALSE) {

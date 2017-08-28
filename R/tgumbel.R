@@ -3,6 +3,9 @@
 #' Density, distribution function, and quantile function for
 #' truncated Gumbel distribution (maximum).
 #'
+#' The truncated Gumbel distribution (maximum) has the cumulative distribution function
+#' F(q) = 1-(1-G(q))/(1-G(0)), G(q) = exp(-exp(-z)) where z = (q-loc)/scale
+#'
 #' @name tgumbel
 #' @param x,q A numeric vector of quantiles.
 #' @param p A numeric vector of probabilities.
@@ -12,11 +15,7 @@
 #' @param log,log.p A logical; if TRUE, the probability p is given as log(p).
 #' @return 'dtgumble' gives the desity, 'ptgumbel' gives the distribution, and
 #' 'qtgumbel' gives the quantile function.
-#' @details
-#' The truncated Gumbel distribution (maximum) has the cumulative distribution function
-#' F(q) = 1-(1-G(q))/(1-G(0)), G(q) = exp(-exp(-z)) where z = (q-loc)/scale
 NULL
-#> NULL
 
 #' @rdname tgumbel
 dtgumbel <- function(x, loc = 0, scale = 1, log = FALSE) {
