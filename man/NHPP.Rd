@@ -63,10 +63,13 @@ Class for NHPP-based software reliability model
 \describe{
   \item{\code{omega()}}{This method returns the number of total faults.}
   \item{\code{mvf(t)}}{This method returns the mean value function at time t.}
+  \item{\code{inv_mvf(x)}}{This method returns the time at which the mean value function attains x.}
   \item{\code{intensity(t)}}{This method returns the intensity function at time t.}
   \item{\code{reliab(t, s)}}{This method returns the software reliability at time t from the orign s.}
   \item{\code{residual(t)}}{This method returns the expected residual number of faults at time t.}
   \item{\code{ffp(t)}}{This method returns the fault-free probability at time t.}
+  \item{\code{imtbf(t)}}{This method returns the instantaneous MTBF at time t.}
+  \item{\code{cmtbf(t)}}{This method returns the cumulative MTBF at time t.}
   \item{\code{median(s, p = 0.5)}}{This method returns the time at which the software reliability attains the proability p from the orign s.}
   \item{\code{init_params(data)}}{This method changes the model parameters based on a given data. This is used to set the initial value for the fitting algorithm.}
   \item{\code{set_params(params)}}{This method sets the model parameters.}
@@ -74,6 +77,7 @@ Class for NHPP-based software reliability model
          absolute difference of parameter vector (pdiff),
          log-likelihood function for a given parameter vector (llf),
          the number of total faults (total) via EM algorithm for a given data. \emph{divide} in GammaSRM is the number of integration points.}
+  \item{\code{llf(data)}}{This method returns the log-likelihood function for a given data.}
 }
 }
 
