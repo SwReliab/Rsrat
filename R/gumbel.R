@@ -87,7 +87,7 @@ pgumbel.min <- function (q, loc = 0, scale = 1, lower.tail = TRUE,
   log.p = FALSE) {
   z <- ((-q) - loc) / scale
   p <- exp(-exp(-z))
-  if (lower.tail == FALSE) {
+  if (lower.tail == TRUE) {
     p <- 1 - p
   }
   if (log.p) {
@@ -102,7 +102,7 @@ qgumbel.min <- function (p, loc = 0, scale = 1, lower.tail = TRUE,
   if (log.p) {
     p <- exp(p)
   }
-  if (lower.tail == FALSE) {
+  if (lower.tail == TRUE) {
     p <- 1 - p
   }
   z <- -log(-log(p))
