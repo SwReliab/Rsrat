@@ -9,16 +9,19 @@
 #' @param initialize Either TRUE or FALSE. If TRUE, the model parameters are
 #' initilized with a given data before executing the fitting algorithm.
 #' @param maxiter An integer for the maximum number of iterations in the fitting algorithm.
-#' @param rtol A numeric value. The algorithm stops if the relative error is
-#' less than \emph{rtol} and the absolute error is less than \emph{atol}.
-#' @param atol A numeric value. The algorithm stops if the relative error is
-#' less than \emph{rtol} and the absolute error is less than \emph{atol}.
-#' @param termination A character string. \emph{termination} gives the criterion
+#' @param reltol A numeric value. The algorithm stops if the relative error is
+#' less than \emph{reltol} and the absolute error is less than \emph{abstol}.
+#' @param abstol A numeric value. The algorithm stops if the relative error is
+#' less than \emph{reltol} and the absolute error is less than \emph{abstol}.
+#' @param stopcond A character string. \emph{stopcond} gives the criterion
 #' for the stop condition of the algorithm. Either llf or parameter is selected.
+#' @param printflag A logical. If TRUE, the intermediate parameters are printed.
+#' @param printsteps An integer for print.
 #' @return A list with components;
 #' \item{initial}{A vector for initial parameters.}
 #' \item{srm}{A class of NHPP. The SRM with the estiamted parameters.}
 #' \item{llf}{A numeric value for the maximum log-likelihood function.}
+#' \item{df}{An integer for degrees of freedom.}
 #' \item{convergence}{A boolean meaning the alorigthm is converged or not.}
 #' \item{iter}{An integer for the number of iterations.}
 #' \item{aerror}{A numeric value for absolute error.}
@@ -30,8 +33,8 @@
 
 emfit <- function(srm, data,
   initialize = TRUE,
-  maxiter = 2000, rtol = 1.0e-6, atol = 1.0e-3,
-  termination = "llf") {
+  maxiter = 2000, reltol = 1.0e-6, abstol = 1.0e-3,
+  stopcond = "llf", printflag = FALSE, printsteps = 50) {
     ## init
     if (initialize) {
       srm$init_params(data)
@@ -41,8 +44,8 @@ emfit <- function(srm, data,
     conv <- FALSE
     param <- srm$params
 
-    ## termination
-    if (termination == "parameter" || termination == "param") {
+    ## stopcond
+    if (stopcond == "parameter" || stopcond == "param") {
       term.fn <- function(res0, res1) {
         sdiff <- res1$llf - res0$llf
         para0 <- c(res0$param)
@@ -51,7 +54,7 @@ emfit <- function(srm, data,
         rerror <- aerror / max(abs(para0))
         return(c(aerror, rerror, sdiff))
       }
-    } else if (termination == "llf") {
+    } else if (stopcond == "llf") {
       term.fn <- function(res0, res1) {
         sdiff <- res1$llf - res0$llf
         aerror <- abs(res1$llf - res0$llf)
@@ -59,7 +62,7 @@ emfit <- function(srm, data,
         return(c(aerror, rerror, sdiff))
       }
     } else {
-      stop("wrong termination condition.")
+      stop("wrong stopcond condition.")
     }
 
     ## repeat emstep
@@ -68,6 +71,12 @@ emfit <- function(srm, data,
     repeat {
       res1 <- srm$em(res0$param, data)
       error <- term.fn(res0, res1)
+
+      if (printflag) {
+        if (iter %% printsteps == 0) {
+          cat("llf=", res1$llf, "params=", res1$param, "\n")
+        }
+      }
 
       if (!is.finite(res1$llf) || !all(is.finite(res1$param))) {
         warning(sprintf("LLF or param becomes +-Inf, NaN or NA: %s %d",
@@ -79,7 +88,7 @@ emfit <- function(srm, data,
         warning(sprintf("LLF decreses: %s %d %e", srm$name,
           iter, error[3]))
       }
-      if ((error[1] < atol) && (error[2] < rtol)) {
+      if ((error[1] < abstol) && (error[2] < reltol)) {
         conv <- TRUE
         srm$set_params(res1$param)
         break
@@ -93,16 +102,17 @@ emfit <- function(srm, data,
       res0 <- res1
     }
 
+    srm$set_data(data)
 
     result <- list(
       initial = param,
       srm = srm,
       llf = res1$llf,
+      df = srm$df,
       convergence = conv,
       iter = iter,
       aerror = error[1],
       rerror = error[2]
     )
-    class(result) <- "Rsrat.result"
     result
 }

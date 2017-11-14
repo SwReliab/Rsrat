@@ -9,6 +9,7 @@
 #' The fault detected just at the end of time interal is not counted.
 #' @param type Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
+#' @param te A numeric value for the time interval from the last fault to the observation time.
 #' @return A list with the attribute class='Rsrat.faultdata';
 #' \item{time}{A vector for time interval.}
 #' \item{fault}{A vector for the number of detected faults in intervals.}
@@ -19,16 +20,56 @@
 #' \item{max}{A numeric value for maximum of fault detection time.}
 #' @examples
 #' faultdata(time=c(1,1,1,1), fault=c(0,1,0,5))
-#' faultdata.time(time=c(3,1,7,15,12), te=3)
+#' faultdata(time=c(3,1,7,15,12), te=3)
 #' @export
 
-faultdata <- function(time, fault = rep.int(0L, length(time)),
-  type = rep.int(0L, length(time))) {
+faultdata <- function(time, fault, type, te) {
+
+  if (missing(time)) {
+    if (missing(fault)) {
+      stop("Invalid data: Either time or fault is required.")
+    } else {
+      if (!missing(te)) {
+        warning("te is ignored.")
+      }
+      if (missing(type)) {
+        type <- rep.int(0L, length(fault))
+      }
+      time <- rep.int(1L, length(fault))
+    }
+  } else {
+    if (missing(fault)) {
+      if (missing(type)) {
+        if (missing(te)) {
+          stop("Invalid data: Either type or te is required when fault is missing.")
+        } else {
+          type <- rep.int(1L, length(time))
+          time <- c(time, te)
+          type <- c(type, 0)
+          fault <- rep.int(0L, length(time))
+        }
+      } else {
+        if (!missing(te)) {
+          warning("te is ignored.")
+        }
+        fault <- rep.int(0L, length(time))
+      }
+    } else {
+      if (!missing(te)) {
+        warning("te is ignored.")
+      }
+      if (missing(type)) {
+        type <- rep.int(0L, length(time))
+      }
+    }
+  }
 
   if (length(time) != length(fault))
     stop("Invalid data")
   if (length(time) != length(type))
       stop("Invalid data")
+  if (all(fault == 0L & type == 0L))
+    stop("Invalid data: no fault.")
   if (any(time == 0 & fault != 0L & type != 0L))
     stop("Invalid data: zero time exits.")
 
@@ -46,24 +87,6 @@ faultdata <- function(time, fault = rep.int(0L, length(time)),
     max=tmax)
   class(result) <- "Rsrat.faultdata"
   result
-}
-
-#' @describeIn faultdata Create fault data from fault time data.
-#' @param te A numeric value for the time interval from the last fault to the observation time.
-#' @export
-faultdata.time <- function(time, te) {
-  if (missing(te)) {
-    len <- length(time)
-    fault <- rep(0L, len)
-    type <- rep(1L, len)
-  } else {
-    time <- c(time, te)
-    len <- length(time)
-    fault <- rep(0L, len)
-    type <- rep(1L, len)
-    type[len] <- 0L
-  }
-  faultdata(time, fault, type)
 }
 
 #' Printing software fault data

@@ -68,6 +68,9 @@ create.srm.model <- function(name) {
     "lxvmax"=LXVMaxSRM$new(),
     "txvmin"=TXVMinSRM$new(),
     "lxvmin"=LXVMinSRM$new(),
+    "dglm.logit"=dGLM.logit$new(),
+    "dglm.probit"=dGLM.probit$new(),
+    "dglm.cloglog"=dGLM.cloglog$new(),
     NA
   )
 }

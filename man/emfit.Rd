@@ -4,8 +4,8 @@
 \alias{emfit}
 \title{Estimate SRM parameters.}
 \usage{
-emfit(srm, data, initialize = TRUE, maxiter = 2000, rtol = 1e-06,
-  atol = 0.001, termination = "llf")
+emfit(srm, data, initialize = TRUE, maxiter = 2000, reltol = 1e-06,
+  abstol = 0.001, stopcond = "llf", printflag = FALSE, printsteps = 50)
 }
 \arguments{
 \item{srm}{An NHPP model.}
@@ -17,20 +17,25 @@ initilized with a given data before executing the fitting algorithm.}
 
 \item{maxiter}{An integer for the maximum number of iterations in the fitting algorithm.}
 
-\item{rtol}{A numeric value. The algorithm stops if the relative error is
-less than \emph{rtol} and the absolute error is less than \emph{atol}.}
+\item{reltol}{A numeric value. The algorithm stops if the relative error is
+less than \emph{reltol} and the absolute error is less than \emph{abstol}.}
 
-\item{atol}{A numeric value. The algorithm stops if the relative error is
-less than \emph{rtol} and the absolute error is less than \emph{atol}.}
+\item{abstol}{A numeric value. The algorithm stops if the relative error is
+less than \emph{reltol} and the absolute error is less than \emph{abstol}.}
 
-\item{termination}{A character string. \emph{termination} gives the criterion
+\item{stopcond}{A character string. \emph{stopcond} gives the criterion
 for the stop condition of the algorithm. Either llf or parameter is selected.}
+
+\item{printflag}{A logical. If TRUE, the intermediate parameters are printed.}
+
+\item{printsteps}{An integer for print.}
 }
 \value{
 A list with components;
 \item{initial}{A vector for initial parameters.}
 \item{srm}{A class of NHPP. The SRM with the estiamted parameters.}
 \item{llf}{A numeric value for the maximum log-likelihood function.}
+\item{df}{An integer for degrees of freedom.}
 \item{convergence}{A boolean meaning the alorigthm is converged or not.}
 \item{iter}{An integer for the number of iterations.}
 \item{aerror}{A numeric value for absolute error.}

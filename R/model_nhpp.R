@@ -7,9 +7,11 @@
 #' @field name A character string for the name of model.
 #' @field params A numeric vector for the model parameters.
 #' @field df An integer for the degrees of freedom of the model.
+#' @field data Data to esimate parameters.
 #'
 #' @section Methods:
 #' \describe{
+#'   \item{\code{print()}}{This method prints model parameters.}
 #'   \item{\code{omega()}}{This method returns the number of total faults.}
 #'   \item{\code{mvf(t)}}{This method returns the mean value function at time t.}
 #'   \item{\code{inv_mvf(x)}}{This method returns the time at which the mean value function attains x.}
@@ -42,6 +44,11 @@ NHPP <- R6::R6Class("NHPP",
     name = NA,
     params = NA,
     df = NA,
+    data = NA,
+    print = function(digits = max(3, getOption("digits") - 3), ...) {
+      cat(gettextf("Model name: %s\n", self$name))
+      print.default(format(self$params, digits = digits), print.gap = 2, quote = FALSE)
+    },
     omega = function() { self$params[1L] },
     mvf = function(t) { self$omega() * private$Ft(t) },
     inv_mvf = function(x) {
@@ -69,6 +76,7 @@ NHPP <- R6::R6Class("NHPP",
     },
     init_params = function(data) { NA },
     set_params = function(params) { self$params <- params },
+    set_data = function(data) { self$data <- data },
     em = function(params, data) { NA },
     llf = function(data) {
       n <- data$len
@@ -112,6 +120,7 @@ ExpSRM <- R6::R6Class("ExpSRM",
     rate = function() { self$params[2L] },
     initialize = function(omega = 1, rate = 1) {
       self$params <- c(omega, rate)
+      names(self$params) <- c("omega", "rate")
     },
     init_params = function(data) {
       self$params <- c(data$total, 1.0/data$mean)
@@ -140,6 +149,7 @@ GammaSRM <- R6::R6Class("GammaSRM",
     rate = function() { self$params[3L] },
     initialize = function(omega = 1, shape = 1, rate = 1) {
       self$params <- c(omega, shape, rate)
+      names(self$params) <- c("omega", "shape", "rate")
     },
     init_params = function(data) {
       self$params <- c(data$total, 1.0, 1.0/data$mean)
@@ -173,6 +183,7 @@ ParetoSRM <- R6::R6Class("ParetoSRM",
     scale = function() { self$params[3L] },
     initialize = function(omega = 1, shape = 1, scale = 1) {
       self$params <- c(omega, shape, scale)
+      names(self$params) <- c("omega", "shape", "scale")
     },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, 1.0)
@@ -201,6 +212,7 @@ TNormSRM <- R6::R6Class("TNormSRM",
     sd = function() { self$params[3L] },
     initialize = function(omega = 1, mean = 0, sd = 1) {
       self$params <- c(omega, mean, sd)
+      names(self$params) <- c("omega", "mean", "sd")
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, data$mean)
@@ -234,6 +246,7 @@ LNormSRM <- R6::R6Class("LNormSRM",
     sdlog = function() { self$params[3L] },
     initialize = function(omega = 1, meanlog = 0, sdlog = 1) {
       self$params <- c(omega, meanlog, sdlog)
+      names(self$params) <- c("omega", "meanlog", "sdlog")
     },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, max(log(data$mean), 1.0))
@@ -267,6 +280,7 @@ TLogisSRM <- R6::R6Class("TLogisSRM",
     scale = function() { self$params[3L] },
     initialize = function(omega = 1, location = 0, scale = 1) {
       self$params <- c(omega, location, scale)
+      names(self$params) <- c("omega", "location", "scale")
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, data$mean)
@@ -300,6 +314,7 @@ LLogisSRM <- R6::R6Class("LLogisSRM",
     scalelog = function() { self$params[3L] },
     initialize = function(omega = 1, locationlog = 0, scalelog = 1) {
       self$params <- c(omega, locationlog, scalelog)
+      names(self$params) <- c("omega", "locationlog", "scalelog")
     },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, max(log(data$mean), 1.0))
@@ -328,6 +343,7 @@ TXVMaxSRM <- R6::R6Class("TXVMaxSRM",
     scale = function() { self$params[3L] },
     initialize = function(omega = 1, loc = 0, scale = 1) {
       self$params <- c(omega, loc, scale)
+      names(self$params) <- c("omega", "loc", "scale")
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, data$max/3)
@@ -361,6 +377,7 @@ LXVMaxSRM <- R6::R6Class("LXVMaxSRM",
     scalelog = function() { self$params[3L] },
     initialize = function(omega = 1, loclog = 0, scalelog = 1) {
       self$params <- c(omega, loclog, scalelog)
+      names(self$params) <- c("omega", "loclog", "scalelog")
     },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, max(log(data$max), 1.0))
@@ -394,6 +411,7 @@ TXVMinSRM <- R6::R6Class("TXVMinSRM",
     scale = function() { self$params[3L] },
     initialize = function(omega = 1, loc = 0, scale = 1) {
       self$params <- c(omega, loc, scale)
+      names(self$params) <- c("omega", "loc", "scale")
     },
     init_params = function(data) {
       self$params <- c(data$total, -data$mean, data$max/3)
@@ -427,6 +445,7 @@ LXVMinSRM <- R6::R6Class("LXVMinSRM",
     scalelog = function() { self$params[3L] },
     initialize = function(omega = 1, loclog = 0, scalelog = 1) {
       self$params <- c(omega, loclog, scalelog)
+      names(self$params) <- c("omega", "loclog", "scalelog")
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, max(log(data$max), 1.0))
