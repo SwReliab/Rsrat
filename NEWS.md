@@ -1,3 +1,8 @@
+# Rsrat 0.10.0
+
+* Add logistic-based model to handle d-metrics.
+* Add fit.srm.nhpp to estimate NHPP models.
+
 # Rsrat 0.9.3
 
 * Add functions to NHPP (llf, inv_mvf, imtbf, cmtbf)
