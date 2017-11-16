@@ -1,3 +1,7 @@
+# Rsrat 1.0.0
+
+* Add poisson-regression-based model to handle s-metrics.
+
 # Rsrat 0.10.0
 
 * Add logistic-based model to handle d-metrics.

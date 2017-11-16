@@ -5,7 +5,7 @@
 \title{NHPP-based software reliability model}
 \usage{
 fit.srm.nhpp(time, fault, type, te, srm.names = srm.models,
-  control = list(), ...)
+  selection = "AIC", control = list(), ...)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -19,6 +19,9 @@ This is used to represent the fault time data. If 0, no fault is detected at the
 \item{te}{A numeric value for the time interval from the last fault to the observation time.}
 
 \item{srm.names}{A character vector, indicating the model (\code{\link{srm.models}}).}
+
+\item{selection}{A character string, indicating the model selection criterion. The default is "AIC".
+If this is NULL, the method returns the results for all model candidates.}
 
 \item{control}{A list of control parameters. See Details.}
 
@@ -53,4 +56,8 @@ for the stop condition of the algorithm. Either llf or parameter is selected.}
   \item{printflag}{A logical. If TRUE, the intermediate parameters are printed.}
   \item{printsteps}{An integer for print.}
 }
+}
+\examples{
+data(musa)
+fit.srm.nhpp(time=musa.sys1.group$time, fault=musa.sys1.group$fault, srm.names = c("exp"))
 }

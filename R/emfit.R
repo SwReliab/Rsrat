@@ -4,7 +4,7 @@
 #' The ML estimates are computed with the EM algorithm. The initial parameters for the EM algorithm
 #' are automatically decided if the flag \emph{initialize} is TRUE.
 #'
-#' @param srm An NHPP model.
+#' @param srm A model.
 #' @param data A faultdata.
 #' @param initialize Either TRUE or FALSE. If TRUE, the model parameters are
 #' initilized with a given data before executing the fitting algorithm.
