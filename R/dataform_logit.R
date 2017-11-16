@@ -10,9 +10,9 @@
 #' @param offset An integer. This can be used to specify an a priori known
 #' component to be included in the linear predictor during fitting. This should
 #' be NULL or a numeric vector of length equal to the number of cases.
-#' @return A list with the attribute class='Rsrat.faultdata';
+#' @return A list with the attribute class='Rsrat.faultdata.dmet';
 #' \item{fault}{A vector for the number of detected faults.}
-#' \item{metrics}{A matrix for metrics.}
+#' \item{metrics}{A matrix for d-metrics.}
 #' \item{total}{An integer for the number of total faults.}
 #' \item{nmetrics}{An integer for the number of types of metrics.}
 #' \item{offset}{A vector for offset.}
