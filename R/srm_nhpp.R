@@ -22,6 +22,8 @@
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
 #' @param srm.names A character vector, indicating the model (\code{\link{srm.models}}).
+#' @param selection A character string, indicating the model selection criterion. The default is "AIC".
+#' If this is NULL, the method returns the results for all model candidates.
 #' @param control A list of control parameters. See Details.
 #' @param ... Other parameters.
 #' @return A list with components;
@@ -35,9 +37,12 @@
 #' \item{rerror}{A numeric value for relative error.}
 #' \item{ctime}{A numeric value for computation time.}
 #' \item{call}{The method call.}
+#' @examples
+#' data(musa)
+#' fit.srm.nhpp(time=musa.sys1.group$time, fault=musa.sys1.group$fault, srm.names = c("exp"))
 #' @export
 
-fit.srm.nhpp <- function(time, fault, type, te, srm.names = srm.models, control = list(), ...) {
+fit.srm.nhpp <- function(time, fault, type, te, srm.names = srm.models, selection = "AIC", control = list(), ...) {
   data <- faultdata(time, fault, type, te)
   con <- srm.nhpp.options()
   nmsC <- names(con)
@@ -47,9 +52,22 @@ fit.srm.nhpp <- function(time, fault, type, te, srm.names = srm.models, control 
 
   if (length(srm.names) == 1) {
     m <- srm(srm.names)
-    .fit.srm.nhpp(srm=m, data=data, con=con, ...)
+    result <- .fit.srm.nhpp(srm=m, data=data, con=con, ...)
   } else {
-    lapply(srm(srm.names), function(m) .fit.srm.nhpp(srm=m, data=data, con=con, ...))
+    result <- lapply(srm(srm.names), function(m) .fit.srm.nhpp(srm=m, data=data, con=con, ...))
+  }
+
+  if (length(srm.names) != 1) {
+    if (selection == "AIC") {
+      i <- which.min(sapply(result, function(r) -2*r$llf + 2*r$df))
+      result[[i]]
+    }
+    else {
+      result
+    }
+  }
+  else {
+    result
   }
 }
 
@@ -58,7 +76,7 @@ fit.srm.nhpp <- function(time, fault, type, te, srm.names = srm.models, control 
   tres <- system.time(result <- emfit(srm, data, initialize = TRUE,
     maxiter = con$maxiter, reltol = con$reltol, abstol = con$abstol,
     stopcond = con$stopcond, printflag=con$printflag, printsteps=con$printsteps))
-  result <- c(result, list(ctime=tres[1], call=call))
+  result <- c(result, list(aic=-2*result$llf+2*result$df, ctime=tres[1], call=call))
   names(result$srm$params) <- pnames
   class(result) <- "srm.nhpp.result"
   result

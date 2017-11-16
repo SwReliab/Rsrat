@@ -46,7 +46,8 @@ dGLM <- R6::R6Class("dGLM",
     df = NA,
     data = NA,
     print = function(digits = max(3, getOption("digits") - 3), ...) {
-      cat(gettextf("Link function: %s\n", private$linkfun))
+      print(self$data)
+      cat(gettextf("\nLink function: %s\n\n", private$linkfun))
       print.default(format(self$params, digits = digits), print.gap = 2, quote = FALSE)
     },
     omega = function() { self$params[1L] },

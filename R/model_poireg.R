@@ -24,111 +24,166 @@
 #'          the number of total faults (total) via EM algorithm for a given data.}
 #'   \item{\code{llf(data)}}{This method returns the log-likelihood function for a given data.}
 #' }
-#' @seealso \code{\link{fit.srm.logit}}
+#' @seealso \code{\link{fit.srm.poireg}}
 NULL
 
 #' @rdname sGLM
 sGLM <- R6::R6Class("sGLM",
   private = list(
-    linkfun = NA
+    linkfun = NA,
+    x = 1,
+    clear.params = function(nm) {
+      self$params <- numeric(0)
+      private$x <- 1
+    },
+    add.params = function(nm, params) {
+      if (length(params) != 0) {
+        self$params <- c(self$params, params)
+        self$params.position[[nm]] <- private$x:(private$x+length(params)-1)
+        private$x <- private$x + length(params)
+      }
+      else {
+        self$params.position[[nm]] <- c()
+      }
+    },
+    get.params = function(params, nm) {
+      params[self$params.position[[nm]]]
+    }
   ),
   public = list(
-    srms = NA,
+    name = NA,
+    names = NULL,
+    srms = NULL,
     params = NA,
-    df = NA,
-    data = NA,
+    params.position = list(),
+    df = NULL,
+    data = NULL,
     print = function(digits = max(3, getOption("digits") - 3), ...) {
-      cat(gettextf("Link function: %s\n", private$linkfun))
-      for (m in srms) {
-        print(m)
+      print(self$data)
+      cat(gettextf("\nLink function: %s\n", private$linkfun))
+      print(self$coefficients())
+      for (nm in self$names) {
+        cat(gettextf("\n%s\n", nm))
+        print(self$srms[[nm]])
       }
     },
-    omega = function() { self$params[1L] },
-    coefficients = function() { self$params[2L:length(self$params)] },
-    initialize = function(omega = 1, coefficients = c(1)) {
-      self$params <- c(omega, coefficients)
-      self$df <- length(self$params)
+    omega = function() {
+      result <- sapply(self$names, function(nm) self$params[self$params.position[[nm]]][1L])
+      names(result) <- self$names
+      result
+    },
+    coefficients = function() {
+      result <- self$params[self$params.position$coefficients]
+      names(result) <- colnames(self$data$metrics)
+      result
+    },
+    initialize = function(srms, names = NULL, coefficients = c()) {
+      if (is.null(names)) {
+        if (is.null(names(srms))) {
+          stop("names or names of srms list should be needed.")
+        }
+        else {
+          self$names <- names(srms)
+          self$srms <- srms
+        }
+      }
+      else {
+        if (is.null(names(srms))) {
+          m <- length(names)
+          if (length(srms) < m) {
+            stop("length of srms should be greater than or equal to m.")
+          }
+          else {
+            self$names <- names
+            self$srms <- lapply(1:m, function(i) srms[[i]])
+            names(self$srms) <- self$names
+          }
+        }
+        else {
+          stopifnot(all(names %in% names(srms)))
+          self$names <- names
+          self$srms <- lapply(self$names, function(nm) srms[[nm]])
+          names(self$srms) <- self$names
+        }
+      }
+
+      private$clear.params()
+      for (nm in self$names) {
+        private$add.params(nm, self$srms[[nm]]$params)
+      }
+      private$add.params("coefficients", coefficients)
+
+      self$df <- sum(sapply(srms, function(m) m$df-1L))  + length(self$params.position$coefficients)
     },
     init_params = function(data) {
-      self$params <- numeric(1L + data$nmetrics)
-      self$params[1] <- data$total + 1.0
-      self$df <- length(self$params)
+      stopifnot(all(self$names %in% data$names))
+      private$clear.params()
+      for (nm in self$names) {
+        self$srms[[nm]]$init_params(self$srms[[nm]]$data)
+        private$add.params(nm, self$srms[[nm]]$params)
+      }
+      private$add.params("coefficients", numeric(data$nmetrics))
+      self$df <- sum(sapply(self$srms, function(m) m$df-1L))  + length(self$params.position$coefficients)
+
+      self$set_params(self$em(self$params, data)$param)
     },
-    set_params = function(params) { self$params <- params },
+    set_params = function(params) {
+      self$params <- params
+      for (nm in self$names) {
+        self$srms[[nm]]$set_params(private$get.params(params, nm))
+      }
+    },
     set_data = function(data) { self$data <- data },
     em = function(params, data, ...) {
-      omega <- params[1]
-      coefficients <- params[2L:length(params)]
-      family <- binomial(link = private$linkfun)
-      eta <- data$metrics %*% coefficients + data$offset
-      mu <- family$linkinv(eta)
-      residual <- omega * prod(1-mu)
-      total <- sum(data$fault) + residual
-      rfault <- total - cumsum(data$fault)
+      newparams <- params
+      result <- lapply(self$names, function(nm) self$srms[[nm]]$em(private$get.params(params, nm), self$srms[[nm]]$data, ...))
+      names(result) <- self$names
+
+      llf <- sum(sapply(result, function(r) r$llf))
+      total <- sapply(result, function(r) r$total)
+
+      for (nm in self$names) {
+        newparams[self$params.position[[nm]]] <- result[[nm]]$param
+      }
+
       wopt <- getOption("warn")
       options(warn = -1)
-      result <- glm.fit(data$metrics, cbind(data$fault, rfault),
-        family=binomial(link=private$linkfun), offset=data$offset, ...)
+      result <- glm.fit(x=data$metrics, y=total, family=poisson(link=private$linkfun), ...)
       options(warn = wopt)
-      newparams <- c(total, result$coefficients)
-      names(newparams) <- c("omega", names(result$coefficients))
-      pdiff <- abs(params - newparams)
-      llf <- self$llf(data, omega=omega, mu=mu)
-      list(param=newparams, pdiff=pdiff, llf=llf, total=total)
+      for (nm in self$names) {
+        newparams[self$params.position[[nm]]][1L] <- result$fitted.values[nm]
+      }
+      newparams[self$params.position$coefficients] <- result$coefficients
+
+      pdiff <- newparams - params
+      list(param=newparams, pdiff=pdiff, llf=llf, total=NULL)
     },
-    llf = function(data, fault, omega, mu) {
-      if (missing(omega)) {
-        omega <- self$omega()
-      }
-      if (missing(mu)) {
-        family <- binomial(link = private$linkfun)
-        eta <- data$metrics %*% self$coefficients() + data$offset
-        mu <- family$linkinv(eta)
-      }
-      if (missing(fault)) {
-        fault <- data$fault
-      }
-      nonzeron <- fault != 0
-      rfault <- sum(fault) - cumsum(fault)
-      nonzeror <- rfault != 0
-      sum((fault * log(mu))[nonzeron]) + sum((rfault * log(1-mu))[nonzeror]) -
-        sum(lgamma(fault+1)) + sum(fault) * log(omega) - omega * (1 - prod(1-mu))
+    llf = function(data) {
+      sum(sapply(self$names, function(nm) self$srms[[nm]]$llf(self$srms[[nm]]$data)))
     }
   )
 )
 
-#' @rdname dGLM
+#' @rdname sGLM
 #' @export
-dGLM.logit <- R6::R6Class("dGLM.logit",
-  inherit = dGLM,
+sGLM.log <- R6::R6Class("sGLM.log",
+  inherit = sGLM,
   private = list(
-    linkfun = "logit"
+    linkfun = "log"
   ),
   public = list(
-    name = "dGLM.logit"
+    name = "sGLM.log"
   )
 )
 
-#' @rdname dGLM
+#' @rdname sGLM
 #' @export
-dGLM.probit <- R6::R6Class("dGLM.probit",
-  inherit = dGLM,
+sGLM.identity <- R6::R6Class("sGLM.identity",
+  inherit = sGLM,
   private = list(
-    linkfun = "probit"
+    linkfun = "identity"
   ),
   public = list(
-    name = "dGLM.probit"
-  )
-)
-
-#' @rdname dGLM
-#' @export
-dGLM.cloglog <- R6::R6Class("dGLM.cloglog",
-  inherit = dGLM,
-  private = list(
-    linkfun = "cloglog"
-  ),
-  public = list(
-    name = "dGLM.cloglog"
+    name = "sGLM.identity"
   )
 )

@@ -8,7 +8,7 @@ emfit(srm, data, initialize = TRUE, maxiter = 2000, reltol = 1e-06,
   abstol = 0.001, stopcond = "llf", printflag = FALSE, printsteps = 50)
 }
 \arguments{
-\item{srm}{An NHPP model.}
+\item{srm}{A model.}
 
 \item{data}{A faultdata.}
 
