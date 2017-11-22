@@ -24,7 +24,7 @@
 #' model to be fitted. The output variable should be the column for the number
 #' of faults.
 #' @param data A dataframe for s-metrics.
-#' @param srms A list of SRMs. The classes of NHPP and dGLM are allowed.
+#' @param srms A list of SRMs. The classes of NHPP, dGLM and results of fit.srm.nhpp and fit.srm.logit are allowed.
 #' @param names A list of character strings to indicate the project names.
 #' @param linkfun A character string indicating a linkfunction. See Details.
 #' @param offset An integer. This can be used to specify an a priori known
