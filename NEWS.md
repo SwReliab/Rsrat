@@ -1,3 +1,9 @@
+# Rsrat 1.1.1
+
+* Add data (dacs)
+* Change interface of faultdata to use dataframe
+* Modify some examples
+
 # Rsrat 1.1.0
 
 * Add dmvf method in NHPP

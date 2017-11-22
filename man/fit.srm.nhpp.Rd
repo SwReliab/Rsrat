@@ -4,8 +4,8 @@
 \alias{fit.srm.nhpp}
 \title{NHPP-based software reliability model}
 \usage{
-fit.srm.nhpp(time, fault, type, te, srm.names = srm.models,
-  selection = "AIC", control = list(), ...)
+fit.srm.nhpp(time, fault, type, te, data = data.frame(),
+  srm.names = srm.models, selection = "AIC", control = list(), ...)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -17,6 +17,8 @@ The fault detected just at the end of time interal is not counted.}
 This is used to represent the fault time data. If 0, no fault is detected at the end of interval.}
 
 \item{te}{A numeric value for the time interval from the last fault to the observation time.}
+
+\item{data}{A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.}
 
 \item{srm.names}{A character vector, indicating the model (\code{\link{srm.models}}).}
 
@@ -58,6 +60,7 @@ for the stop condition of the algorithm. Either llf or parameter is selected.}
 }
 }
 \examples{
-data(musa)
-fit.srm.nhpp(time=musa.sys1.group$time, fault=musa.sys1.group$fault, srm.names = c("exp"))
+data(dacs)
+fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0], srm.names = c("exp"))
+fit.srm.nhpp(fault=tohma, srm.names = c("llogis"))
 }

@@ -4,7 +4,7 @@
 \alias{faultdata}
 \title{Software fault data}
 \usage{
-faultdata(time, fault, type, te)
+faultdata(time, fault, type, te, data = data.frame())
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -16,6 +16,8 @@ The fault detected just at the end of time interal is not counted.}
 This is used to represent the fault time data. If 0, no fault is detected at the end of interval.}
 
 \item{te}{A numeric value for the time interval from the last fault to the observation time.}
+
+\item{data}{A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.}
 }
 \value{
 A list with the attribute class='Rsrat.faultdata';
@@ -33,6 +35,8 @@ esiamte model parameters of SRM. This data can represent both fault time and
 count data.
 }
 \examples{
+data(tomcat5)
 faultdata(time=c(1,1,1,1), fault=c(0,1,0,5))
 faultdata(time=c(3,1,7,15,12), te=3)
+faultdata(time=time, fault=fault, data=tomcat5.catalina)
 }

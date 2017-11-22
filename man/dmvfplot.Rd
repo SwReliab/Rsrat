@@ -4,8 +4,9 @@
 \alias{dmvfplot}
 \title{Draw a graph of diff of mean value functions on discrete time domain}
 \usage{
-dmvfplot(time, fault, type, te, dmvf, xlab = "time", ylab = "# of faults",
-  datalab = "data", xmax = NA, ymax = NA, colors = mmcolors, ...)
+dmvfplot(time, fault, type, te, data = data.frame(), dmvf, xlab = "time",
+  ylab = "# of faults", datalab = "data", xmax = NA, ymax = NA,
+  colors = mmcolors, ...)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -17,6 +18,8 @@ The fault detected just at the end of time interal is not counted.}
 This is used to represent the fault time data. If 0, no fault is detected at the end of interval.}
 
 \item{te}{A numeric value for the time interval from the last fault to the observation time.}
+
+\item{data}{A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.}
 
 \item{dmvf}{A list of NHPP classes. See details.}
 

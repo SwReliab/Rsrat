@@ -21,6 +21,7 @@
 #' @param type Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
+#' @param data A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.
 #' @param srm.names A character vector, indicating the model (\code{\link{srm.models}}).
 #' @param selection A character string, indicating the model selection criterion. The default is "AIC".
 #' If this is NULL, the method returns the results for all model candidates.
@@ -38,12 +39,14 @@
 #' \item{ctime}{A numeric value for computation time.}
 #' \item{call}{The method call.}
 #' @examples
-#' data(musa)
-#' fit.srm.nhpp(time=musa.sys1.group$time, fault=musa.sys1.group$fault, srm.names = c("exp"))
+#' data(dacs)
+#' fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0], srm.names = c("exp"))
+#' fit.srm.nhpp(fault=tohma, srm.names = c("llogis"))
 #' @export
 
-fit.srm.nhpp <- function(time, fault, type, te, srm.names = srm.models, selection = "AIC", control = list(), ...) {
-  data <- faultdata(time, fault, type, te)
+fit.srm.nhpp <- function(time, fault, type, te, data = data.frame(),
+  srm.names = srm.models, selection = "AIC", control = list(), ...) {
+  data <- faultdata(time, fault, type, te, data)
   con <- srm.nhpp.options()
   nmsC <- names(con)
   con[(namc <- names(control))] <- control

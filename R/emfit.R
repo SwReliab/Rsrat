@@ -27,8 +27,9 @@
 #' \item{aerror}{A numeric value for absolute error.}
 #' \item{rerror}{A numeric value for relative error.}
 #' @examples
-#' data(musa)
-#' emfit(srm("exp"), musa.sys1.group)
+#' data(tomcat5)
+#' data <- faultdata(time=time, fault=fault, data=tomcat5.catalina)
+#' emfit(srm("exp"), data)
 #' @export
 
 emfit <- function(srm, data,

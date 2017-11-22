@@ -14,6 +14,7 @@
 #' @param type Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
+#' @param data A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.
 #' @param mvf A list of NHPP classes. See details.
 #' @param xlab A character string, indicating the label of x-axis.
 #' @param ylab A character string, indicating the label of y-axis.
@@ -33,10 +34,10 @@
 #'      mvf=lapply(result, function(s) s$srm))
 #' @export
 
-mvfplot <- function(time, fault, type, te, mvf,
-  xlab = "time", ylab = "# of faults", datalab = "data",
+mvfplot <- function(time, fault, type, te, data = data.frame(),
+  mvf, xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
-  data <- faultdata(time, fault, type, te)
+  data <- faultdata(time, fault, type, te, data)
   n <- data$fault + data$type
   data <- data.frame(x=cumsum(data$time)[n != 0], y=cumsum(n)[n != 0])
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
@@ -65,6 +66,7 @@ mvfplot <- function(time, fault, type, te, mvf,
 #' @param type Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
+#' @param data A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.
 #' @param dmvf A list of NHPP classes. See details.
 #' @param xlab A character string, indicating the label of x-axis.
 #' @param ylab A character string, indicating the label of y-axis.
@@ -82,10 +84,10 @@ mvfplot <- function(time, fault, type, te, mvf,
 #' dmvfplot(fault=dmet.ds1$fault, dmvf=list(result$srm))
 #' @export
 
-dmvfplot <- function(time, fault, type, te, dmvf,
-  xlab = "time", ylab = "# of faults", datalab = "data",
+dmvfplot <- function(time, fault, type, te, data = data.frame(),
+  dmvf, xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
-  data <- faultdata(time, fault, type, te)
+  data <- faultdata(time, fault, type, te, data)
   t <- as.numeric(cumsum(data$time))
   n <- as.numeric(data$fault + data$type)
 

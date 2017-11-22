@@ -47,6 +47,7 @@ The ML estimates are computed with the EM algorithm. The initial parameters for 
 are automatically decided if the flag \emph{initialize} is TRUE.
 }
 \examples{
-data(musa)
-emfit(srm("exp"), musa.sys1.group)
+data(tomcat5)
+data <- faultdata(time=time, fault=fault, data=tomcat5.catalina)
+emfit(srm("exp"), data)
 }
