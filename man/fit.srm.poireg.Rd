@@ -14,7 +14,7 @@ of faults.}
 
 \item{data}{A dataframe for s-metrics.}
 
-\item{srms}{A list of SRMs. The classes of NHPP and dGLM are allowed.}
+\item{srms}{A list of SRMs. The classes of NHPP, dGLM and results of fit.srm.nhpp and fit.srm.logit are allowed.}
 
 \item{names}{A list of character strings to indicate the project names.}
 
