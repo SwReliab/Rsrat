@@ -1,3 +1,8 @@
+# Rsrat 1.0.1
+
+* Fix a document of fit.srm.poireg
+* Fix a bug: srms list is changed after executing fit.srm.poireg
+
 # Rsrat 1.0.0
 
 * Add poisson-regression-based model to handle s-metrics.

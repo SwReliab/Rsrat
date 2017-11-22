@@ -75,16 +75,16 @@ fit.srm.poireg <- function(formula, data, srms, names = NULL, linkfun = "log",
   # rearrange of SRMs
   srms <- lapply(srms, function(m) {
     if (any(class(m) == "srm.nhpp.result")) {
-      m$srm
+      m$srm$clone()
     }
     else if (any(class(m) == "srm.logit.result")) {
-      m$srm
+      m$srm$clone()
     }
     else if (any(class(m) == "NHPP")) {
-      m
+      m$clone()
     }
     else if (any(class(m) == "dGLM")) {
-      m
+      m$clone()
     }
     else {
       stop("The element of srms should be a class of srm.nhpp.result, srm.logit.result, NHPP or dGLM.")
