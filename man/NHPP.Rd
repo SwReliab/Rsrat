@@ -66,6 +66,7 @@ Class for NHPP-based software reliability model
   \item{\code{print()}}{This method prints model parameters.}
   \item{\code{omega()}}{This method returns the number of total faults.}
   \item{\code{mvf(t)}}{This method returns the mean value function at time t.}
+  \item{\code{dmvf(t)}}{This method returns the mean value function on discrete time domain.}
   \item{\code{inv_mvf(x)}}{This method returns the time at which the mean value function attains x.}
   \item{\code{intensity(t)}}{This method returns the intensity function at time t.}
   \item{\code{reliab(t, s)}}{This method returns the software reliability at time t from the orign s.}
