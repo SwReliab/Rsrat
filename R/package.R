@@ -6,7 +6,7 @@
 #'
 #' @docType package
 #' @name Rsrat
-#' @import R6
+#' @import R6 ggplot2
 #' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm nobs model.frame model.response model.matrix
 #' @useDynLib Rsrat
 NULL
