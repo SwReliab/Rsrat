@@ -1,3 +1,8 @@
+# Rsrat 1.1.0
+
+* Add dmvf method in NHPP
+* Add mvfplot and dmvfplot
+
 # Rsrat 1.0.1
 
 * Fix a document of fit.srm.poireg
