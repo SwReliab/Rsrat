@@ -2,10 +2,13 @@
 % Please edit documentation in R/srm_poireg.R
 \name{fit.srm.poireg}
 \alias{fit.srm.poireg}
+\alias{srm.poireg.options}
 \title{Regression-based software reliability model with s-metrics}
 \usage{
 fit.srm.poireg(formula, data, srms, names = NULL, linkfun = "log",
   offset = NULL, control = list(), ...)
+
+srm.poireg.options()
 }
 \arguments{
 \item{formula}{An object of class formula. A symbolic description of the
@@ -44,9 +47,13 @@ A list with components;
 \item{ctime}{A numeric value for computation time.}
 \item{terms}{The terms object used.}
 \item{call}{The method call.}
+
+A list of options.
 }
 \description{
 Estimate model parameters for s-metrics-based software reliability models.
+
+Generate a list of option values.
 }
 \details{
 The control argument is a list that can supply any of the following components:

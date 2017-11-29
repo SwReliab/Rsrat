@@ -2,10 +2,13 @@
 % Please edit documentation in R/srm_nhpp.R
 \name{fit.srm.nhpp}
 \alias{fit.srm.nhpp}
+\alias{srm.nhpp.options}
 \title{NHPP-based software reliability model}
 \usage{
 fit.srm.nhpp(time, fault, type, te, data = data.frame(),
   srm.names = srm.models, selection = "AIC", control = list(), ...)
+
+srm.nhpp.options()
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -41,9 +44,13 @@ A list with components;
 \item{rerror}{A numeric value for relative error.}
 \item{ctime}{A numeric value for computation time.}
 \item{call}{The method call.}
+
+A list of options.
 }
 \description{
 Estimate model parameters for NHPP-based software reliability models.
+
+Generate a list of option values.
 }
 \details{
 The control argument is a list that can supply any of the following components:

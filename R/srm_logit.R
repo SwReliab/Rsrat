@@ -89,6 +89,7 @@ fit.srm.logit <- function(formula, data, linkfun = "logit", offset = NULL, contr
 #' Generate a list of option values.
 #'
 #' @return A list of options.
+#' @rdname fit.srm.logit
 #' @export
 
 srm.logit.options <- function() {

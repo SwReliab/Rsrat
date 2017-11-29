@@ -8,6 +8,7 @@ Maintainer: Hiroyuki OKAMURA <okamu@hiroshima-u.ac.jp>
 Description: This package provides estimation programs for software
   reliability growth models, metrics-based software reliability growth
   models with d-metrics and s-metrics.
-Imports: R6, stats, ggplot2, RCurl, rjson
+LinkingTo: Rcpp
+Imports: R6, stats, ggplot2, Rcpp
 License: MIT + file LICENSE
 RoxygenNote: 6.0.1

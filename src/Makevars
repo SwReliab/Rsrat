@@ -1,13 +1,18 @@
 PKG_LIBS = $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)
 OBJECTS = numlib.o \
+  gauss_inte.o \
+  inv_log_psi.o \
+  gumbel.o \
   em_exp.o \
   em_gamma.o \
   em_pareto.o \
   em_tnorm.o \
   em_lnorm.o \
-  em_tlogist.o \
-  em_llogist.o \
+  em_tlogis.o \
+  em_llogis.o \
   em_txvmax.o \
   em_txvmin.o \
   em_lxvmax.o \
-  em_lxvmin.o
+  em_lxvmin.o \
+  dggglm.o \
+  RcppExports.o

@@ -90,6 +90,7 @@ fit.srm.nhpp <- function(time, fault, type, te, data = data.frame(),
 #' Generate a list of option values.
 #'
 #' @return A list of options.
+#' @rdname fit.srm.nhpp
 #' @export
 
 srm.nhpp.options <- function() {

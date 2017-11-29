@@ -121,6 +121,7 @@ fit.srm.poireg <- function(formula, data, srms, names = NULL, linkfun = "log",
 #' Generate a list of option values.
 #'
 #' @return A list of options.
+#' @rdname fit.srm.poireg
 #' @export
 
 srm.poireg.options <- function() {

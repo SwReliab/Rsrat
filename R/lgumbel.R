@@ -32,15 +32,13 @@ dlgumbel <- function(x, loclog = 0, scalelog = 1, log = FALSE) {
 #' @rdname lgumbel
 plgumbel <- function(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE) {
-  pgumbel(log(q), loc=loclog, scale=scalelog, lower.tail=lower.tail,
-    log.p=log.p)
+  pgumbel(log(q), loc=loclog, scale=scalelog, lower=lower.tail, log=log.p)
 }
 
 #' @rdname lgumbel
 qlgumbel <- function(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE) {
-  exp(qgumbel(p, loc=loclog, scale=scalelog, lower.tail=lower.tail,
-    log.p=log.p))
+  exp(qgumbel(p, loc=loclog, scale=scalelog, lower=lower.tail, log=log.p))
 }
 
 #' log-Gumbel distribution (Weibull)
@@ -64,7 +62,7 @@ NULL
 
 #' @rdname lgumbel.min
 dlgumbel.min <- function(x, loclog = 0, scalelog = 1, log = FALSE) {
-  v <- dgumbel.min(log(x), loc=loclog, scale=scalelog, log=FALSE)
+  v <- dgumbel(log(x), loc=loclog, scale=scalelog, log=FALSE, min=TRUE)
   if (log == FALSE) {
     r <- v / x
   } else {
@@ -77,13 +75,11 @@ dlgumbel.min <- function(x, loclog = 0, scalelog = 1, log = FALSE) {
 #' @rdname lgumbel.min
 plgumbel.min <- function(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE) {
-  pgumbel.min(log(q), loc=loclog, scale=scalelog, lower.tail=lower.tail,
-    log.p=log.p)
+  pgumbel(log(q), loc=loclog, scale=scalelog, lower=lower.tail, log=log.p, min=TRUE)
 }
 
 #' @rdname lgumbel.min
 qlgumbel.min <- function(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE) {
-  exp(qgumbel.min(p, loc=loclog, scale=scalelog, lower.tail=lower.tail,
-    log.p=log.p))
+  exp(qgumbel(p, loc=loclog, scale=scalelog, lower=lower.tail, log=log.p, min=TRUE))
 }
