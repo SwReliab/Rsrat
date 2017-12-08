@@ -27,6 +27,11 @@
 #' @export
 
 faultdata <- function(time, fault, type, te, data = data.frame()) {
+  eval(getfargs)
+  .faultdata.nhpp(time, fault, type, te)
+}
+
+getfargs <- expression({
   if (!missing(time)) {
     e <- substitute(time)
     time <- eval(e, data, parent.frame())
@@ -55,9 +60,7 @@ faultdata <- function(time, fault, type, te, data = data.frame()) {
   else {
     te <- NULL
   }
-  list(time, fault, type, te)
-  .faultdata.nhpp(time, fault, type, te)
-}
+  })
 
 .faultdata.nhpp <- function(time, fault, type, te) {
   if (is.null(time)) {

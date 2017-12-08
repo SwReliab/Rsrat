@@ -46,7 +46,8 @@
 
 fit.srm.nhpp <- function(time, fault, type, te, data = data.frame(),
   srm.names = srm.models, selection = "AIC", control = list(), ...) {
-  data <- faultdata(time, fault, type, te, data)
+  eval(getfargs)
+  data <- .faultdata.nhpp(time, fault, type, te)
   con <- srm.nhpp.options()
   nmsC <- names(con)
   con[(namc <- names(control))] <- control

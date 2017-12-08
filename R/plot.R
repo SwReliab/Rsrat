@@ -35,9 +35,10 @@
 #' @export
 
 mvfplot <- function(time, fault, type, te, data = data.frame(),
-  mvf, xlab = "time", ylab = "# of faults", datalab = "data",
+  mvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
-  data <- faultdata(time, fault, type, te, data)
+  eval(getfargs)
+  data <- .faultdata.nhpp(time, fault, type, te)
   n <- data$fault + data$type
   data <- data.frame(x=cumsum(data$time)[n != 0], y=cumsum(n)[n != 0])
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
