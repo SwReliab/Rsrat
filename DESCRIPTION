@@ -9,6 +9,6 @@ Description: This package provides estimation programs for software
   reliability growth models, metrics-based software reliability growth
   models with d-metrics and s-metrics.
 LinkingTo: Rcpp
-Imports: R6, stats, ggplot2, Rcpp
+Imports: R6, stats, ggplot2, RCurl, rjson
 License: MIT + file LICENSE
 RoxygenNote: 6.0.1
