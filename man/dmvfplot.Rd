@@ -4,7 +4,8 @@
 \alias{dmvfplot}
 \title{Draw a graph of diff of mean value functions on discrete time domain}
 \usage{
-dmvfplot(time, fault, type, te, data = data.frame(), dmvf, xlab = "time",
+dmvfplot(time = NULL, fault = NULL, type = NULL, te = NULL,
+  data = data.frame(), dmvf = list(), xlab = "time",
   ylab = "# of faults", datalab = "data", xmax = NA, ymax = NA,
   colors = mmcolors, ...)
 }

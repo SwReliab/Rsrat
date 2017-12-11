@@ -4,9 +4,10 @@
 \alias{mvfplot}
 \title{Draw a graph of mean value functions}
 \usage{
-mvfplot(time, fault, type, te, data = data.frame(), mvf = list(),
-  xlab = "time", ylab = "# of faults", datalab = "data", xmax = NA,
-  ymax = NA, colors = mmcolors, ...)
+mvfplot(time = NULL, fault = NULL, type = NULL, te = NULL,
+  data = data.frame(), mvf = list(), xlab = "time",
+  ylab = "# of faults", datalab = "data", xmax = NA, ymax = NA,
+  colors = mmcolors, ...)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}

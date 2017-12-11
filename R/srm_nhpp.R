@@ -44,10 +44,10 @@
 #' fit.srm.nhpp(fault=tohma, srm.names = c("llogis"))
 #' @export
 
-fit.srm.nhpp <- function(time, fault, type, te, data = data.frame(),
+fit.srm.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
   srm.names = srm.models, selection = "AIC", control = list(), ...) {
-  eval(getfargs)
-  data <- .faultdata.nhpp(time, fault, type, te)
+  data <- .faultdata.nhpp(substitute(time), substitute(fault),
+    substitute(type), substitute(te), data, parent.frame())
   con <- srm.nhpp.options()
   nmsC <- names(con)
   con[(namc <- names(control))] <- control

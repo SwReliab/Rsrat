@@ -34,11 +34,11 @@
 #'      mvf=lapply(result, function(s) s$srm))
 #' @export
 
-mvfplot <- function(time, fault, type, te, data = data.frame(),
+mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
   mvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
-  eval(getfargs)
-  data <- .faultdata.nhpp(time, fault, type, te)
+  data <- .faultdata.nhpp(substitute(time), substitute(fault),
+    substitute(type), substitute(te), data, parent.frame())
   n <- data$fault + data$type
   data <- data.frame(x=cumsum(data$time)[n != 0], y=cumsum(n)[n != 0])
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
@@ -85,10 +85,11 @@ mvfplot <- function(time, fault, type, te, data = data.frame(),
 #' dmvfplot(fault=dmet.ds1$fault, dmvf=list(result$srm))
 #' @export
 
-dmvfplot <- function(time, fault, type, te, data = data.frame(),
-  dmvf, xlab = "time", ylab = "# of faults", datalab = "data",
+dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
+  dmvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
-  data <- faultdata(time, fault, type, te, data)
+  data <- .faultdata.nhpp(substitute(time), substitute(fault),
+    substitute(type), substitute(te), data, parent.frame())
   t <- as.numeric(cumsum(data$time))
   n <- as.numeric(data$fault + data$type)
 

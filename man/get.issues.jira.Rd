@@ -25,7 +25,11 @@ get.issues.jira(query, fields = "created", userpwd,
 Collect issues from JIRA with a query
 }
 \examples{
-## get crated date of blocer, critical and major issues which affected to 1.0.0 of ACE from Apache JIRA
-get.issues.jira(query = "project = ACE AND issuetype = Bug AND priority in (Blocker, Critical, Major) AND affectedVersion = 1.0.0",
-    fields="created", userpwd = "username:password")
+## get crated date of blocer, critical and major issues
+## which affected to 1.0.0 of ACE from Apache JIRA
+query <- "project = ACE AND issuetype = Bug"
+query <- paste(query, "AND priority in (Blocker, Critical, Major)")
+query <- paste(query, "AND affectedVersion = 1.0.0")
+get.issues.jira(query = query, fields="created",
+   userpwd = "username:password")
 }

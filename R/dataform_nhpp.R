@@ -26,43 +26,18 @@
 #' faultdata(time=time, fault=fault, data=tomcat5.catalina)
 #' @export
 
-faultdata <- function(time, fault, type, te, data = data.frame()) {
-  eval(getfargs)
-  .faultdata.nhpp(time, fault, type, te)
+faultdata <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
+  data = data.frame()) {
+  .faultdata.nhpp(substitute(time), substitute(fault), substitute(type),
+    substitute(te), data, parent.frame())
 }
 
-getfargs <- expression({
-  if (!missing(time)) {
-    e <- substitute(time)
-    time <- eval(e, data, parent.frame())
-  }
-  else {
-    time <- NULL
-  }
-  if (!missing(fault)) {
-    e <- substitute(fault)
-    fault <- eval(e, data, parent.frame())
-  }
-  else {
-    fault <- NULL
-  }
-  if (!missing(type)) {
-    e <- substitute(type)
-    type <- eval(e, data, parent.frame())
-  }
-  else {
-    type <- NULL
-  }
-  if (!missing(te)) {
-    e <- substitute(te)
-    te <- eval(e, data, parent.frame())
-  }
-  else {
-    te <- NULL
-  }
-  })
+.faultdata.nhpp <- function(time, fault, type, te, data, envir) {
+  time <- eval(time, data, envir)
+  fault <- eval(fault, data, envir)
+  type <- eval(type, data, envir)
+  te <- eval(te, data, envir)
 
-.faultdata.nhpp <- function(time, fault, type, te) {
   if (is.null(time)) {
     if (is.null(fault)) {
       stop("Invalid data: Either time or fault is required.")
