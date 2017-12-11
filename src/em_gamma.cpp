@@ -1,6 +1,5 @@
 #include <Rcpp.h>
 #include <cmath>
-#include <string>
 
 #include "numlib.h"
 #include "gauss_inte.h"
@@ -16,6 +15,12 @@ static double x[MAX_NN];
 static double w[MAX_NN];
 static double fx[MAX_NN];
 static double fv[MAX_NN];
+
+template < typename T > std::string to_string(const T& n) {
+  std::ostringstream stm ;
+  stm << n ;
+  return stm.str();
+}
 
 double em_gamma_int(double t0, double t1, double shape, double rate) {
   double c = gauss_inte_fx(n, x, t0, t1, fx);
@@ -44,7 +49,7 @@ List em_gamma_emstep(NumericVector params, List data, int divide = 15, double ep
   }
 
   if (divide > MAX_NN) {
-    stop("divide should be lower than " + std::to_string(MAX_NN));
+    stop("divide should be lower than " + to_string(MAX_NN));
   }
   n = divide; // n is a global variable.
   gauss_inte_w(divide, x, w, eps); // x, w are global variables.

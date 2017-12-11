@@ -1,3 +1,7 @@
+# Rsrat 1.2.2
+
+* Fix a bug for winR
+
 # Rsrat 1.2.1
 
 * Fix a bug for faultdata, mvfplot, dmvfplot and fit.srm.nhpp
