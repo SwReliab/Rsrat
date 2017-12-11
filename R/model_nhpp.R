@@ -131,7 +131,8 @@ ExpSRM <- R6::R6Class("ExpSRM",
       self$params <- c(data$total, 1.0/data$mean)
     },
     em = function(params, data) {
-      em_exp_emstep(params, data)
+      # em_exp_emstep(params, data)
+      em_exp_emstep2(params, data)
     }
   )
 )
@@ -223,7 +224,7 @@ TNormSRM <- R6::R6Class("TNormSRM",
       self$params <- c(1.0, 0.0, data$mean)
     },
     em = function(params, data) {
-      em_tnorm_emstep(params, data)
+     em_tnorm_emstep(params, data)
     }
   )
 )
@@ -291,7 +292,16 @@ TLogisSRM <- R6::R6Class("TLogisSRM",
       self$params <- c(1.0, 0.0, data$mean)
     },
     em = function(params, data) {
-      em_tlogis_emstep(params, data)
+      # em_tlogis_emstep_mo(params, data)
+      eres <- em_tlogis_estep(params, data)
+      res <- optim(par=params[2:3], fn=em_tlogis_pllf, data=data,
+        w0=eres$w0, w1=eres$w1, control=list(fnscale=-1))
+      list(
+        llf=eres$llf,
+        param=c(eres$omega, res$par),
+        pdiff=c(eres$omega, res$par) - params,
+        total=eres$total
+      )
     }
   )
 )
@@ -325,7 +335,15 @@ LLogisSRM <- R6::R6Class("LLogisSRM",
       self$params <- c(1.0, 1.0, max(log(data$mean), 1.0))
     },
     em = function(params, data) {
-      em_llogis_emstep(params, data)
+      eres <- em_llogis_estep(params, data)
+      res <- optim(par=params[2:3], fn=em_llogis_pllf, data=data, w1=eres$w1,
+        control=list(fnscale=-1))
+      list(
+        llf=eres$llf,
+        param=c(eres$omega, res$par),
+        pdiff=c(eres$omega, res$par) - params,
+        total=eres$total
+      )
     }
   )
 )
@@ -354,7 +372,16 @@ TXVMaxSRM <- R6::R6Class("TXVMaxSRM",
       self$params <- c(1.0, 0.0, data$max/3)
     },
     em = function(params, data) {
-      em_txvmax_emstep(params, data)
+      # em_txvmax_emstep_mo(params, data)
+      eres <- em_txvmax_estep(params, data)
+      res <- optim(par=params[2:3], fn=em_txvmax_pllf, data=data,
+        w0=eres$w0, w1=eres$w1, control=list(fnscale=-1))
+      list(
+        llf=eres$llf,
+        param=c(eres$omega, res$par),
+        pdiff=c(eres$omega, res$par) - params,
+        total=eres$total
+      )
     }
   )
 )
@@ -388,7 +415,15 @@ LXVMaxSRM <- R6::R6Class("LXVMaxSRM",
       self$params <- c(1.0, 1.0, max(log(data$max), 1.0))
     },
     em = function(params, data) {
-      em_lxvmax_emstep(params, data)
+      eres <- em_lxvmax_estep(params, data)
+      res <- optim(par=params[2:3], fn=em_lxvmax_pllf, data=data, w1=eres$w1,
+        control=list(fnscale=-1))
+      list(
+        llf=eres$llf,
+        param=c(eres$omega, res$par),
+        pdiff=c(eres$omega, res$par) - params,
+        total=eres$total
+      )
     }
   )
 )
@@ -422,7 +457,15 @@ TXVMinSRM <- R6::R6Class("TXVMinSRM",
       self$params <- c(data$total, -data$mean, data$max/3)
     },
     em = function(params, data) {
-      em_txvmin_emstep(params, data)
+      eres <- em_txvmin_estep(params, data)
+      res <- optim(par=params[2:3], fn=em_txvmin_pllf, data=data,
+        w0=eres$w0, w1=eres$w1, control=list(fnscale=-1))
+      list(
+        llf=eres$llf,
+        param=c(eres$omega, res$par),
+        pdiff=c(eres$omega, res$par) - params,
+        total=eres$total
+      )
     }
   )
 )
@@ -456,7 +499,15 @@ LXVMinSRM <- R6::R6Class("LXVMinSRM",
       self$params <- c(1.0, 0.0, max(log(data$max), 1.0))
     },
     em = function(params, data) {
-      em_lxvmin_emstep(params, data)
+      eres <- em_lxvmin_estep(params, data)
+      res <- optim(par=params[2:3], fn=em_lxvmin_pllf, data=data, w1=eres$w1,
+        control=list(fnscale=-1))
+      list(
+        llf=eres$llf,
+        param=c(eres$omega, res$par),
+        pdiff=c(eres$omega, res$par) - params,
+        total=eres$total
+      )
     }
   )
 )

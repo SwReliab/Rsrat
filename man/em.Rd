@@ -2,40 +2,70 @@
 % Please edit documentation in R/RcppExports.R, R/em_nhpp.R
 \name{em_exp_emstep}
 \alias{em_exp_emstep}
+\alias{em_exp_emstep2}
 \alias{em_gamma_emstep}
 \alias{em_llogis_emstep}
+\alias{em_llogis_estep}
+\alias{em_llogis_pllf}
 \alias{em_lnorm_emstep}
-\alias{em_lxvmax_emstep}
-\alias{em_lxvmin_emstep}
+\alias{em_lxvmax_estep}
+\alias{em_lxvmax_pllf}
+\alias{em_lxvmin_estep}
+\alias{em_lxvmin_pllf}
 \alias{em_pareto_emstep}
-\alias{em_tlogis_emstep}
+\alias{em_tlogis_emstep_mo}
+\alias{em_tlogis_estep}
+\alias{em_tlogis_pllf}
 \alias{em_tnorm_emstep}
-\alias{em_txvmax_emstep}
-\alias{em_txvmin_emstep}
+\alias{em_txvmax_emstep_mo}
+\alias{em_txvmax_estep}
+\alias{em_txvmax_pllf}
+\alias{em_txvmin_estep}
+\alias{em_txvmin_pllf}
 \alias{em}
 \title{EM step}
 \usage{
 em_exp_emstep(params, data)
 
+em_exp_emstep2(params, data)
+
 em_gamma_emstep(params, data, divide = 15L, eps = 1e-10)
 
 em_llogis_emstep(params, data)
 
+em_llogis_estep(params, data)
+
+em_llogis_pllf(params, data, w1)
+
 em_lnorm_emstep(params, data)
 
-em_lxvmax_emstep(params, data)
+em_lxvmax_estep(params, data)
 
-em_lxvmin_emstep(params, data)
+em_lxvmax_pllf(params, data, w1)
+
+em_lxvmin_estep(params, data)
+
+em_lxvmin_pllf(params, data, w1)
 
 em_pareto_emstep(params, data)
 
-em_tlogis_emstep(params, data)
+em_tlogis_emstep_mo(params, data)
+
+em_tlogis_estep(params, data)
+
+em_tlogis_pllf(params, data, w0, w1)
 
 em_tnorm_emstep(params, data)
 
-em_txvmax_emstep(params, data)
+em_txvmax_emstep_mo(params, data)
 
-em_txvmin_emstep(params, data)
+em_txvmax_estep(params, data)
+
+em_txvmax_pllf(params, data, w0, w1)
+
+em_txvmin_estep(params, data)
+
+em_txvmin_pllf(params, data, w0, w1)
 }
 \arguments{
 \item{params}{A numeric vector for model parameters}
@@ -45,6 +75,10 @@ em_txvmin_emstep(params, data)
 \item{divide}{An integer for the number of integration points.}
 
 \item{eps}{A numeric value for tolerance error.}
+
+\item{w1}{A numeric value indicating the expected number of faults after te.}
+
+\item{w0}{A numeric value indicating the expected number of faults before 0.}
 
 \item{...}{Other parameters}
 }
@@ -56,4 +90,13 @@ the number of total faults (total).
 }
 \description{
 Execute one EM step for software reliability models.
+}
+\details{
+\code{em_tlogis_emstep_mo} is an emstep based on Marshall-Olkin-type (maximum) with Exp
+
+\code{em_tnorm_emstep} has been modified by using EM for truncated distribution. Concretely,
+when the distribution is truncated at origin, the expected value is given by
+\deqn{\text{E}[h(X)|D] = \sum_{i=1}^k h(x_i) + \frac{k}{\overline{F}(0)} \int_{-\infty}^0 h(x) f(x) dx.}
+
+\code{em_txvmax_emstep_mo} is an emstep based on Marshall-Olkin-type (maximum) with Exp
 }

@@ -11,7 +11,7 @@
 #' less than \emph{reltol} and the absolute error is less than \emph{abstol}.}
 #'   \item{stopcond}{A character string. \emph{stopcond} gives the criterion
 #' for the stop condition of the algorithm. Either llf or parameter is selected.}
-#'   \item{printflag}{A logical. If TRUE, the intermediate parameters are printed.}
+#'   \item{trace}{A logical. If TRUE, the intermediate parameters are printed.}
 #'   \item{printsteps}{An integer for print.}
 #' }
 #'
@@ -79,7 +79,7 @@ fit.srm.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data
   pnames <- names(srm$params)
   tres <- system.time(result <- emfit(srm, data, initialize = TRUE,
     maxiter = con$maxiter, reltol = con$reltol, abstol = con$abstol,
-    stopcond = con$stopcond, printflag=con$printflag, printsteps=con$printsteps))
+    stopcond = con$stopcond, trace=con$trace, printsteps=con$printsteps))
   result <- c(result, list(aic=-2*result$llf+2*result$df, ctime=tres[1], call=call))
   names(result$srm$params) <- pnames
   class(result) <- "srm.nhpp.result"
@@ -99,7 +99,7 @@ srm.nhpp.options <- function() {
     reltol = sqrt(.Machine$double.eps),
     abstol = 1.0e+200,
     stopcond = "llf",
-    printflag = FALSE,
+    trace = FALSE,
     printsteps = 50)
 }
 

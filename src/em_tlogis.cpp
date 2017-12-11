@@ -3,10 +3,38 @@
 
 using namespace Rcpp;
 
+//
+// Marshall-Olkin-type
+//
+
+namespace tlogis {
+  double func_Fi(double t, double p, double b) {
+    return p * (1 - exp(-b*t)) / (p + (1-p) * exp(-b*t));
+  }
+
+  double func_h1i(double t, double p, double b) {
+    return 2 * (1-p) * (1 - exp(-b*t)) / (p + (1-p) * exp(-b*t));
+  }
+
+  double func_h2i(double t, double p, double b) {
+    return 2 * (1-p) * (1 - (1+b*t) * exp(-b*t)) / (p + (1-p) * exp(-b*t)) / b;
+  }
+
+  double func_H1i(double t, double p, double b) {
+    return p * (1 - exp(-b*t)) / (p + (1-p) * exp(-b*t)) / (p + (1-p) * exp(-b*t));
+  }
+
+  double func_H2i(double t, double p, double b) {
+    return p * (1 - (1+b*t) * exp(-b*t)) / (p + (1-p) * exp(-b*t)) / (p + (1-p) * exp(-b*t)) / b;
+  }
+}
+
 //' @rdname em
+//' @details
+//' \code{em_tlogis_emstep_mo} is an emstep based on Marshall-Olkin-type (maximum) with Exp
 // [[Rcpp::export]]
 
-List em_tlogis_emstep(NumericVector params, List data) {
+List em_tlogis_emstep_mo(NumericVector params, List data) {
   const double omega = params[0];
   const double loc = params[1];
   const double scale = params[2];
@@ -19,80 +47,56 @@ List em_tlogis_emstep(NumericVector params, List data) {
     stop("Invalid data.");
   }
 
-  const double omega_dash = omega / R::plogis(0, loc, scale, false, false);
+  const double p = 1/(1 + exp(loc/scale));
+  const double b = 1/scale;
 
-  double y0 = exp(-loc/scale);
   double en1 = 0.0;
   double en2 = 0.0;
   double en3 = 0.0;
   double llf = 0.0;
-  double g00 = 1.0/(1.0+y0);
-  double g01 = 1.0/(2.0*(1.0+y0)*(1.0+y0));
-  double g02 = (1.0+(1.0+log(y0))*y0)/((1.0+y0)*(1.0+y0));
+  double t = 0;
+  double prev_Fi = 0;
+  double prev_H1i = 0;
+  double prev_H2i = 0;
+  for (int i=0; i<dsize; i++) {
+    t += time[i];
+    double Fi = tlogis::func_Fi(t, p, b);
+    double H1i = tlogis::func_H1i(t, p, b);
+    double H2i = tlogis::func_H2i(t, p, b);
 
-  double t = time[0];
-  double x = num[0];
-  double y = exp((t-loc)/scale);
-  double g10 = g00;
-  double g11 = g01;
-  double g12 = g02;
-  double g20 = 1.0/(1.0+y);
-  double g21 = 1.0/(2.0*(1.0+y)*(1.0+y));
-  double g22 = (1.0+(1.0+log(y))*y)/((1.0+y)*(1.0+y));
-  if (x != 0.0) {
-    double tmp1 = g10 - g20;
-    double tmp2 = g11 - g21;
-    double tmp3 = g12 - g22;
-    en1 += x;
-    en2 += x * tmp2 / tmp1;
-    en3 += x * tmp3 / tmp1;
-    llf += x * (log(tmp1) - log(g00)) - lgamma(x+1);
-  }
-  if (type[0] == 1) {
-    en1 += 1.0;
-    en2 += 1.0/(1.0+y);
-    en3 += (y-1.0)*log(y)/(1.0+y);
-    llf += R::dlogis(t, loc, scale, true) - R::plogis(0, loc, scale, false, true); // log(tlogist_pdf(t, scale, loc));
-  }
-  for (int j=1; j<dsize; j++) {
-    x = num[j];
-    if (time[j] != 0.0) {
-      t += time[j];
-      y = exp((t-loc)/scale);
-      g10 = g20;
-      g11 = g21;
-      g12 = g22;
-      g20 = 1.0/(1.0+y);
-      g21 = 1.0/(2.0*(1.0+y)*(1.0+y));
-      g22 = (1.0+(1.0+log(y))*y)/((1.0+y)*(1.0+y));
-    }
-    if (x != 0.0) {
-      double tmp1 = g10 - g20;
-      double tmp2 = g11 - g21;
-      double tmp3 = g12 - g22;
+    double x = num[i];
+    if (x != 0) {
+      double tmp1 = Fi - prev_Fi;
+      double tmp2 = H1i - prev_H1i;
+      double tmp3 = H2i - prev_H2i;
       en1 += x;
       en2 += x * tmp2 / tmp1;
       en3 += x * tmp3 / tmp1;
-      llf += x * (log(tmp1) - log(g00))- lgamma(x+1);
+      llf += x * log(tmp1) - lgamma(x+1);
     }
-    if (type[j] == 1) {
-      en1 += 1.0;
-      en2 += 1.0/(1.0+y);
-      en3 += (y-1.0)*log(y)/(1.0+y);
-      llf += R::dlogis(t, loc, scale, true) - R::plogis(0, loc, scale, false, true); // log(tlogist_pdf(t, scale, loc));
-    }
-  }
-  llf += (log(omega_dash) + log(g00)) * en1;  // en1 is total number of faults
-  double total = en1 + omega_dash * g20;
-  en1 += omega_dash * (1.0 - g00 + g20);  // g00 is the first, g10 is the last
-  en2 += omega_dash * (0.5 - g01 + g21);  // g01 is the first, g11 is the last
-  en3 += omega_dash * (1.0 - g02 + g22);  // g02 is the first, g12 is the last
-  llf += - omega_dash * (g00 - g20);
 
-  double new_scale = scale*en3/en1;
-  double new_loc = loc + new_scale*(log(en1/2.0) - log(en2));
-  y0 = exp(-new_loc/new_scale);
-  double new_omega = en1 / (1.0 + y0);
+    if (type[i] == 1) {
+      en1 += 1;
+      en2 += 1 + tlogis::func_h1i(t, p, b);
+      en3 += 1 + tlogis::func_h2i(t, p, b);
+      llf += R::dlogis(t, loc, scale, true) - R::plogis(0, loc, scale, false, true);
+    }
+    prev_Fi = Fi;
+    prev_H1i = H1i;
+    prev_H2i = H2i;
+  }
+  llf += en1 * log(omega) - omega * prev_Fi;
+  en1 += omega * (1 - prev_Fi);
+  en2 += omega * (1/p - prev_H1i);
+  en3 += omega * (1/p/b - prev_H2i);
+
+  const double new_p = en1 / en2;
+  const double new_b = en2 / en3;
+
+  const double total = en1;
+  const double new_omega = en1;
+  const double new_loc = log(1/new_p - 1) / new_b;
+  const double new_scale = 1/new_b;
 
   return List::create(
     Named("param") = NumericVector::create(new_omega, new_loc, new_scale),
@@ -100,4 +104,84 @@ List em_tlogis_emstep(NumericVector params, List data) {
     Named("llf") = llf,
     Named("total") = total
   );
+}
+
+//' @rdname em
+// [[Rcpp::export]]
+
+List em_tlogis_estep(NumericVector params, List data) {
+  const double omega = params[0];
+  const double loc = params[1];
+  const double scale = params[2];
+  const int dsize = data["len"];
+  NumericVector time = as<NumericVector>(data["time"]);
+  NumericVector num = as<NumericVector>(data["fault"]);
+  IntegerVector type = as<IntegerVector>(data["type"]);
+
+  if (dsize != time.length() || dsize != num.length() || dsize != type.length()) {
+    stop("Invalid data.");
+  }
+
+  const double F0 = R::plogis(0, loc, scale, true, false);
+  const double barF0 = R::plogis(0, loc, scale, false, false);
+  const double log_barF0 = R::plogis(0, loc, scale, false, true);
+
+  double nn = 0.0;
+  double llf = 0.0;
+  double t = 0;
+  double prev_Fi = F0;
+  for (int i=0; i<dsize; i++) {
+    t += time[i];
+    double Fi = R::plogis(t, loc, scale, true, false);
+    double x = num[i];
+    if (x != 0) {
+      nn += x;
+      llf += x * (log(Fi - prev_Fi) - log_barF0) - lgamma(x+1);
+    }
+    if (type[i] == 1) {
+      nn += 1;
+      llf += R::dlogis(t, loc, scale, true) - log_barF0;
+    }
+    prev_Fi = Fi;
+  }
+  llf += nn * log(omega) - omega * (prev_Fi - F0) / barF0;
+  const double w1 = omega * (1 - prev_Fi) / barF0;
+  const double w0 = (nn + w1) * F0 / barF0;
+
+  return List::create(
+    Named("llf") = llf,
+    Named("omega") = nn + w1,
+    Named("w0") = w0,
+    Named("w1") = w1,
+    Named("total") = nn + w1
+  );
+}
+
+//' @rdname em
+// [[Rcpp::export]]
+
+double em_tlogis_pllf(NumericVector params, List data, double w0, double w1) {
+  const double loc = params[0];
+  const double scale = params[1];
+  const int dsize = data["len"];
+  NumericVector time = as<NumericVector>(data["time"]);
+  NumericVector num = as<NumericVector>(data["fault"]);
+  IntegerVector type = as<IntegerVector>(data["type"]);
+
+  double llf = w0 * R::plogis(0, loc, scale, true, true);
+  double prev = R::plogis(0, loc, scale, true, false);
+  double t = 0.0;
+  for (int i=0; i<dsize; i++) {
+    t += time[i];
+    double cur = R::plogis(t, loc, scale, true, false);
+    if (num[i] != 0) {
+      llf += num[i] * log(cur - prev);
+    }
+    if (type[i] == 1) {
+      llf += R::dlogis(t, loc, scale, true);
+    }
+    prev = cur;
+  }
+  llf += w1 * R::plogis(t, loc, scale, false, true);
+  return llf;
 }

@@ -55,6 +55,11 @@ em_exp_emstep <- function(params, data) {
 }
 
 #' @rdname em
+em_exp_emstep2 <- function(params, data) {
+    .Call('_Rsrat_em_exp_emstep2', PACKAGE = 'Rsrat', params, data)
+}
+
+#' @rdname em
 em_gamma_emstep <- function(params, data, divide = 15L, eps = 1.0e-10) {
     .Call('_Rsrat_em_gamma_emstep', PACKAGE = 'Rsrat', params, data, divide, eps)
 }
@@ -65,18 +70,38 @@ em_llogis_emstep <- function(params, data) {
 }
 
 #' @rdname em
+em_llogis_estep <- function(params, data) {
+    .Call('_Rsrat_em_llogis_estep', PACKAGE = 'Rsrat', params, data)
+}
+
+#' @rdname em
+em_llogis_pllf <- function(params, data, w1) {
+    .Call('_Rsrat_em_llogis_pllf', PACKAGE = 'Rsrat', params, data, w1)
+}
+
+#' @rdname em
 em_lnorm_emstep <- function(params, data) {
     .Call('_Rsrat_em_lnorm_emstep', PACKAGE = 'Rsrat', params, data)
 }
 
 #' @rdname em
-em_lxvmax_emstep <- function(params, data) {
-    .Call('_Rsrat_em_lxvmax_emstep', PACKAGE = 'Rsrat', params, data)
+em_lxvmax_estep <- function(params, data) {
+    .Call('_Rsrat_em_lxvmax_estep', PACKAGE = 'Rsrat', params, data)
 }
 
 #' @rdname em
-em_lxvmin_emstep <- function(params, data) {
-    .Call('_Rsrat_em_lxvmin_emstep', PACKAGE = 'Rsrat', params, data)
+em_lxvmax_pllf <- function(params, data, w1) {
+    .Call('_Rsrat_em_lxvmax_pllf', PACKAGE = 'Rsrat', params, data, w1)
+}
+
+#' @rdname em
+em_lxvmin_estep <- function(params, data) {
+    .Call('_Rsrat_em_lxvmin_estep', PACKAGE = 'Rsrat', params, data)
+}
+
+#' @rdname em
+em_lxvmin_pllf <- function(params, data, w1) {
+    .Call('_Rsrat_em_lxvmin_pllf', PACKAGE = 'Rsrat', params, data, w1)
 }
 
 #' @rdname em
@@ -85,23 +110,56 @@ em_pareto_emstep <- function(params, data) {
 }
 
 #' @rdname em
-em_tlogis_emstep <- function(params, data) {
-    .Call('_Rsrat_em_tlogis_emstep', PACKAGE = 'Rsrat', params, data)
+#' @details
+#' \code{em_tlogis_emstep_mo} is an emstep based on Marshall-Olkin-type (maximum) with Exp
+em_tlogis_emstep_mo <- function(params, data) {
+    .Call('_Rsrat_em_tlogis_emstep_mo', PACKAGE = 'Rsrat', params, data)
 }
 
 #' @rdname em
+em_tlogis_estep <- function(params, data) {
+    .Call('_Rsrat_em_tlogis_estep', PACKAGE = 'Rsrat', params, data)
+}
+
+#' @rdname em
+em_tlogis_pllf <- function(params, data, w0, w1) {
+    .Call('_Rsrat_em_tlogis_pllf', PACKAGE = 'Rsrat', params, data, w0, w1)
+}
+
+#' @rdname em
+#' @details
+#' \code{em_tnorm_emstep} has been modified by using EM for truncated distribution. Concretely,
+#' when the distribution is truncated at origin, the expected value is given by
+#' \deqn{\text{E}[h(X)|D] = \sum_{i=1}^k h(x_i) + \frac{k}{\overline{F}(0)} \int_{-\infty}^0 h(x) f(x) dx.}
 em_tnorm_emstep <- function(params, data) {
     .Call('_Rsrat_em_tnorm_emstep', PACKAGE = 'Rsrat', params, data)
 }
 
 #' @rdname em
-em_txvmax_emstep <- function(params, data) {
-    .Call('_Rsrat_em_txvmax_emstep', PACKAGE = 'Rsrat', params, data)
+#' @details
+#' \code{em_txvmax_emstep_mo} is an emstep based on Marshall-Olkin-type (maximum) with Exp
+em_txvmax_emstep_mo <- function(params, data) {
+    .Call('_Rsrat_em_txvmax_emstep_mo', PACKAGE = 'Rsrat', params, data)
 }
 
 #' @rdname em
-em_txvmin_emstep <- function(params, data) {
-    .Call('_Rsrat_em_txvmin_emstep', PACKAGE = 'Rsrat', params, data)
+em_txvmax_estep <- function(params, data) {
+    .Call('_Rsrat_em_txvmax_estep', PACKAGE = 'Rsrat', params, data)
+}
+
+#' @rdname em
+em_txvmax_pllf <- function(params, data, w0, w1) {
+    .Call('_Rsrat_em_txvmax_pllf', PACKAGE = 'Rsrat', params, data, w0, w1)
+}
+
+#' @rdname em
+em_txvmin_estep <- function(params, data) {
+    .Call('_Rsrat_em_txvmin_estep', PACKAGE = 'Rsrat', params, data)
+}
+
+#' @rdname em
+em_txvmin_pllf <- function(params, data, w0, w1) {
+    .Call('_Rsrat_em_txvmin_pllf', PACKAGE = 'Rsrat', params, data, w0, w1)
 }
 
 #' @rdname gumbel

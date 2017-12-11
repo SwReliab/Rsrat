@@ -4,7 +4,7 @@
 \alias{get.issues.jira}
 \title{Issues in JIRA}
 \usage{
-get.issues.jira(query, fields = "created", userpwd,
+get.issues.jira(query, fields = "created", userpwd = "",
   url = "https://issues.apache.org/jira/rest/api/2/search", startAt = 0,
   maxResults = 50)
 }
@@ -27,9 +27,8 @@ Collect issues from JIRA with a query
 \examples{
 ## get crated date of blocer, critical and major issues
 ## which affected to 1.0.0 of ACE from Apache JIRA
-query <- "project = ACE AND issuetype = Bug"
-query <- paste(query, "AND priority in (Blocker, Critical, Major)")
-query <- paste(query, "AND affectedVersion = 1.0.0")
-get.issues.jira(query = query, fields="created",
-   userpwd = "username:password")
+## query <- "project = ACE AND issuetype = Bug"
+## query <- paste(query, "AND priority in (Blocker, Critical, Major)")
+## query <- paste(query, "AND affectedVersion = 1.0.0")
+## get.issues.jira(query = query, fields="created")
 }

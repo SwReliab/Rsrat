@@ -31,6 +31,18 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// em_exp_emstep2
+List em_exp_emstep2(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_exp_emstep2(SEXP paramsSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(em_exp_emstep2(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
 // em_gamma_emstep
 List em_gamma_emstep(NumericVector params, List data, int divide, double eps);
 RcppExport SEXP _Rsrat_em_gamma_emstep(SEXP paramsSEXP, SEXP dataSEXP, SEXP divideSEXP, SEXP epsSEXP) {
@@ -57,6 +69,31 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// em_llogis_estep
+List em_llogis_estep(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_llogis_estep(SEXP paramsSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(em_llogis_estep(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_llogis_pllf
+double em_llogis_pllf(NumericVector params, List data, double w1);
+RcppExport SEXP _Rsrat_em_llogis_pllf(SEXP paramsSEXP, SEXP dataSEXP, SEXP w1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< double >::type w1(w1SEXP);
+    rcpp_result_gen = Rcpp::wrap(em_llogis_pllf(params, data, w1));
+    return rcpp_result_gen;
+END_RCPP
+}
 // em_lnorm_emstep
 List em_lnorm_emstep(NumericVector params, List data);
 RcppExport SEXP _Rsrat_em_lnorm_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
@@ -69,27 +106,53 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// em_lxvmax_emstep
-List em_lxvmax_emstep(NumericVector params, List data);
-RcppExport SEXP _Rsrat_em_lxvmax_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
+// em_lxvmax_estep
+List em_lxvmax_estep(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_lxvmax_estep(SEXP paramsSEXP, SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
     Rcpp::traits::input_parameter< List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(em_lxvmax_emstep(params, data));
+    rcpp_result_gen = Rcpp::wrap(em_lxvmax_estep(params, data));
     return rcpp_result_gen;
 END_RCPP
 }
-// em_lxvmin_emstep
-List em_lxvmin_emstep(NumericVector params, List data);
-RcppExport SEXP _Rsrat_em_lxvmin_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
+// em_lxvmax_pllf
+double em_lxvmax_pllf(NumericVector params, List data, double w1);
+RcppExport SEXP _Rsrat_em_lxvmax_pllf(SEXP paramsSEXP, SEXP dataSEXP, SEXP w1SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
     Rcpp::traits::input_parameter< List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(em_lxvmin_emstep(params, data));
+    Rcpp::traits::input_parameter< double >::type w1(w1SEXP);
+    rcpp_result_gen = Rcpp::wrap(em_lxvmax_pllf(params, data, w1));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_lxvmin_estep
+List em_lxvmin_estep(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_lxvmin_estep(SEXP paramsSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(em_lxvmin_estep(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_lxvmin_pllf
+double em_lxvmin_pllf(NumericVector params, List data, double w1);
+RcppExport SEXP _Rsrat_em_lxvmin_pllf(SEXP paramsSEXP, SEXP dataSEXP, SEXP w1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< double >::type w1(w1SEXP);
+    rcpp_result_gen = Rcpp::wrap(em_lxvmin_pllf(params, data, w1));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -105,15 +168,41 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// em_tlogis_emstep
-List em_tlogis_emstep(NumericVector params, List data);
-RcppExport SEXP _Rsrat_em_tlogis_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
+// em_tlogis_emstep_mo
+List em_tlogis_emstep_mo(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_tlogis_emstep_mo(SEXP paramsSEXP, SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
     Rcpp::traits::input_parameter< List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(em_tlogis_emstep(params, data));
+    rcpp_result_gen = Rcpp::wrap(em_tlogis_emstep_mo(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_tlogis_estep
+List em_tlogis_estep(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_tlogis_estep(SEXP paramsSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(em_tlogis_estep(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_tlogis_pllf
+double em_tlogis_pllf(NumericVector params, List data, double w0, double w1);
+RcppExport SEXP _Rsrat_em_tlogis_pllf(SEXP paramsSEXP, SEXP dataSEXP, SEXP w0SEXP, SEXP w1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< double >::type w0(w0SEXP);
+    Rcpp::traits::input_parameter< double >::type w1(w1SEXP);
+    rcpp_result_gen = Rcpp::wrap(em_tlogis_pllf(params, data, w0, w1));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -129,27 +218,67 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// em_txvmax_emstep
-List em_txvmax_emstep(NumericVector params, List data);
-RcppExport SEXP _Rsrat_em_txvmax_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
+// em_txvmax_emstep_mo
+List em_txvmax_emstep_mo(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_txvmax_emstep_mo(SEXP paramsSEXP, SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
     Rcpp::traits::input_parameter< List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(em_txvmax_emstep(params, data));
+    rcpp_result_gen = Rcpp::wrap(em_txvmax_emstep_mo(params, data));
     return rcpp_result_gen;
 END_RCPP
 }
-// em_txvmin_emstep
-List em_txvmin_emstep(NumericVector params, List data);
-RcppExport SEXP _Rsrat_em_txvmin_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
+// em_txvmax_estep
+List em_txvmax_estep(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_txvmax_estep(SEXP paramsSEXP, SEXP dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
     Rcpp::traits::input_parameter< List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(em_txvmin_emstep(params, data));
+    rcpp_result_gen = Rcpp::wrap(em_txvmax_estep(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_txvmax_pllf
+double em_txvmax_pllf(NumericVector params, List data, double w0, double w1);
+RcppExport SEXP _Rsrat_em_txvmax_pllf(SEXP paramsSEXP, SEXP dataSEXP, SEXP w0SEXP, SEXP w1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< double >::type w0(w0SEXP);
+    Rcpp::traits::input_parameter< double >::type w1(w1SEXP);
+    rcpp_result_gen = Rcpp::wrap(em_txvmax_pllf(params, data, w0, w1));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_txvmin_estep
+List em_txvmin_estep(NumericVector params, List data);
+RcppExport SEXP _Rsrat_em_txvmin_estep(SEXP paramsSEXP, SEXP dataSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    rcpp_result_gen = Rcpp::wrap(em_txvmin_estep(params, data));
+    return rcpp_result_gen;
+END_RCPP
+}
+// em_txvmin_pllf
+double em_txvmin_pllf(NumericVector params, List data, double w0, double w1);
+RcppExport SEXP _Rsrat_em_txvmin_pllf(SEXP paramsSEXP, SEXP dataSEXP, SEXP w0SEXP, SEXP w1SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
+    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
+    Rcpp::traits::input_parameter< double >::type w0(w0SEXP);
+    Rcpp::traits::input_parameter< double >::type w1(w1SEXP);
+    rcpp_result_gen = Rcpp::wrap(em_txvmin_pllf(params, data, w0, w1));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -204,16 +333,26 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_Rsrat_dggglm", (DL_FUNC) &_Rsrat_dggglm, 4},
     {"_Rsrat_em_exp_emstep", (DL_FUNC) &_Rsrat_em_exp_emstep, 2},
+    {"_Rsrat_em_exp_emstep2", (DL_FUNC) &_Rsrat_em_exp_emstep2, 2},
     {"_Rsrat_em_gamma_emstep", (DL_FUNC) &_Rsrat_em_gamma_emstep, 4},
     {"_Rsrat_em_llogis_emstep", (DL_FUNC) &_Rsrat_em_llogis_emstep, 2},
+    {"_Rsrat_em_llogis_estep", (DL_FUNC) &_Rsrat_em_llogis_estep, 2},
+    {"_Rsrat_em_llogis_pllf", (DL_FUNC) &_Rsrat_em_llogis_pllf, 3},
     {"_Rsrat_em_lnorm_emstep", (DL_FUNC) &_Rsrat_em_lnorm_emstep, 2},
-    {"_Rsrat_em_lxvmax_emstep", (DL_FUNC) &_Rsrat_em_lxvmax_emstep, 2},
-    {"_Rsrat_em_lxvmin_emstep", (DL_FUNC) &_Rsrat_em_lxvmin_emstep, 2},
+    {"_Rsrat_em_lxvmax_estep", (DL_FUNC) &_Rsrat_em_lxvmax_estep, 2},
+    {"_Rsrat_em_lxvmax_pllf", (DL_FUNC) &_Rsrat_em_lxvmax_pllf, 3},
+    {"_Rsrat_em_lxvmin_estep", (DL_FUNC) &_Rsrat_em_lxvmin_estep, 2},
+    {"_Rsrat_em_lxvmin_pllf", (DL_FUNC) &_Rsrat_em_lxvmin_pllf, 3},
     {"_Rsrat_em_pareto_emstep", (DL_FUNC) &_Rsrat_em_pareto_emstep, 2},
-    {"_Rsrat_em_tlogis_emstep", (DL_FUNC) &_Rsrat_em_tlogis_emstep, 2},
+    {"_Rsrat_em_tlogis_emstep_mo", (DL_FUNC) &_Rsrat_em_tlogis_emstep_mo, 2},
+    {"_Rsrat_em_tlogis_estep", (DL_FUNC) &_Rsrat_em_tlogis_estep, 2},
+    {"_Rsrat_em_tlogis_pllf", (DL_FUNC) &_Rsrat_em_tlogis_pllf, 4},
     {"_Rsrat_em_tnorm_emstep", (DL_FUNC) &_Rsrat_em_tnorm_emstep, 2},
-    {"_Rsrat_em_txvmax_emstep", (DL_FUNC) &_Rsrat_em_txvmax_emstep, 2},
-    {"_Rsrat_em_txvmin_emstep", (DL_FUNC) &_Rsrat_em_txvmin_emstep, 2},
+    {"_Rsrat_em_txvmax_emstep_mo", (DL_FUNC) &_Rsrat_em_txvmax_emstep_mo, 2},
+    {"_Rsrat_em_txvmax_estep", (DL_FUNC) &_Rsrat_em_txvmax_estep, 2},
+    {"_Rsrat_em_txvmax_pllf", (DL_FUNC) &_Rsrat_em_txvmax_pllf, 4},
+    {"_Rsrat_em_txvmin_estep", (DL_FUNC) &_Rsrat_em_txvmin_estep, 2},
+    {"_Rsrat_em_txvmin_pllf", (DL_FUNC) &_Rsrat_em_txvmin_pllf, 4},
     {"_Rsrat_dgumbel", (DL_FUNC) &_Rsrat_dgumbel, 5},
     {"_Rsrat_pgumbel", (DL_FUNC) &_Rsrat_pgumbel, 6},
     {"_Rsrat_qgumbel", (DL_FUNC) &_Rsrat_qgumbel, 6},

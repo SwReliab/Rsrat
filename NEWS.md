@@ -1,3 +1,12 @@
+# Rsrat 1.2.3
+
+* Fix bugs on truncation models
+  - em for tnorm has been changed
+  - ems for logis and xvmax/min use optim function at the M-step
+* Fix a bug of jira
+* The option printflag has been changed to `trance`.
+* Fix a bug for poireg according to the changes of ems for truncation models
+
 # Rsrat 1.2.2
 
 * Fix a bug for winR

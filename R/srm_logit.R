@@ -11,7 +11,7 @@
 #' less than \emph{reltol} and the absolute error is less than \emph{abstol}.}
 #'   \item{stopcond}{A character string. \emph{stopcond} gives the criterion
 #' for the stop condition of the algorithm. Either llf or parameter is selected.}
-#'   \item{printflag}{A logical. If TRUE, the intermediate parameters are printed.}
+#'   \item{trace}{A logical. If TRUE, the intermediate parameters are printed.}
 #'   \item{printsteps}{An integer for print.}
 #' }
 #' The linkfun argument can take the following strings:
@@ -71,7 +71,7 @@ fit.srm.logit <- function(formula, data, linkfun = "logit", offset = NULL, contr
 
   tres <- system.time(result <- emfit(model, ldata, initialize = TRUE,
     maxiter = con$maxiter, reltol = con$reltol, abstol = con$abstol,
-    stopcond = con$stopcond, printflag=con$printflag, printsteps=con$printsteps))
+    stopcond = con$stopcond, trace=con$trace, printsteps=con$printsteps))
   result <- c(result,
               list(
                 data=data,
@@ -97,7 +97,7 @@ srm.logit.options <- function() {
     reltol = sqrt(.Machine$double.eps),
     abstol = 1.0e+200,
     stopcond = "llf",
-    printflag = FALSE,
+    trace = FALSE,
     printsteps = 50)
 }
 

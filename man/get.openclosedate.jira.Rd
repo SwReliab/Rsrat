@@ -4,7 +4,7 @@
 \alias{get.openclosedate.jira}
 \title{get open and closed date from JIRA}
 \usage{
-get.openclosedate.jira(query, userpwd,
+get.openclosedate.jira(query, userpwd = "",
   url = "https://issues.apache.org/jira/rest/api/2/search", startAt = 0,
   maxResults = 50, date.min = NULL, date.max = Sys.time(),
   by = "1 month")

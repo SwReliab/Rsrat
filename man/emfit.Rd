@@ -5,7 +5,7 @@
 \title{Estimate SRM parameters.}
 \usage{
 emfit(srm, data, initialize = TRUE, maxiter = 2000, reltol = 1e-06,
-  abstol = 0.001, stopcond = "llf", printflag = FALSE, printsteps = 50)
+  abstol = 0.001, stopcond = "llf", trace = FALSE, printsteps = 50)
 }
 \arguments{
 \item{srm}{A model.}
@@ -26,7 +26,7 @@ less than \emph{reltol} and the absolute error is less than \emph{abstol}.}
 \item{stopcond}{A character string. \emph{stopcond} gives the criterion
 for the stop condition of the algorithm. Either llf or parameter is selected.}
 
-\item{printflag}{A logical. If TRUE, the intermediate parameters are printed.}
+\item{trace}{A logical. If TRUE, the intermediate parameters are printed.}
 
 \item{printsteps}{An integer for print.}
 }

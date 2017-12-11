@@ -4,7 +4,7 @@
 \alias{get.opendate.jira}
 \title{get open date from JIRA}
 \usage{
-get.opendate.jira(query, userpwd,
+get.opendate.jira(query, userpwd = "",
   url = "https://issues.apache.org/jira/rest/api/2/search", startAt = 0,
   maxResults = 50, date.min = NULL, date.max = Sys.time(),
   by = "1 month")

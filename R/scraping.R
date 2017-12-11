@@ -11,14 +11,13 @@
 #' @examples
 #' ## get crated date of blocer, critical and major issues
 #' ## which affected to 1.0.0 of ACE from Apache JIRA
-#' query <- "project = ACE AND issuetype = Bug"
-#' query <- paste(query, "AND priority in (Blocker, Critical, Major)")
-#' query <- paste(query, "AND affectedVersion = 1.0.0")
-#' get.issues.jira(query = query, fields="created",
-#'    userpwd = "username:password")
+#' ## query <- "project = ACE AND issuetype = Bug"
+#' ## query <- paste(query, "AND priority in (Blocker, Critical, Major)")
+#' ## query <- paste(query, "AND affectedVersion = 1.0.0")
+#' ## get.issues.jira(query = query, fields="created")
 #' @export
 
-get.issues.jira <- function(query, fields = "created", userpwd, url = "https://issues.apache.org/jira/rest/api/2/search",
+get.issues.jira <- function(query, fields = "created", userpwd = "", url = "https://issues.apache.org/jira/rest/api/2/search",
   startAt = 0, maxResults = 50) {
   url <- paste(url, "?jql=", URLencode(query, reserved = TRUE), "&fields=", paste(fields, collapse=",", sep=""), sep="")
   cat(sprintf("URL: %s\n", url))
@@ -132,7 +131,7 @@ count.date2 <- function(ddate, cdate, date.min = NULL, date.max = Sys.time(), by
 #' @param by A character string. A increment of date. "1 month", "1 day", etc. are available.
 #' @export
 
-get.opendate.jira <- function(query, userpwd, url = "https://issues.apache.org/jira/rest/api/2/search",
+get.opendate.jira <- function(query, userpwd = "", url = "https://issues.apache.org/jira/rest/api/2/search",
   startAt = 0, maxResults = 50, date.min = NULL, date.max = Sys.time(), by = "1 month") {
   data <- get.issues.jira(query, "created", userpwd, url, startAt, maxResults)
   count.date(date=sapply(data, function(x) as.character(as.Date(x$fields$created))), date.min, date.max, by)
@@ -152,7 +151,7 @@ get.opendate.jira <- function(query, userpwd, url = "https://issues.apache.org/j
 #' @param by A character string. A increment of date. "1 month", "1 day", etc. are available.
 #' @export
 
-get.openclosedate.jira <- function(query, userpwd, url = "https://issues.apache.org/jira/rest/api/2/search",
+get.openclosedate.jira <- function(query, userpwd = "", url = "https://issues.apache.org/jira/rest/api/2/search",
   startAt = 0, maxResults = 50, date.min = NULL, date.max = Sys.time(), by = "1 month") {
   data <- get.issues.jira(query, c("created", "resolutiondate"), userpwd, url, startAt, maxResults)
   ddate <- sapply(data, function(x) as.character(as.Date(x$fields$created)))
