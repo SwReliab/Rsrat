@@ -1,3 +1,7 @@
+# Rsrat 1.2.0
+
+* Add scraping (JIRA)
+
 # Rsrat 1.1.2
 
 * Fix a bug for faultdata and mvfplot
