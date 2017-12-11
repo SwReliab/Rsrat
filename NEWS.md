@@ -1,3 +1,8 @@
+# Rsrat 1.1.2
+
+* Fix a bug for faultdata and mvfplot
+* Change emsteps with Rcpp
+
 # Rsrat 1.1.1
 
 * Add data (dacs)
