@@ -4,12 +4,14 @@
 \alias{get.issues.jira}
 \title{Issues in JIRA}
 \usage{
-get.issues.jira(query, userpwd,
+get.issues.jira(query, fields = "created", userpwd,
   url = "https://issues.apache.org/jira/rest/api/2/search", startAt = 0,
   maxResults = 50)
 }
 \arguments{
 \item{query}{A character string for a query}
+
+\item{fields}{A character string vector, indicating fields to be downloaded}
 
 \item{userpwd}{A string for user:passwd}
 
@@ -23,7 +25,7 @@ get.issues.jira(query, userpwd,
 Collect issues from JIRA with a query
 }
 \examples{
-## get issuetype, priority, created, resolutiondate, resolution and versions of issues of ACE from Apache JIRA
-get.issues.jira("project=ACE&fields=id,key,issuetype,priority,created,resolutiondate,resolution,versions",
-    userpwd = "username:password")
+## get crated date of blocer, critical and major issues which affected to 1.0.0 of ACE from Apache JIRA
+get.issues.jira(query = "project = ACE AND issuetype = Bug AND priority in (Blocker, Critical, Major) AND affectedVersion = 1.0.0",
+    fields="created", userpwd = "username:password")
 }

@@ -7,7 +7,11 @@
 #' @docType package
 #' @name Rsrat
 #' @import R6 ggplot2
-#' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm nobs model.frame model.response model.matrix gaussian
+#' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm
+#' @importFrom stats nobs model.frame model.response model.matrix gaussian
+#' @importFrom utils URLencode
+#' @importFrom RCurl getURL
+#' @importFrom rjson fromJSON
 #' @useDynLib Rsrat
 #' @importFrom Rcpp sourceCpp
 NULL
