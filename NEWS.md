@@ -1,3 +1,7 @@
+# Rsrat 1.2.4
+
+* Remove gfortran lib
+
 # Rsrat 1.2.3
 
 * Fix bugs on truncation models
