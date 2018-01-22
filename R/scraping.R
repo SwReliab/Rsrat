@@ -25,7 +25,7 @@ get.issues.jira <- function(query, fields = "created", userpwd = "", url = "http
   repeat {
     tmpurl <- paste(url, "&startAt=", startAt, "&maxResults=", maxResults, sep="")
     cat(sprintf("  Getting (%d - %d) ...\n", startAt, startAt + maxResults - 1))
-    rec <- fromJSON(getURL(tmpurl, userpwd = userpwd, httpheader = c('Content-Type' = "application/json")))
+    rec <- httr::content(httr::GET(tmpurl))
     startAt <- startAt + maxResults
     issues <- c(issues, rec$issues)
     if (rec$total < startAt) {

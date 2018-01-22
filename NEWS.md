@@ -1,3 +1,8 @@
+# Rsrat 1.2.5
+
+* Add gfortran lib
+* Use httr instead of RCurl
+
 # Rsrat 1.2.4
 
 * Remove gfortran lib

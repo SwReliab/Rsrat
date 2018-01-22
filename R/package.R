@@ -10,8 +10,7 @@
 #' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm
 #' @importFrom stats nobs model.frame model.response model.matrix gaussian
 #' @importFrom utils URLencode
-#' @importFrom RCurl getURL
-#' @importFrom rjson fromJSON
+#' @importFrom httr GET content
 #' @useDynLib Rsrat
 #' @importFrom Rcpp sourceCpp
 NULL
