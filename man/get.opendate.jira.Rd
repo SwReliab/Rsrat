@@ -4,7 +4,7 @@
 \alias{get.opendate.jira}
 \title{get open date from JIRA}
 \usage{
-get.opendate.jira(query, userpwd = "",
+get.opendate.jira(query, user = NULL, password = "", authtype = "basic",
   url = "https://issues.apache.org/jira/rest/api/2/search", startAt = 0,
   maxResults = 50, date.min = NULL, date.max = Sys.time(),
   by = "1 month")
@@ -12,7 +12,11 @@ get.opendate.jira(query, userpwd = "",
 \arguments{
 \item{query}{A character string for a query}
 
-\item{userpwd}{A string for user:passwd}
+\item{user}{A string for user}
+
+\item{password}{A string for password}
+
+\item{authtype}{A string for authentication. The default is \code{basic}.}
 
 \item{url}{An URL for JIRA}
 

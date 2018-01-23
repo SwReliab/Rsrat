@@ -1,3 +1,7 @@
+# Rsrat 1.2.6
+
+* Fix the authentication for JIRA
+
 # Rsrat 1.2.5
 
 * Add gfortran lib
