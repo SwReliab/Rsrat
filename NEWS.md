@@ -1,3 +1,7 @@
+# Rsrat 1.3.0
+
+* Add penalized for poireg
+
 # Rsrat 1.2.6
 
 * Fix the authentication for JIRA
