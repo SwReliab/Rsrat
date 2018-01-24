@@ -160,21 +160,23 @@ pnglm.fit <- function(x, y, coef = NULL, offset = NULL, family = gaussian(),
     }
 
     names(coef) <- xnames
-    names(res$y) <- ynames
 
     eta <- x %*% coef + offset
     if (!family$valideta(eta)) {
         stop(gettextf("eta is invalid at %d", iter))
     }
-    mu <- family$linkinv(eta)
+    mu <- as.vector(family$linkinv(eta))
     if (!family$validmu(mu)) {
         stop(gettextf("mu is invalid at %d", iter))
     }
+    names(mu) <- ynames
 
     if (penalized) {
+      names(res$y) <- c(ynames, xnames)
       list(coefficients=coef, residual=res$y, fitted.values=mu, K=K, lambda=lambda)
     }
     else {
+      names(res$y) <- ynames
       list(coefficients=coef, residual=res$y, fitted.values=mu)
     }
 }

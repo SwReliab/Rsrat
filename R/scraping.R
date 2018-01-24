@@ -26,7 +26,7 @@ get.issues.jira <- function(query, fields = "created", user = NULL, password = "
   issues <- c()
   repeat {
     tmpurl <- paste(url, "&startAt=", startAt, "&maxResults=", maxResults, sep="")
-    print(tmpurl)
+    # print(tmpurl)
     cat(sprintf("  Getting (%d - %d) ...\n", startAt, startAt + maxResults - 1))
     if (is.null(user)) {
       rec <- httr::content(httr::GET(tmpurl))
@@ -89,4 +89,52 @@ get.openclosedate.jira <- function(query, user = NULL, password = "", authtype =
   ddate <- sapply(data, function(x) as.character(as.Date(x$fields$created)))
   cdate <- sapply(data, function(x) if (is.null(x$fields$resolutiondate)) { NA } else { as.character(as.Date(x$fields$resolutiondate)) })
   count.date2(ddate, cdate, date.min, date.max, by)
+}
+
+#' Issues in GitHub
+#'
+#' Collect issues from GitHub with a query
+#'
+#' @param repository A character string indicating a repository such as "hadley/devtools"
+#' @param query A character string for a query
+#' @param user A string for user
+#' @param password A string for password
+#' @param authtype A string for authentication. The default is \code{basic}.
+#' @param url An URL for GitHub
+#' @param startPage An integer to identify the start page
+#' @param perPage An integer to the number of issues for a page
+#' @examples
+#' ## get crated date of blocer, critical and major issues
+#' ## which affected to 1.0.0 of ACE from Apache JIRA
+#' ## query <- "project = ACE AND issuetype = Bug"
+#' ## query <- paste(query, "AND priority in (Blocker, Critical, Major)")
+#' ## query <- paste(query, "AND affectedVersion = 1.0.0")
+#' ## get.issues.jira(query = query, fields="created")
+#' @export
+
+get.issues.github <- function(repository, query, user = NULL, password = "", authtype = "basic",
+  url = "https://api.github.com/repos", startPage = 1L, perPage = 30L) {
+  url <- paste(url, "/", repository, "?", URLencode(query, reserved = TRUE), sep="")
+  cat(sprintf("URL: %s\n", url))
+  issues <- c()
+  repeat {
+    tmpurl <- paste(url, URLencode(paste("&page=", startPage, "&per_page=", perPage, sep=""), reserved = TRUE), sep="")
+    return(tmpurl)
+    cat(sprintf("  Getting page %d ...\n", startPage))
+    if (is.null(user)) {
+      rec <- httr::content(httr::GET(tmpurl))
+    }
+    else {
+      rec <- httr::content(httr::GET(tmpurl, httr::authenticate(user, password, authtype)))
+    }
+    # if (rec$documentation_url == "https://developer.github.com/v3/#rate-limiting") {
+    #   stop(rec$message)
+    # }
+    if (length(rec) == 0) {
+      break
+    }
+    startPage <- startPage + 1
+    issues <- c(issues, rec)
+  }
+  issues
 }

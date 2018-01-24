@@ -5,7 +5,7 @@
 \title{Estimate SRM parameters.}
 \usage{
 emfit(srm, data, initialize = TRUE, maxiter = 2000, reltol = 1e-06,
-  abstol = 0.001, stopcond = "llf", trace = FALSE, printsteps = 50)
+  abstol = 0.001, stopcond = "llf", trace = FALSE, printsteps = 50, ...)
 }
 \arguments{
 \item{srm}{A model.}
@@ -29,6 +29,8 @@ for the stop condition of the algorithm. Either llf or parameter is selected.}
 \item{trace}{A logical. If TRUE, the intermediate parameters are printed.}
 
 \item{printsteps}{An integer for print.}
+
+\item{...}{A list for other parameters which are sent to the \code{em} method of srm.}
 }
 \value{
 A list with components;

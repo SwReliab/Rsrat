@@ -31,6 +31,8 @@
 #' component to be included in the linear predictor during fitting. This should
 #' be NULL or a numeric vector of length equal to the number of cases.
 #' @param control A list of control parameters. See Details.
+#' @param lambda A numeric value for the penalized parameter.
+#' @param K A positive definite matrix to determine the penalized structure.
 #' @param ... Other parameters.
 #' @return A list with components;
 #' \item{initial}{A vector for initial parameters.}
@@ -188,4 +190,61 @@ return(c(res$df, aic))
 
 nobs.srm.poireg.result <- function(object, ...) {
 return(nrow(object$data))
+}
+
+#' @rdname fit.srm.poireg
+#' @export
+
+fit.srm.poireg.penalized <- function(formula, data, srms, names = NULL, linkfun = "log",
+  offset = NULL, control = list(), lambda = 1, K = NULL, ...) {
+  call <- match.call()
+  con <- srm.poireg.options()
+  nmsC <- names(con)
+  con[(namc <- names(control))] <- control
+  if (length(noNms <- namc[!namc %in% nmsC]))
+  warning("unknown names in control: ", paste(noNms, collapse = ", "))
+
+  ## init parameters
+  ldata <- faultdata.smet(formula, data, names, offset)
+
+  # rearrange of SRMs
+  srms <- lapply(srms, function(m) {
+    if (any(class(m) == "srm.nhpp.result")) {
+      m$srm$clone()
+    }
+    else if (any(class(m) == "srm.logit.result")) {
+      m$srm$clone()
+    }
+    else if (any(class(m) == "NHPP")) {
+      m$clone()
+    }
+    else if (any(class(m) == "dGLM")) {
+      m$clone()
+    }
+    else {
+      stop("The element of srms should be a class of srm.nhpp.result, srm.logit.result, NHPP or dGLM.")
+    }
+  })
+
+  model <- switch(linkfun,
+    "log"=sGLM.penalized.log$new(srms, names),
+    "identity"=sGLM.penalized.identity$new(srms, names),
+    NA
+  )
+
+  model$set_penalized(lambda, K)
+
+  tres <- system.time(result <- emfit(model, ldata, initialize = TRUE,
+    maxiter = con$maxiter, reltol = con$reltol, abstol = con$abstol,
+    stopcond = con$stopcond, trace=con$trace, printsteps=con$printsteps))
+  result <- c(result,
+              list(
+                data=data,
+                linkfun=linkfun,
+                formula=formula,
+                ctime=tres[1],
+                terms = attr(model.frame(formula, data), "terms"),
+                call=call))
+  class(result) <- "srm.poireg.result"
+  result
 }

@@ -17,6 +17,7 @@
 #' for the stop condition of the algorithm. Either llf or parameter is selected.
 #' @param trace A logical. If TRUE, the intermediate parameters are printed.
 #' @param printsteps An integer for print.
+#' @param ... A list for other parameters which are sent to the \code{em} method of srm.
 #' @return A list with components;
 #' \item{initial}{A vector for initial parameters.}
 #' \item{srm}{A class of NHPP. The SRM with the estiamted parameters.}
@@ -35,7 +36,7 @@
 emfit <- function(srm, data,
   initialize = TRUE,
   maxiter = 2000, reltol = 1.0e-6, abstol = 1.0e-3,
-  stopcond = "llf", trace = FALSE, printsteps = 50) {
+  stopcond = "llf", trace = FALSE, printsteps = 50, ...) {
     ## init
     if (initialize) {
       srm$init_params(data)
@@ -70,7 +71,7 @@ emfit <- function(srm, data,
     res0 <- list(param=param, llf=-Inf)
 
     repeat {
-      res1 <- srm$em(res0$param, data)
+      res1 <- srm$em(res0$param, data, ...)
       error <- term.fn(res0, res1)
 
       if (trace) {
