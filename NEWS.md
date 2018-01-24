@@ -1,3 +1,7 @@
+# Rsrat 1.3.1
+
+* Bugfix: LLF for Pareto with time data
+
 # Rsrat 1.3.0
 
 * Add penalized for poireg

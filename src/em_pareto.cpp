@@ -50,7 +50,7 @@ List em_pareto_emstep(NumericVector params, List data) {
     en1 += 1.0;
     en2 += (shape+1.0)/(scale+t);
     en3 += psi(shape+1.0) - log(scale + t);
-    llf += log(shape) + shape * log(scale) + (shape+1) * log(scale + t); // log(pareto_pdf(t, shape, scale));
+    llf += log(shape) + shape * log(scale) - (shape+1) * log(scale + t); // log(pareto_pdf(t, shape, scale));
   }
   for (int j=1; j<dsize; j++) {
     x = num[j];
@@ -76,7 +76,7 @@ List em_pareto_emstep(NumericVector params, List data) {
       en1 += 1.0;
       en2 += (shape+1.0)/(scale+t);
       en3 += psi(shape+1.0) - log(scale + t);
-      llf += log(shape) + shape * log(scale) + (shape+1) * log(scale + t); // log(pareto_pdf(t, shape, scale));
+      llf += log(shape) + shape * log(scale) - (shape+1) * log(scale + t); // log(pareto_pdf(t, shape, scale));
     }
   }
   llf += log(omega) * en1;  // en1 is total number of faults
