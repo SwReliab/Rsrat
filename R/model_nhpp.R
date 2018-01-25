@@ -132,7 +132,6 @@ ExpSRM <- R6::R6Class("ExpSRM",
     },
     em = function(params, data) {
       em_exp_emstep(params, data)
-      # em_exp_emstep2(params, data)
     }
   )
 )

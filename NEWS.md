@@ -1,3 +1,9 @@
+# Rsrat 1.3.2
+
+* Bugfix: LLF for Exp with time data
+* add get.issues for GitHub
+* Matrix package is imported to represent the detection/correction matrix
+
 # Rsrat 1.3.1
 
 * Bugfix: LLF for Pareto with time data

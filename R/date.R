@@ -63,7 +63,7 @@ count.date2 <- function(ddate, cdate, date.min = NULL, date.max = Sys.time(), by
  }
  dl <- numeric(0)
  tt <- numeric(0)
- res <- matrix(0, length(v)-1, length(v))
+ res <- Matrix::Matrix(0, length(v)-1, length(v))
  for (i in 1:(length(v)-1)) {
    df <- sapply(dd, function(x) (v[i] <= x) && (x < v[i+1]))
    tmp <- dc[df]
