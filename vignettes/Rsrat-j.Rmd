@@ -1,0 +1,338 @@
+---
+title: "はじめに"
+author: "Hiroyuki Okamura"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Rsratとは
+
+R によるソフトウェア信頼性モデルの推定パッケージ．
+
+## 機能
+
+- 時刻データ，個数データから NHPP モデルの推定
+  - [SRATS2010](https://okamumu.github.io/SRATS2010/) と同じモデル（指数，ガンマ，パレート，切断正規，対数正規，切断ロジスティック，対数ロジスティック，切断極値（最大），対数極値（最大），切断極値（最小），対数極値（最小））が扱える．
+- ロジスティック回帰によるテストメトリクスを扱うモデルの推定．logit, cloglog が利用可能
+- ポアソン回帰によるデザインメトリクスを扱うモデルの推定
+  - モジュール毎にNHPPもしくはロジットモデルを適用
+  - デザインメトリクスによる総フォールト数の回帰
+
+## インストール
+
+GitHub 経由で `devtools` によるインストールを行う．devtools をインストール後以下のコマンドを実行します．
+
+    devtools::install_github("okamumu/Rsrat")
+
+コンパイルをするので Rtools のインストールも必要となります．また，LAPACK を使うため gfortran のライブラリが必要です（おそらく）．
+
+## パッケージの読み込み
+
+R を起動したら以下のコマンドでパッケージをロードします．RStudio の場合は GUI の package 管理で対応可能です．
+
+```{r}
+library(Rsrat)
+```
+
+## NHPPの推定
+
+### データ形式
+
+Rsrat に格納しているサンプルデータを読み込みます．以下のデータは各バグの発見時間間隔（CPU time）であり，最後のマイナスの値は 136 個目のバグが見つかってから 2526 時間の新しいバグが見つからなかったことを表しています．
+
+
+```{r}
+data(dacs)
+sys1
+```
+
+関数 `faultdata` は Rsrat で使う時間データおよび個数データを同じ形式で扱うデータ形式（3-columns style）に変換します．sys1 は時間データであるため，引数 `time`, `te` に値を渡します．引数 `time` はバグ発見の時間間隔，`te` は最後のバグ発見からの経過時間です．
+
+```{r}
+faultdata(time=sys1[sys1>0], te=-tail(sys1,1))
+```
+
+個数データはある時間間隔で発見されたバグの個数を表します．以下のデータは working day 単位で発見されたバグ数を表しています．
+
+```{r}
+sys1g
+```
+
+関数 `faultdata` は以下のようにして個数データも 3-columns style に変更します．
+
+```{r}
+faultdata(fault=sys1g)
+```
+
+時間間隔が異なる場合（例えば月ごとのバグ数管理で working days が異なる場合など）は引数 `time` に時間間隔のベクトルデータを与えます．以下は Tomcat5 の Catalina モジュールで発見された月ごとのバグ数を表すデータフレームです．`$time` は日数，`$fault` はバグ数を表しています．
+
+```{r}
+data(tomcat5)
+tomcat5.catalina
+```
+
+3-columns style への変換は以下のようにします．
+
+```{r}
+faultdata(time=tomcat5.catalina$time, fault=tomcat5.catalina$fault)
+```
+
+R のデータフレームで管理されたデータの場合は次のようにも記述できます．引数 `time`, `fault` は `data` で指定されたデータフレームのカラム名を指定します（このとき `"time"` のように引用符が付かないことに注意してください）．
+
+```{r}
+faultdata(time=time, fault=fault, data=tomcat5.catalina)
+```
+
+### NHPP モデルの推定
+
+データから NHPP モデルを推定します．推定には `fit.srm.nhpp` 関数を利用します．データの指定方法は `faultdata` と同じです．自動的に 11 種類のモデルすべてを適用し，AIC の意味で最も適合しているモデルを返します．
+
+```{r}
+fit.srm.nhpp(time=sys1[sys1>0], te=-tail(sys1,1))
+```
+
+```{r}
+fit.srm.nhpp(fault=sys1g)
+```
+
+```{r}
+fit.srm.nhpp(time=time, fault=fault, data=tomcat5.catalina)
+```
+
+モデル名を指定して限定することができます．
+
+```{r}
+srm.models ## all model names
+fit.srm.nhpp(time=sys1[sys1>0], te=-tail(sys1,1), srm.names=c("exp", "gamma")) ## fit "exp" and "gamma" to the data and select a better model from them.
+```
+
+結果は次の要素のリストになっています．
+- inital: 初期モデルパラメータ
+- srm: 推定結果（R6クラス）
+- llf: 最大対数尤度
+- df: モデル自由度
+- convergence: 収束判定結果
+- iter: 推定アルゴリズム内でステップの繰り返し回数
+- aerror, rerror: 推定アルゴリズム内で各ステップでの対数尤度更新量の絶対・相対誤差
+- aic: AIC
+- ctime: 計算時間
+- call: call オブジェクト
+
+```{r}
+result <- fit.srm.nhpp(time=sys1[sys1>0], te=-tail(sys1,1))
+names(result)
+result$llf
+result$ctime
+result$srm
+```
+
+### 推定モデルから評価値の算出
+
+推定結果から信頼性評価値の計算を行います．推定されたモデルパラメータは以下で取得できます．
+
+```{r}
+result$srm$params
+```
+
+予測される総バグ数は次のように取得できます．
+
+```{r}
+result$srm$omega()
+```
+
+現時点で予測される残存バグ数（`residual(t)`）および現時点でバグ数が 0 である確率（`ffp(t)`）は次のように取得できます．
+
+```{r}
+curtime <- sum(result$srm$data$time) ## 推定に使ったデータ result$srm$data から現時点の時刻を計算
+result$srm$residual(curtime)
+result$srm$ffp(curtime)
+```
+
+データならびにバグの予測（平均値関数）は次の関数でプロットできます．引数 `mvf` には `$mvf` が（平均値）関数であるようなオブジェクトのリストを渡します．リストには複数のモデルを含めることができますが，一つだけのモデルの場合も `list()` を使ってリスト化してください．データの指定は `faultdata` と同じです．また，`xmax` でプロットする範囲を指定できます．
+
+```{r}
+mvfplot(time=sys1[sys1>0], te=-tail(sys1,1), mvf=list(result$srm), xmax=1.5*curtime)
+```
+
+```{r}
+result <- fit.srm.nhpp(time=time, fault=fault, data=tomcat5.catalina, selection=NULL) ## Do not select the best model, i.e., all models are retured
+model.list <- lapply(result, function(x) x$srm) ## make a list for srms
+mvfplot(time=time, fault=fault, data=tomcat5.catalina, mvf=model.list)
+```
+
+<!--
+テストメトリクスによるモデル †
+動的なメトリクスを利用して，フォールト発見確率に対する回帰モデルを構築します．
+このモデルでは個数データしか扱えません
+データ入力
+例えば，下のようなデータを csv で用意します（１行目にはラベルをつけてください）
+days	faults	coverage	work
+1	2	0.1	2.0
+2	10	0.2	5.0
+3	1	0.7	3.0
+4	0	0.9	1.0
+Rで csv をデータフレームとして読み込みます
+metricsdat <- read.csv(file="test.csv")
+推定
+srat.logit をつかって推定します．
+result.logit <- srat.logit(formula=faults ~ coverage + work, data=metricsdat)
+formulaは R の回帰で使う lm や glm と同様で，データフレームのどれが説明変数でどれが出力変数がを示しています．
+formula には
+faults~.
+faults~0+coverage+work
+などの表現ができます．詳細は R の回帰 lm や glm を参照してください．
+結果
+上の例だと result.logit に結果が入ります．
+結果は次のようなリストになっています．
+result.logit$param            result.logit$fitted.mvf       result.logit$aic
+result.logit$llf              result.logit$residual.faults  result.logit$abic
+result.logit$info.matrix      result.logit$ffp              result.logit$ctime
+result.logit$status           result.logit$model            result.logit$terms
+result.logit$em.iter          result.logit$linkfun          result.logit$control
+result.logit$em.aerror        result.logit$df               result.logit$call
+result.logit$em.rerror        result.logit$data             
+result.logit$total.faults     result.logit$formula
+リストの内容は NHPP モデルとほぼ同じです．
+要因選択
+どの要因がフォールト発見確率に大きく寄与しているのか選択できます．
+要因選択には R の機能がそのまま使えます．変数減少法（backward）であるなら
+best.result.logit <- step(result.logit)
+のようにします．
+変数増加法（forward）の場合は例えば
+best.result.logit <- step(srat.logit(faults~1, data=metricsdat), scope=~coverage + work, direction="forward")
+とすると coverage + work までで変数増加法による AIC 基準の要因選択をします．
+direction を "both" にすると変数増減法になります
+リンク関数
+linkfunでリンク関数が選べます．デフォルトでは "logit" となっています．
+complementary log-log をリンク関数にしたい場合は
+logit.result <- srat.logit(formula=faults ~ coverage + work, data=metricsdat, linkfun="cloglog")
+とします．
+罰則付き最尤法
+要因の回帰係数に対する罰則付き最尤法?を行うことができます．
+controlにリストで list(lambda=0.1) のように 0 以外の正の数値を与えることで罰則の強さを決められます．
+logit.result <- srat.logit(formula=faults ~ ., data=metricsdat, control=list(lambda=1.0))
+結果の $abic を最小にするようにlambda値を選ぶ（ABIC基準）と良いですが，自動でlambda値を決定する機能はないので注意してください
+その他のオプション
+srat.nhpp と同様に推定に関する設定を control で変更できます．変更できる設定は
+srat.option.logit
+で参照してください．
+↑
+ポアソン回帰モデル †
+ソフトウェアモジュールに対する静的なメトリクス（設計に関する，コード行数，複雑度など）と総フォールト数に関する回帰式を利用してすべてのモジュールに関するパラメータを同時に行います．
+ポアソン回帰モデルでは次の手順で推定を行います．
+(i) 各モジュールに適用するモデル（NHPP またはロジット）を決める．
+(ii) 静的メトリクスと各モジュールのフォールトデータを用いて，総フォールト数の回帰式の係数および各モジュールのモデルパラメータを推定する
+(i) 各モジュールのモデル決定 [#f5ef15e5]
+NHPP またはロジットで説明した手順で各モジュールに適用するモデルをリストにします．
+いま，n 個のモジュール m1, m2, ..., mn があったとすると
+result.m1 <- srat.selection(srat.nhpp(faults~time, data=data.m1))
+result.m2 <- srat.selection(srat.nhpp(faults~time, data=data.m2))
+...
+のようにして m1 から mn までの個々のフォールトデータ data.mx から最も良いモデルを選び result.mx にセットします．
+次にポアソン回帰に用いるモデルのリストを
+srmlist <- list(m1=result.m1, m2=result.m2, ..., mn=result.mn)
+として作成します．
+(ii) srat.poireg を用いてパラメータ推定 [#rca4e894]
+データ入力
+静的メトリクスを例えば以下の csv から R のデータフレームにします．
+モジュール名	LOC	COMPLEXITY	NUM.OF.CLASSES
+m1	103	1.3	14
+m2	11	0.2	1
+...	...	...	...
+mn	1000	0.5	5
+data.metrics <- read.csv(file="metrics.csv", row.names=1)
+最初の列を行の名前にするために row.names=1 をつけています．
+上記のメトリクスのデータフレームの行の名前 "m1", "m2", ..., "mn" と (i) で作成した srmlist の要素名でどのモジュールのメトリクスか特定するので，同じ名前になるようにしてください．
+推定
+srat.poiregで推定します
+result.poireg <- srat.poireg(formula=~LOC+COMPLEXITY+NUM.OF.CLASSES, metrics=data.metrics, srm.list=srmlist)
+formula はどの要因が総フォールト数の回帰式に使われるかを示している．logitと同様に ~. や ~1, ~0+LOC などの表現も使えます．
+srmlist には個別の推定結果がリストとしてセットされていますが，改めて各モデルのパラメータを推定し直します．
+結果
+result.poireg は以下の要素のリストになります
+result.poireg$coefficients  result.poireg$metrics
+result.poireg$llf           result.poireg$formula
+result.poireg$info.matrix   result.poireg$lambda
+result.poireg$status        result.poireg$initsrms
+result.poireg$iter          result.poireg$aic
+result.poireg$aerror        result.poireg$abic
+result.poireg$rerror        result.poireg$ctime
+result.poireg$srms          result.poireg$terms
+result.poireg$model         result.poireg$control
+result.poireg$linkfun       result.poireg$call
+result.poireg$df            result.poireg$total.faults
+主な結果として以下のものがあります
+$coefficients: 推定された回帰係数
+$llf: 最大対数尤度（全モジュールをまとめた最大対数尤度）
+$info.matrix: フィッシャー情報行列
+$srms: 個々のモジュールに対する結果（NHPP, ロジットの出力結果と同じフォーマット）
+$aic: AIC
+$total.faults: 個々のモジュールの総フォールト数
+要因選択
+step を使ってAIC基準の要因選択ができます．使い方はロジットと同じ
+リンク関数
+linkfunでリンク関数が選べます．デフォルトは "log"．その他には "id"（identity）があります．
+罰則付き最尤法
+メトリクス数がモジュール数より大きい場合は罰則付き最尤法でないと推定できません．使い方は control リストにlambda値を与えます．
+result.poireg <- srat.poireg(formula=~., metrics=data.metrics, srm.list=srmlist, control=list(lambda=1.0))
+その他オプション
+推定に関する設定が control でできます． -->
+
+Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+
+- Never uses retina figures
+- Has a smaller default figure size
+- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+
+## Vignette Info
+
+Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+
+## Styles
+
+The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+
+    output:
+      rmarkdown::html_vignette:
+        css: mystyles.css
+
+## Figures
+
+The figure sizes have been customised so that you can easily put two images side-by-side.
+
+```{r, fig.show='hold'}
+plot(1:10)
+plot(10:1)
+```
+
+You can enable figure captions by `fig_caption: yes` in YAML:
+
+    output:
+      rmarkdown::html_vignette:
+        fig_caption: yes
+
+Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+
+## More Examples
+
+You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+
+```{r, echo=FALSE, results='asis'}
+knitr::kable(head(mtcars, 10))
+```
+
+Also a quote using `>`:
+
+> "He who gives up [code] safety for [code] speed deserves neither."
+([via](https://twitter.com/hadleywickham/status/504368538874703872))

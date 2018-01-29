@@ -31,18 +31,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// em_exp_emstep2
-List em_exp_emstep2(NumericVector params, List data);
-RcppExport SEXP _Rsrat_em_exp_emstep2(SEXP paramsSEXP, SEXP dataSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericVector >::type params(paramsSEXP);
-    Rcpp::traits::input_parameter< List >::type data(dataSEXP);
-    rcpp_result_gen = Rcpp::wrap(em_exp_emstep2(params, data));
-    return rcpp_result_gen;
-END_RCPP
-}
 // em_gamma_emstep
 List em_gamma_emstep(NumericVector params, List data, int divide, double eps);
 RcppExport SEXP _Rsrat_em_gamma_emstep(SEXP paramsSEXP, SEXP dataSEXP, SEXP divideSEXP, SEXP epsSEXP) {
@@ -333,7 +321,6 @@ END_RCPP
 static const R_CallMethodDef CallEntries[] = {
     {"_Rsrat_dggglm", (DL_FUNC) &_Rsrat_dggglm, 4},
     {"_Rsrat_em_exp_emstep", (DL_FUNC) &_Rsrat_em_exp_emstep, 2},
-    {"_Rsrat_em_exp_emstep2", (DL_FUNC) &_Rsrat_em_exp_emstep2, 2},
     {"_Rsrat_em_gamma_emstep", (DL_FUNC) &_Rsrat_em_gamma_emstep, 4},
     {"_Rsrat_em_llogis_emstep", (DL_FUNC) &_Rsrat_em_llogis_emstep, 2},
     {"_Rsrat_em_llogis_estep", (DL_FUNC) &_Rsrat_em_llogis_estep, 2},

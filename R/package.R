@@ -9,8 +9,9 @@
 #' @import R6 ggplot2
 #' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm
 #' @importFrom stats nobs model.frame model.response model.matrix gaussian
+#' @importFrom Matrix Matrix
 #' @importFrom utils URLencode
 #' @importFrom httr GET content
-#' @useDynLib Rsrat
 #' @importFrom Rcpp sourceCpp
+#' @useDynLib Rsrat
 NULL

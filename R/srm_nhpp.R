@@ -61,17 +61,22 @@ fit.srm.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data
     result <- lapply(srm(srm.names), function(m) .fit.srm.nhpp(srm=m, data=data, con=con, ...))
   }
 
-  if (length(srm.names) != 1) {
-    if (selection == "AIC") {
-      i <- which.min(sapply(result, function(r) -2*r$llf + 2*r$df))
-      result[[i]]
+  if (is.null(selection)) {
+    result
+  }
+  else {
+    if (length(srm.names) != 1) {
+      if (selection == "AIC") {
+        i <- which.min(sapply(result, function(r) -2*r$llf + 2*r$df))
+        result[[i]]
+      }
+      else {
+        result
+      }
     }
     else {
       result
     }
-  }
-  else {
-    result
   }
 }
 

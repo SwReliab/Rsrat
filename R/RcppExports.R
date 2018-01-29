@@ -55,11 +55,6 @@ em_exp_emstep <- function(params, data) {
 }
 
 #' @rdname em
-em_exp_emstep2 <- function(params, data) {
-    .Call('_Rsrat_em_exp_emstep2', PACKAGE = 'Rsrat', params, data)
-}
-
-#' @rdname em
 em_gamma_emstep <- function(params, data, divide = 15L, eps = 1.0e-10) {
     .Call('_Rsrat_em_gamma_emstep', PACKAGE = 'Rsrat', params, data, divide, eps)
 }

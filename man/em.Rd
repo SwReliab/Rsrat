@@ -2,7 +2,6 @@
 % Please edit documentation in R/RcppExports.R, R/em_nhpp.R
 \name{em_exp_emstep}
 \alias{em_exp_emstep}
-\alias{em_exp_emstep2}
 \alias{em_gamma_emstep}
 \alias{em_llogis_emstep}
 \alias{em_llogis_estep}
@@ -26,8 +25,6 @@
 \title{EM step}
 \usage{
 em_exp_emstep(params, data)
-
-em_exp_emstep2(params, data)
 
 em_gamma_emstep(params, data, divide = 15L, eps = 1e-10)
 
