@@ -1,3 +1,8 @@
+# Rsrat 1.3.3
+
+* Bugfix: Change a type of the detection/correction matrix.
+* The argument `data` in mvfplot and dmvfplot accepts Rsrat.faultdata directly.
+
 # Rsrat 1.3.2
 
 * Bugfix: LLF for Exp with time data

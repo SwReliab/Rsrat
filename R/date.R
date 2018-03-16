@@ -77,5 +77,5 @@ count.date2 <- function(ddate, cdate, date.min = NULL, date.max = Sys.time(), by
    dl <- c(dl, format(v[i], "%Y-%m-%d"))
    tt <- c(tt, difftime(v[i+1], v[i]))
  }
- list(date=dl, time=tt, counts=res, data.min=date.min, date.max=date.max)
+ list(date=dl, time=tt, counts=as(res, "TsparseMatrix"), data.min=date.min, date.max=date.max)
 }
