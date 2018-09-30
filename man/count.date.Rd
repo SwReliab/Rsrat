@@ -4,7 +4,8 @@
 \alias{count.date}
 \title{count date}
 \usage{
-count.date(date, date.min = NULL, date.max = Sys.time(), by = "1 month")
+count.date(date, date.min = NULL, date.max = Sys.time(),
+  by = "1 month")
 }
 \arguments{
 \item{date}{A vector of character strings for dates.}

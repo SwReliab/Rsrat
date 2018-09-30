@@ -6,9 +6,9 @@
 \usage{
 get.openclosedate.jira(query, user = NULL, password = "",
   authtype = "basic",
-  url = "https://issues.apache.org/jira/rest/api/2/search", startAt = 0,
-  maxResults = 50, date.min = NULL, date.max = Sys.time(),
-  by = "1 month")
+  url = "https://issues.apache.org/jira/rest/api/2/search",
+  startAt = 0, maxResults = 50, date.min = NULL,
+  date.max = Sys.time(), by = "1 month")
 }
 \arguments{
 \item{query}{A character string for a query}

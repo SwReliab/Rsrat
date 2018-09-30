@@ -9,9 +9,11 @@
 \usage{
 dtgumbel.min(x, loc = 0, scale = 1, log = FALSE)
 
-ptgumbel.min(q, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
+ptgumbel.min(q, loc = 0, scale = 1, lower.tail = TRUE,
+  log.p = FALSE)
 
-qtgumbel.min(p, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
+qtgumbel.min(p, loc = 0, scale = 1, lower.tail = TRUE,
+  log.p = FALSE)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

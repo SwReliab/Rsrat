@@ -11,8 +11,9 @@ fit.srm.poireg(formula, data, srms, names = NULL, linkfun = "log",
 
 srm.poireg.options()
 
-fit.srm.poireg.penalized(formula, data, srms, names = NULL, linkfun = "log",
-  offset = NULL, control = list(), lambda = 1, K = NULL, ...)
+fit.srm.poireg.penalized(formula, data, srms, names = NULL,
+  linkfun = "log", offset = NULL, control = list(), lambda = 1,
+  K = NULL, ...)
 }
 \arguments{
 \item{formula}{An object of class formula. A symbolic description of the

@@ -9,9 +9,11 @@
 \usage{
 dlgumbel(x, loclog = 0, scalelog = 1, log = FALSE)
 
-plgumbel(q, loclog = 0, scalelog = 1, lower.tail = TRUE, log.p = FALSE)
+plgumbel(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
+  log.p = FALSE)
 
-qlgumbel(p, loclog = 0, scalelog = 1, lower.tail = TRUE, log.p = FALSE)
+qlgumbel(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
+  log.p = FALSE)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

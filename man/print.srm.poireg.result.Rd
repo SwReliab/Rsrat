@@ -4,8 +4,8 @@
 \alias{print.srm.poireg.result}
 \title{Print a fit result of fit.srm.poireg (S3 method)}
 \usage{
-\method{print}{srm.poireg.result}(x, digits = max(3, getOption("digits") - 3),
-  ...)
+\method{print}{srm.poireg.result}(x, digits = max(3, getOption("digits")
+  - 3), ...)
 }
 \arguments{
 \item{x}{An object of srm.poireg.result.}

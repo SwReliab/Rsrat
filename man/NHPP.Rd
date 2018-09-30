@@ -3,7 +3,6 @@
 \docType{class}
 \name{NHPP}
 \alias{NHPP}
-\alias{NHPP}
 \alias{ExpSRM}
 \alias{GammaSRM}
 \alias{ParetoSRM}

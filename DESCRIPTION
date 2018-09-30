@@ -1,8 +1,8 @@
 Package: Rsrat
 Type: Package
 Title: A Software Reliability Assessment Tool
-Version: 1.3.3
-Date: 2018-3-16
+Version: 1.3.4
+Date: 2018-10-1
 Author: Hiroyuki OKAMURA
 Maintainer: Hiroyuki OKAMURA <okamu@hiroshima-u.ac.jp>
 Description: This package provides estimation programs for software
@@ -11,4 +11,5 @@ Description: This package provides estimation programs for software
 LinkingTo: Rcpp
 Imports: R6, Rcpp, stats, Matrix, ggplot2, httr
 License: MIT + file LICENSE
-RoxygenNote: 6.0.1
+Encoding: UTF-8
+RoxygenNote: 6.1.0

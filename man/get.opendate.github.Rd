@@ -5,9 +5,10 @@
 \title{get open date from GitHub}
 \usage{
 get.opendate.github(repo, query = "state=all&labels=bug", user = NULL,
-  password = "", authtype = "basic", url = "https://api.github.com/repos",
-  startPage = 1L, perPage = 100L, date.min = NULL,
-  date.max = Sys.time(), by = "1 month")
+  password = "", authtype = "basic",
+  url = "https://api.github.com/repos", startPage = 1L,
+  perPage = 100L, date.min = NULL, date.max = Sys.time(),
+  by = "1 month")
 }
 \arguments{
 \item{repo}{A character string indicating a repository such as "hadley/devtools"}

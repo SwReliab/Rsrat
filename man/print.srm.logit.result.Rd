@@ -4,8 +4,8 @@
 \alias{print.srm.logit.result}
 \title{Print a fit result of fit.srm.logit (S3 method)}
 \usage{
-\method{print}{srm.logit.result}(x, digits = max(3, getOption("digits") - 3),
-  ...)
+\method{print}{srm.logit.result}(x, digits = max(3, getOption("digits") -
+  3), ...)
 }
 \arguments{
 \item{x}{An object of srm.logit.result.}

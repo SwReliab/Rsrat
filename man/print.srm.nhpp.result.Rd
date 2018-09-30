@@ -4,8 +4,8 @@
 \alias{print.srm.nhpp.result}
 \title{Print a fit result of fit.srm.nhpp (S3 method)}
 \usage{
-\method{print}{srm.nhpp.result}(x, digits = max(3, getOption("digits") - 3),
-  ...)
+\method{print}{srm.nhpp.result}(x, digits = max(3, getOption("digits") -
+  3), ...)
 }
 \arguments{
 \item{x}{An object of srm.logit.result.}

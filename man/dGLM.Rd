@@ -3,7 +3,6 @@
 \docType{class}
 \name{dGLM}
 \alias{dGLM}
-\alias{dGLM}
 \alias{dGLM.logit}
 \alias{dGLM.probit}
 \alias{dGLM.cloglog}

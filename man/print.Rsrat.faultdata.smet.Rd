@@ -4,8 +4,8 @@
 \alias{print.Rsrat.faultdata.smet}
 \title{Printing software fault data with s-metrics}
 \usage{
-\method{print}{Rsrat.faultdata.smet}(x, ..., digits = NULL, quote = FALSE,
-  right = TRUE, row.names = TRUE)
+\method{print}{Rsrat.faultdata.smet}(x, ..., digits = NULL,
+  quote = FALSE, right = TRUE, row.names = TRUE)
 }
 \arguments{
 \item{x}{An object of Rsrat.faultdata.}

@@ -57,21 +57,21 @@ fit.srm.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data
   if (length(srm.names) == 1) {
     m <- srm(srm.names)
     result <- .fit.srm.nhpp(srm=m, data=data, con=con, ...)
-  } else {
-    result <- lapply(srm(srm.names), function(m) .fit.srm.nhpp(srm=m, data=data, con=con, ...))
-  }
-
-  if (length(srm.names) != 1) {
-    if (selection == "AIC") {
-      i <- which.min(sapply(result, function(r) -2*r$llf + 2*r$df))
-      result[[i]]
-    }
-    else {
-      result
-    }
+    return(result)
   }
   else {
-    result
+    result <- lapply(srm(srm.names), function(m) .fit.srm.nhpp(srm=m, data=data, con=con, ...))
+    if (is.null(selection)) {
+      return(result)
+    }
+    else {
+      switch(selection,
+             AIC = {
+               i <- which.min(sapply(result, function(r) -2*r$llf + 2*r$df))
+               result[[i]]
+             }
+      )
+    }
   }
 }
 

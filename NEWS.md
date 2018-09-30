@@ -1,3 +1,7 @@
+# Rsrat 1.3.4
+
+* Bugfix: Fix an argument 'selection' on fir.srm.nhpp.
+
 # Rsrat 1.3.3
 
 * Bugfix: Change a type of the detection/correction matrix.

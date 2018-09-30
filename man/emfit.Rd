@@ -5,7 +5,8 @@
 \title{Estimate SRM parameters.}
 \usage{
 emfit(srm, data, initialize = TRUE, maxiter = 2000, reltol = 1e-06,
-  abstol = 0.001, stopcond = "llf", trace = FALSE, printsteps = 50, ...)
+  abstol = 0.001, stopcond = "llf", trace = FALSE, printsteps = 50,
+  ...)
 }
 \arguments{
 \item{srm}{A model.}

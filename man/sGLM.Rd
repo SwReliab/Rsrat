@@ -3,7 +3,6 @@
 \docType{class}
 \name{sGLM}
 \alias{sGLM}
-\alias{sGLM}
 \alias{sGLM.log}
 \alias{sGLM.identity}
 \alias{sGLM.penalized}

@@ -4,8 +4,8 @@
 \alias{print.Rsrat.faultdata.dmet}
 \title{Printing software fault data with d-metrics}
 \usage{
-\method{print}{Rsrat.faultdata.dmet}(x, ..., digits = NULL, quote = FALSE,
-  right = TRUE, row.names = TRUE)
+\method{print}{Rsrat.faultdata.dmet}(x, ..., digits = NULL,
+  quote = FALSE, right = TRUE, row.names = TRUE)
 }
 \arguments{
 \item{x}{An object of Rsrat.faultdata.}
