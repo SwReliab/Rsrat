@@ -4,17 +4,17 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, echo = FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 ```
-
 # Rsrat
 
-The goal of Rsrat is to ...
+Rsrat provides the package to evalute the software reliability from the fault data collected in the testing phase. Rsrat can use two types of data; fault-detection time data and its grouped data. The fault-detection time data is a sequence of time intervals of fault detection times (CPU time, etc). Also its grouped data is a sequence of the number of detected faults for each time interval (per a working day, per a week, etc). The reliability evaluation is based on the software reliability growth model with NHPP (non-homogeneous Poisson process). 
 
 ## Installation
 
@@ -27,8 +27,21 @@ devtools::install_github("okamumu/Rsrat")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is an example of the estimation of software reliability growth models from a fault data (tohma). 
 
 ```{r example}
-## basic example code
+### load library
+library(Rsrat)
+
+### load example data
+data(dacs)
+
+### tohma is a grouped data
+tohma
+
+### Esimate all models and select the best one in terms of AIC
+result <- fit.srm.nhpp(fault=tohma)
+
+### Draw the graph 
+mvfplot(fault=tohma, mvf=list(result$srm))
 ```
