@@ -1,3 +1,7 @@
+# Rsrat 1.5.0
+
+* Refactor: Rsrat removes the metrics models.
+
 # Rsrat 1.3.4
 
 * Bugfix: Fix an argument 'selection' on fir.srm.nhpp.

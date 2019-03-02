@@ -20,10 +20,10 @@
 #' \item{mean}{A numeric value for mean fault detection time from data.}
 #' \item{max}{A numeric value for maximum of fault detection time.}
 #' @examples
-#' data(tomcat5)
 #' faultdata(time=c(1,1,1,1), fault=c(0,1,0,5))
 #' faultdata(time=c(3,1,7,15,12), te=3)
-#' faultdata(time=time, fault=fault, data=tomcat5.catalina)
+#' test.data <- data.frame(t=c(1,1,1,1), n=c(0,1,0,5))
+#' faultdata(time=t, fault=n, data=test.data)
 #' @export
 
 faultdata <- function(time = NULL, fault = NULL, type = NULL, te = NULL,

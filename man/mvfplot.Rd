@@ -52,11 +52,8 @@ The return value is an object of ggplot2, and thus a line is added like
 \code{mvfplot(...) + stat_function(fun=mvf)}.
 }
 \examples{
-data(tomcat5)
-
-result <- fit.srm.nhpp(time=tomcat5.catalina$time, fault=tomcat5.catalina$fault,
-            srm.names = c("exp", "gamma"), selection = "all")
-
-mvfplot(time=tomcat5.catalina$time, fault=tomcat5.catalina$fault,
-     mvf=lapply(result, function(s) s$srm))
+data(dacs)
+result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+            selection = NULL)
+mvfplot(fault=tohma, mvf=lapply(result, function(s) s$srm))
 }

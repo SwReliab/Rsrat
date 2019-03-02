@@ -25,13 +25,10 @@
 #' @param ... Other parameters.
 #' @return An object of ggplot.
 #' @examples
-#' data(tomcat5)
-#'
-#' result <- fit.srm.nhpp(time=tomcat5.catalina$time, fault=tomcat5.catalina$fault,
-#'             srm.names = c("exp", "gamma"), selection = "all")
-#'
-#' mvfplot(time=tomcat5.catalina$time, fault=tomcat5.catalina$fault,
-#'      mvf=lapply(result, function(s) s$srm))
+#' data(dacs)
+#' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+#'             selection = NULL)
+#' mvfplot(fault=tohma, mvf=lapply(result, function(s) s$srm))
 #' @export
 
 mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
@@ -80,11 +77,10 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
 #' @param ... Other parameters.
 #' @return An object of ggplot.
 #' @examples
-#' data(dmet)
-#'
-#' result <- fit.srm.logit(fault~., data=dmet.ds1)
-#'
-#' dmvfplot(fault=dmet.ds1$fault, dmvf=list(result$srm))
+#' data(dacs)
+#' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+#'             selection = NULL)
+#' dmvfplot(fault=tohma, dmvf=lapply(result, function(s) s$srm))
 #' @export
 
 dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),

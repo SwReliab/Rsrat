@@ -14,5 +14,4 @@ OBJECTS = numlib.o \
   em_txvmin.o \
   em_lxvmax.o \
   em_lxvmin.o \
-  dggglm.o \
   RcppExports.o

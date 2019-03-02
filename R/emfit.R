@@ -1,8 +1,9 @@
 #' Estimate SRM parameters.
 #'
-#' This function provides the maximum likelihood (ML) estiamtes for a given SRM with a given data.
-#' The ML estimates are computed with the EM algorithm. The initial parameters for the EM algorithm
-#' are automatically decided if the flag \emph{initialize} is TRUE.
+#' This function provides the maximum likelihood (ML) estiamtes for a given SRM 
+#' with a given data.bThe ML estimates are computed with the EM algorithm.
+#' The initial parameters for the EM algorithm are automatically decided 
+#' if the flag \emph{initialize} is TRUE.
 #'
 #' @param srm A model.
 #' @param data A faultdata.
@@ -28,8 +29,8 @@
 #' \item{aerror}{A numeric value for absolute error.}
 #' \item{rerror}{A numeric value for relative error.}
 #' @examples
-#' data(tomcat5)
-#' data <- faultdata(time=time, fault=fault, data=tomcat5.catalina)
+#' data(dacs)
+#' data <- faultdata(fault=sys1g)
 #' emfit(srm("exp"), data)
 #' @export
 

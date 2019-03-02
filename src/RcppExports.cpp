@@ -5,20 +5,6 @@
 
 using namespace Rcpp;
 
-// dggglm
-List dggglm(NumericMatrix A, NumericMatrix B, NumericVector d, const int NB);
-RcppExport SEXP _Rsrat_dggglm(SEXP ASEXP, SEXP BSEXP, SEXP dSEXP, SEXP NBSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< NumericMatrix >::type A(ASEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type B(BSEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type d(dSEXP);
-    Rcpp::traits::input_parameter< const int >::type NB(NBSEXP);
-    rcpp_result_gen = Rcpp::wrap(dggglm(A, B, d, NB));
-    return rcpp_result_gen;
-END_RCPP
-}
 // em_exp_emstep
 List em_exp_emstep(NumericVector params, List data);
 RcppExport SEXP _Rsrat_em_exp_emstep(SEXP paramsSEXP, SEXP dataSEXP) {
@@ -319,7 +305,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_Rsrat_dggglm", (DL_FUNC) &_Rsrat_dggglm, 4},
     {"_Rsrat_em_exp_emstep", (DL_FUNC) &_Rsrat_em_exp_emstep, 2},
     {"_Rsrat_em_gamma_emstep", (DL_FUNC) &_Rsrat_em_gamma_emstep, 4},
     {"_Rsrat_em_llogis_emstep", (DL_FUNC) &_Rsrat_em_llogis_emstep, 2},

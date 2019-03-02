@@ -53,9 +53,8 @@ The return value is an object of ggplot2, and thus a line is added like
  + geom_line(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))}.
 }
 \examples{
-data(dmet)
-
-result <- fit.srm.logit(fault~., data=dmet.ds1)
-
-dmvfplot(fault=dmet.ds1$fault, dmvf=list(result$srm))
+data(dacs)
+result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+            selection = NULL)
+dmvfplot(fault=tohma, dmvf=lapply(result, function(s) s$srm))
 }
