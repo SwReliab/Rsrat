@@ -36,7 +36,13 @@ tohma
 #>  [93]  0  0  0  1  0  0  0  1  0  0  1  0  0  1  0  0  1  0  1
 
 ### Esimate all models and select the best one in terms of AIC
-result <- fit.srm.nhpp(fault=tohma)
+(result <- fit.srm.nhpp(fault=tohma))
+#> Model name: LXVMinSRM
+#>    omega    loclog  scalelog  
+#> 481.7029   -3.4642    0.6637  
+#> Maximum LLF: -316.2599 
+#> AIC: 638.5198 
+#> Convergence: TRUE
 
 ### Draw the graph 
 mvfplot(fault=tohma, mvf=list(result$srm))
@@ -53,7 +59,23 @@ srm.models
 #>  [8] "txvmax" "lxvmax" "txvmin" "lxvmin"
 
 ### Estimate two models and no select
-result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL)
+(result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL))
+#> $exp
+#> Model name: ExpSRM
+#>    omega      rate  
+#> 497.2912    0.0308  
+#> Maximum LLF: -359.8777 
+#> AIC: 723.7555 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $gamma
+#> Model name: GammaSRM
+#>     omega      shape       rate  
+#> 483.52301    1.88475    0.06447  
+#> Maximum LLF: -319.5695 
+#> AIC: 645.139 
+#> Convergence: TRUE
 
 ### Draw the graph
 mvfplot(fault=tohma, mvf=lapply(result, function(m) m$srm))
