@@ -42,4 +42,21 @@ result <- fit.srm.nhpp(fault=tohma)
 mvfplot(fault=tohma, mvf=list(result$srm))
 ```
 
-<img src="man/figures/README-example-1.png" width="100%" />
+<img src="man/figures/README-example1-1.png" width="100%" />
+
+The second example illustrates the estimation for two specified models.
+
+``` r
+### All models in the package
+srm.models
+#>  [1] "exp"    "gamma"  "pareto" "tnorm"  "lnorm"  "tlogis" "llogis"
+#>  [8] "txvmax" "lxvmax" "txvmin" "lxvmin"
+
+### Estimate two models and no select
+result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL)
+
+### Draw the graph
+mvfplot(fault=tohma, mvf=lapply(result, function(m) m$srm))
+```
+
+<img src="man/figures/README-example2-1.png" width="100%" />

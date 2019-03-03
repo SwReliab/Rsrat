@@ -29,7 +29,7 @@ devtools::install_github("okamumu/Rsrat")
 
 This is an example of the estimation of software reliability growth models from a fault data (tohma). 
 
-```{r example}
+```{r example1}
 ### load library
 library(Rsrat)
 
@@ -44,4 +44,17 @@ result <- fit.srm.nhpp(fault=tohma)
 
 ### Draw the graph 
 mvfplot(fault=tohma, mvf=list(result$srm))
+```
+
+The second example illustrates the estimation for two specified models.
+
+```{r example2}
+### All models in the package
+srm.models
+
+### Estimate two models and no select
+result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL)
+
+### Draw the graph
+mvfplot(fault=tohma, mvf=lapply(result, function(m) m$srm))
 ```
