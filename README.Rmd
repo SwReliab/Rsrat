@@ -58,3 +58,18 @@ srm.models
 ### Draw the graph
 mvfplot(fault=tohma, mvf=lapply(result, function(m) m$srm))
 ```
+
+The third example shows the case where the fault data are fault detection data.
+
+```{r example3}
+### fault-detection time data
+#### Time intervals for all faults
+#### The last value is a negative value, that indicates the time interval in which there is no fault detection after the last fault detection.
+sys1
+
+### Esimate
+(result <- fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0]))
+
+### Draw the graph
+mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], mvf=list(result$srm))
+```
