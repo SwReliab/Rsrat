@@ -120,7 +120,7 @@ ExpSRM <- R6::R6Class("ExpSRM",
     ft = function(t) { dexp(t, rate=self$rate()) }
   ),
   public = list(
-    name = "ExpSRM",
+    name = "exp",
     df = 2,
     rate = function() { self$params[2L] },
     initialize = function(omega = 1, rate = 1) {
@@ -148,7 +148,7 @@ GammaSRM <- R6::R6Class("GammaSRM",
     ft = function(t) { dgamma(t, shape=self$shape(), rate=self$rate()) }
   ),
   public = list(
-    name = "GammaSRM",
+    name = "gamma",
     df = 3,
     shape = function() { self$params[2L] },
     rate = function() { self$params[3L] },
@@ -182,7 +182,7 @@ ParetoSRM <- R6::R6Class("ParetoSRM",
     }
   ),
   public = list(
-    name = "ParetoSRM",
+    name = "pareto",
     df = 3,
     shape = function() { self$params[2L] },
     scale = function() { self$params[3L] },
@@ -211,7 +211,7 @@ TNormSRM <- R6::R6Class("TNormSRM",
     ft = function(t) { dtnorm(t, mean=self$mean(), sd=self$sd()) }
   ),
   public = list(
-    name = "TNormSRM",
+    name = "tnorm",
     df = 3,
     mean = function() { self$params[2L] },
     sd = function() { self$params[3L] },
@@ -245,7 +245,7 @@ LNormSRM <- R6::R6Class("LNormSRM",
     }
   ),
   public = list(
-    name = "LNormSRM",
+    name = "lnorm",
     df = 3,
     meanlog = function() { self$params[2L] },
     sdlog = function() { self$params[3L] },
@@ -279,7 +279,7 @@ TLogisSRM <- R6::R6Class("TLogisSRM",
     }
   ),
   public = list(
-    name = "TLogisSRM",
+    name = "tlogis",
     df = 3,
     location = function() { self$params[2L] },
     scale = function() { self$params[3L] },
@@ -322,7 +322,7 @@ LLogisSRM <- R6::R6Class("LLogisSRM",
     }
   ),
   public = list(
-    name = "LLogisSRM",
+    name = "llogis",
     df = 3,
     locationlog = function() { self$params[2L] },
     scalelog = function() { self$params[3L] },
@@ -359,7 +359,7 @@ TXVMaxSRM <- R6::R6Class("TXVMaxSRM",
     ft = function(t) { dtgumbel(t, loc=self$loc(), scale=self$scale()) }
   ),
   public = list(
-    name = "TXVMaxSRM",
+    name = "txvmax",
     df = 3,
     loc = function() { self$params[2L] },
     scale = function() { self$params[3L] },
@@ -402,7 +402,7 @@ LXVMaxSRM <- R6::R6Class("LXVMaxSRM",
     }
   ),
   public = list(
-    name = "LXVMaxSRM",
+    name = "lxvmax",
     df = 3,
     loclog = function() { self$params[2L] },
     scalelog = function() { self$params[3L] },
@@ -444,7 +444,7 @@ TXVMinSRM <- R6::R6Class("TXVMinSRM",
     }
   ),
   public = list(
-    name = "TXVMinSRM",
+    name = "txvmin",
     df = 3,
     loc = function() { self$params[2L] },
     scale = function() { self$params[3L] },
@@ -486,7 +486,7 @@ LXVMinSRM <- R6::R6Class("LXVMinSRM",
     }
   ),
   public = list(
-    name = "LXVMinSRM",
+    name = "lxvmin",
     df = 3,
     loclog = function() { self$params[2L] },
     scalelog = function() { self$params[3L] },

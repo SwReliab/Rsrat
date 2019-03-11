@@ -73,3 +73,13 @@ sys1
 ### Draw the graph
 mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], mvf=list(result$srm))
 ```
+
+The fourth example illustrates the case where the mvfs for all the models are drawn.
+
+```{r example4}
+### Esimate and return all the estimated results
+(result <- fit.srm.nhpp(fault=sys1g, selection=NULL))
+
+### Draw the graph
+mvfplot(fault=sys1g, mvf=lapply(result, function(x) x$srm))
+```

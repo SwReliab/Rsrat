@@ -43,7 +43,7 @@ tohma
 
 ### Esimate all models and select the best one in terms of AIC
 (result <- fit.srm.nhpp(fault=tohma))
-#> Model name: LXVMinSRM
+#> Model name: lxvmin
 #>    omega    loclog  scalelog  
 #> 481.7029   -3.4642    0.6637  
 #> Maximum LLF: -316.2599 
@@ -67,7 +67,7 @@ srm.models
 ### Estimate two models and no select
 (result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL))
 #> $exp
-#> Model name: ExpSRM
+#> Model name: exp
 #>    omega      rate  
 #> 497.2912    0.0308  
 #> Maximum LLF: -359.8777 
@@ -76,7 +76,7 @@ srm.models
 #> 
 #> 
 #> $gamma
-#> Model name: GammaSRM
+#> Model name: gamma
 #>     omega      shape       rate  
 #> 483.52301    1.88475    0.06447  
 #> Maximum LLF: -319.5695 
@@ -115,7 +115,7 @@ sys1
 (result <- fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0]))
 #> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
 #> reltol = con$reltol, : Did not converge to MLE by max iteration.
-#> Model name: LXVMinSRM
+#> Model name: lxvmin
 #>    omega    loclog  scalelog  
 #>  165.955   -10.640     1.453  
 #> Maximum LLF: 299.439 
@@ -127,3 +127,124 @@ mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], mvf=list(result$srm))
 ```
 
 <img src="man/figures/README-example3-1.png" width="100%" />
+
+The fourth example illustrates the case where the mvfs for all the
+models are drawn.
+
+``` r
+### Esimate and return all the estimated results
+(result <- fit.srm.nhpp(fault=sys1g, selection=NULL))
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
+#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
+#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
+#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
+#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+#> $exp
+#> Model name: exp
+#>     omega       rate  
+#> 4.295e+03  3.347e-04  
+#> Maximum LLF: -192.5611 
+#> AIC: 389.1221 
+#> Convergence: FALSE 
+#> 
+#> 
+#> $gamma
+#> Model name: gamma
+#>     omega      shape       rate  
+#> 5.400e+02  1.799e+00  8.543e-03  
+#> Maximum LLF: -182.2326 
+#> AIC: 370.4651 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $pareto
+#> Model name: pareto
+#>    omega     shape     scale  
+#>  1179.22     56.39  44141.81  
+#> Maximum LLF: -193.7977 
+#> AIC: 393.5953 
+#> Convergence: FALSE 
+#> 
+#> 
+#> $tnorm
+#> Model name: tnorm
+#>  omega    mean      sd  
+#> 150.45   60.97   26.72  
+#> Maximum LLF: -173.955 
+#> AIC: 353.91 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $lnorm
+#> Model name: lnorm
+#>    omega   meanlog     sdlog  
+#> 6188.497     8.270     1.839  
+#> Maximum LLF: -184.3571 
+#> AIC: 374.7142 
+#> Convergence: FALSE 
+#> 
+#> 
+#> $tlogis
+#> Model name: tlogis
+#>    omega  location     scale  
+#>   153.37     62.34     16.17  
+#> Maximum LLF: -172.6565 
+#> AIC: 351.313 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $llogis
+#> Model name: llogis
+#>       omega  locationlog     scalelog  
+#>    392.6774       4.9056       0.5364  
+#> Maximum LLF: -181.6148 
+#> AIC: 369.2296 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $txvmax
+#> Model name: txvmax
+#>  omega     loc   scale  
+#> 208.49   62.51   38.96  
+#> Maximum LLF: -177.5718 
+#> AIC: 361.1435 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $lxvmax
+#> Model name: lxvmax
+#>     omega     loclog   scalelog  
+#> 18401.836     11.147      4.134  
+#> Maximum LLF: -186.8055 
+#> AIC: 379.611 
+#> Convergence: FALSE 
+#> 
+#> 
+#> $txvmin
+#> Model name: txvmin
+#>  omega     loc   scale  
+#> 136.81  -66.09   18.22  
+#> Maximum LLF: -166.5841 
+#> AIC: 339.1683 
+#> Convergence: TRUE 
+#> 
+#> 
+#> $lxvmin
+#> Model name: lxvmin
+#>    omega    loclog  scalelog  
+#> 183.4354   -4.4188    0.4831  
+#> Maximum LLF: -180.7614 
+#> AIC: 367.5227 
+#> Convergence: TRUE
+
+### Draw the graph
+mvfplot(fault=sys1g, mvf=lapply(result, function(x) x$srm))
+```
+
+<img src="man/figures/README-example4-1.png" width="100%" />

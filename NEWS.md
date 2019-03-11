@@ -1,3 +1,7 @@
+# Rsrat 1.5.1
+
+* Model names have been changed.
+
 # Rsrat 1.5.0
 
 * Refactor: Rsrat removes the metrics models.
