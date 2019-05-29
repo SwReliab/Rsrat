@@ -1,3 +1,9 @@
+# Rsrat 1.5.2
+
+- remove stopcond in emfit
+- add comp_error as a method of NHPP
+- emfit uses comp_error to compute the error in the iteration
+
 # Rsrat 1.5.1
 
 * Model names have been changed.

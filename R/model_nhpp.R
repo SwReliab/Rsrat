@@ -28,8 +28,11 @@
 #'   \item{\code{em(params, data)}}{This method returns a list with an updated parameter vector (param),
 #'          absolute difference of parameter vector (pdiff),
 #'          log-likelihood function for a given parameter vector (llf),
-#'          the number of total faults (total) via EM algorithm for a given data. \emph{divide} in GammaSRM is the number of integration points.}
+#'          the number of total faults (total) via EM algorithm for a given data.
+#'          \emph{divide} in GammaSRM is the number of integration points.}
 #'   \item{\code{llf(data)}}{This method returns the log-likelihood function for a given data.}
+#'   \item{\code{comp_error(res0, res1)}}{This method computes the aerror and rerror from the
+#'          the two results. The default is the difference of log-likelihood.}
 #' }
 #' @seealso \code{\link{srm}}
 NULL
@@ -104,6 +107,12 @@ NHPP <- R6::R6Class("NHPP",
                         - lgamma(v[1] + 1)))
       retval <- retval - self$omega() * private$Ft(te)
       retval
+    },
+    comp_error = function(res0, res1) {
+      sdiff <- res1$llf - res0$llf
+      aerror <- abs(res1$llf - res0$llf)
+      rerror <- aerror / abs(res0$llf)
+      c(aerror, rerror, sdiff)
     }
   )
 )

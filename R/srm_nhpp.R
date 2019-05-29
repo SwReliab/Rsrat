@@ -79,7 +79,7 @@ fit.srm.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data
   pnames <- names(srm$params)
   tres <- system.time(result <- emfit(srm, data, initialize = TRUE,
     maxiter = con$maxiter, reltol = con$reltol, abstol = con$abstol,
-    stopcond = con$stopcond, trace=con$trace, printsteps=con$printsteps))
+    trace=con$trace, printsteps=con$printsteps))
   result <- c(result, list(aic=-2*result$llf+2*result$df, ctime=tres[1], call=call))
   names(result$srm$params) <- pnames
   class(result) <- "srm.nhpp.result"
@@ -98,7 +98,6 @@ srm.nhpp.options <- function() {
   list(maxiter = 10000,
     reltol = sqrt(.Machine$double.eps),
     abstol = 1.0e+200,
-    stopcond = "llf",
     trace = FALSE,
     printsteps = 50)
 }

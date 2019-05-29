@@ -14,8 +14,6 @@
 #' less than \emph{reltol} and the absolute error is less than \emph{abstol}.
 #' @param abstol A numeric value. The algorithm stops if the relative error is
 #' less than \emph{reltol} and the absolute error is less than \emph{abstol}.
-#' @param stopcond A character string. \emph{stopcond} gives the criterion
-#' for the stop condition of the algorithm. Either llf or parameter is selected.
 #' @param trace A logical. If TRUE, the intermediate parameters are printed.
 #' @param printsteps An integer for print.
 #' @param ... A list for other parameters which are sent to the \code{em} method of srm.
@@ -37,7 +35,7 @@
 emfit <- function(srm, data,
   initialize = TRUE,
   maxiter = 2000, reltol = 1.0e-6, abstol = 1.0e-3,
-  stopcond = "llf", trace = FALSE, printsteps = 50, ...) {
+  trace = FALSE, printsteps = 50, ...) {
     ## init
     if (initialize) {
       srm$init_params(data)
@@ -47,33 +45,12 @@ emfit <- function(srm, data,
     conv <- FALSE
     param <- srm$params
 
-    ## stopcond
-    if (stopcond == "parameter" || stopcond == "param") {
-      term.fn <- function(res0, res1) {
-        sdiff <- res1$llf - res0$llf
-        para0 <- c(res0$param)
-        para1 <- c(res1$param)
-        aerror <- max(abs(para1 - para0))
-        rerror <- aerror / max(abs(para0))
-        return(c(aerror, rerror, sdiff))
-      }
-    } else if (stopcond == "llf") {
-      term.fn <- function(res0, res1) {
-        sdiff <- res1$llf - res0$llf
-        aerror <- abs(res1$llf - res0$llf)
-        rerror <- aerror / abs(res0$llf)
-        return(c(aerror, rerror, sdiff))
-      }
-    } else {
-      stop("wrong stopcond condition.")
-    }
-
     ## repeat emstep
     res0 <- list(param=param, llf=-Inf)
 
     repeat {
       res1 <- srm$em(res0$param, data, ...)
-      error <- term.fn(res0, res1)
+      error <- srm$comp_error(res0, res1)
 
       if (trace) {
         if (iter %% printsteps == 0) {
