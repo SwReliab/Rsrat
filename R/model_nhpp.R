@@ -38,6 +38,7 @@
 NULL
 
 #' @rdname NHPP
+#' @export
 NHPP <- R6::R6Class("NHPP",
   private = list(
     Ft = function(t, lower.tail = TRUE) { NA },

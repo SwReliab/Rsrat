@@ -1,3 +1,7 @@
+# Rsrat 1.5.3
+
+- export NHPP class
+
 # Rsrat 1.5.2
 
 - remove stopcond in emfit
