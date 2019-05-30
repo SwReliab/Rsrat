@@ -46,7 +46,7 @@
 
 fit.srm.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
   srm.names = srm.models, selection = "AIC", control = list(), ...) {
-  data <- .faultdata.nhpp(substitute(time), substitute(fault),
+  data <- faultdata.nhpp(substitute(time), substitute(fault),
     substitute(type), substitute(te), data, parent.frame())
   con <- srm.nhpp.options()
   nmsC <- names(con)

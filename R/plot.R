@@ -35,7 +35,7 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
   mvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
   if (class(data) != "Rsrat.faultdata") {
-    data <- .faultdata.nhpp(substitute(time), substitute(fault),
+    data <- faultdata.nhpp(substitute(time), substitute(fault),
       substitute(type), substitute(te), data, parent.frame())
   }
   n <- data$fault + data$type
@@ -87,7 +87,7 @@ dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = d
   dmvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
   if (class(data) != "Rsrat.faultdata") {
-    data <- .faultdata.nhpp(substitute(time), substitute(fault),
+    data <- faultdata.nhpp(substitute(time), substitute(fault),
       substitute(type), substitute(te), data, parent.frame())
   }
   t <- as.numeric(cumsum(data$time))

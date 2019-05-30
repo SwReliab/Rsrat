@@ -58,8 +58,8 @@ emfit <- function(srm, data,
         }
       }
 
-      if (!is.finite(res1$llf) || !all(is.finite(res1$param))) {
-        warning(sprintf("LLF or param becomes +-Inf, NaN or NA: %s %d",
+      if (!is.finite(res1$llf)) {
+        warning(sprintf("LLF becomes +-Inf, NaN or NA: %s %d",
           srm$name, iter))
         res1 <- res0
         break

@@ -1,12 +1,16 @@
+# Rsrat 1.5.4
+
+* export faultdata.nhpp 
+
 # Rsrat 1.5.3
 
-- export NHPP class
+* export NHPP class
 
 # Rsrat 1.5.2
 
-- remove stopcond in emfit
-- add comp_error as a method of NHPP
-- emfit uses comp_error to compute the error in the iteration
+* remove stopcond in emfit
+* add comp_error as a method of NHPP
+* emfit uses comp_error to compute the error in the iteration
 
 # Rsrat 1.5.1
 
