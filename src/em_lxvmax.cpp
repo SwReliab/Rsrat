@@ -34,7 +34,7 @@ List em_lxvmax_estep(NumericVector params, List data) {
     }
     if (type[i] == 1) {
       nn += 1;
-      llf += Revd::dgumbel(log(t), loc, scale, true);
+      llf += Revd::dgumbel(log(t), loc, scale, true) - log(t);
     }
     prev_Fi = Fi;
   }

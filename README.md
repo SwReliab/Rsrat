@@ -115,11 +115,11 @@ sys1
 (result <- fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0]))
 #> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
 #> reltol = con$reltol, : Did not converge to MLE by max iteration.
-#> Model name: lxvmin
-#>    omega    loclog  scalelog  
-#>  165.955   -10.640     1.453  
-#> Maximum LLF: 299.439 
-#> AIC: -592.8779 
+#> Model name: gamma
+#>     omega      shape       rate  
+#> 1.545e+02  6.357e-01  1.618e-05  
+#> Maximum LLF: -967.1074 
+#> AIC: 1940.215 
 #> Convergence: TRUE
 
 ### Draw the graph

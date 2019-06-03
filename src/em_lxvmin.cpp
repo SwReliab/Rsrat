@@ -34,7 +34,7 @@ List em_lxvmin_estep(NumericVector params, List data) {
     }
     if (type[i] == 1) {
       nn += 1;
-      llf += Revd::dgumbel_min(log(t), loc, scale, true);
+      llf += Revd::dgumbel_min(log(t), loc, scale, true) - log(t);
     }
     prev_Fi = Fi;
   }

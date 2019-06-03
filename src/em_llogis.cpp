@@ -126,7 +126,7 @@ List em_llogis_estep(NumericVector params, List data) {
     }
     if (type[i] == 1) {
       nn += 1;
-      llf += R::dlogis(log(t), loc, scale, true);
+      llf += R::dlogis(log(t), loc, scale, true) - log(t);
     }
     prev_Fi = Fi;
   }
