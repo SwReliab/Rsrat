@@ -41,6 +41,11 @@ qlgumbel <- function(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
   exp(qgumbel(p, loc=loclog, scale=scalelog, lower=lower.tail, log=log.p))
 }
 
+#' @rdname lgumbel
+rlgumbel <- function(n, loclog = 0, scalelog = 1) {
+  exp(rgumbel(n, loc=loclog, scale=scalelog))
+}
+
 #' log-Gumbel distribution (Weibull)
 #'
 #' Density, distribution function, and quantile function for
@@ -82,4 +87,9 @@ plgumbel.min <- function(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
 qlgumbel.min <- function(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE) {
   exp(qgumbel(p, loc=loclog, scale=scalelog, lower=lower.tail, log=log.p, min=TRUE))
+}
+
+#' @rdname lgumbel.min
+rlgumbel.min <- function(n, loclog = 0, scalelog = 1) {
+  exp(rgumbel(n, loc=loclog, scale=scalelog, min=TRUE))
 }

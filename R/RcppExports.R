@@ -127,3 +127,9 @@ qgumbel <- function(p, loc = 0, scale = 1, lower = TRUE, log = FALSE, min = FALS
     .Call('_Rsrat_qgumbel', PACKAGE = 'Rsrat', p, loc, scale, lower, log, min)
 }
 
+#' @rdname gumbel
+#' @export
+rgumbel <- function(n, loc = 0, scale = 1, min = FALSE) {
+    .Call('_Rsrat_rgumbel', PACKAGE = 'Rsrat', n, loc, scale, min)
+}
+

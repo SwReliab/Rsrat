@@ -113,3 +113,23 @@ NumericVector qgumbel(NumericVector p, double loc = 0, double scale = 1, bool lo
   }
   return result;
 }
+
+//' @rdname gumbel
+//' @export
+// [[Rcpp::export]]
+
+NumericVector rgumbel(int n, double loc = 0, double scale = 1, bool min = false) {
+  NumericVector result(n);
+  if (min == false) {
+    for (int i=0; i<n; i++) {
+      double u = R::runif(0,1);
+      result[i] = Revd::qgumbel(u, loc, scale, true, false);
+    }
+  } else {
+    for (int i=0; i<n; i++) {
+      double u = R::runif(0,1);
+      result[i] = Revd::qgumbel_min(u, loc, scale, true, false);
+    }
+  }
+  return result;
+}

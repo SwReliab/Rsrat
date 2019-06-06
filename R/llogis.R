@@ -44,3 +44,8 @@ qllogis <- function(p, locationlog = 0, scalelog = 1, lower.tail = TRUE,
   exp(qlogis(p, location=locationlog, scale=scalelog, lower.tail=lower.tail,
     log.p=log.p))
 }
+
+#' @rdname llogis
+rllogis <- function(n, locationlog = 0, scalelog = 1) {
+  exp(rlogis(n, location=locationlog, scale=scalelog))
+}

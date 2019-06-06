@@ -57,3 +57,8 @@ qtnorm <- function(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE) {
   pdash <- (1 - p) * pnorm(0, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE)
   qnorm(p=pdash, mean=mean, sd=sd, lower.tail=FALSE, log.p=FALSE)
 }
+
+#' @rdname tnorm
+rtnorm <- function(n, mean = 0, sd = 1) {
+  qtnorm(runif(n), mean=mean, sd=sd)
+}

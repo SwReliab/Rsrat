@@ -1,3 +1,7 @@
+# Rsrat 1.5.6
+
+* Enhancement: Add the function to generate samples.
+
 # Rsrat 1.5.5
 
 * Bug fix: The maximum llf of llogis, lxvmax, lxvmin was not correct in the case of time data.

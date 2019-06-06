@@ -17,6 +17,7 @@
 #'   \item{\code{dmvf(t)}}{This method returns the mean value function on discrete time domain.}
 #'   \item{\code{inv_mvf(x)}}{This method returns the time at which the mean value function attains x.}
 #'   \item{\code{intensity(t)}}{This method returns the intensity function at time t.}
+#'   \item{\code{sample(diff, lower, upper)}}{This method generate failure detection times of NHPP over [lower,upper). If diff is ture, the method provides time interval.}
 #'   \item{\code{reliab(t, s)}}{This method returns the software reliability at time t from the orign s.}
 #'   \item{\code{residual(t)}}{This method returns the expected residual number of faults at time t.}
 #'   \item{\code{ffp(t)}}{This method returns the fault-free probability at time t.}
@@ -43,7 +44,8 @@ NHPP <- R6::R6Class("NHPP",
   private = list(
     Ft = function(t, lower.tail = TRUE) { NA },
     invFt = function(p) { NA },
-    ft = function(t) { NA }
+    ft = function(t) { NA },
+    rf = function(n) { NA }
   ),
   public = list(
     name = NA,
@@ -71,6 +73,16 @@ NHPP <- R6::R6Class("NHPP",
       })
     },
     intensity = function(t) { self$omega() * private$ft(t) },
+    sample = function(diff = TRUE, lower = 0, upper = +Inf) {
+      n <- rpois(1, self$omega())
+      x <- private$rf(n)
+      x <- sort(x[x>=lower & x<=upper])
+      if (diff == TRUE) {
+        diff(c(lower, x))
+      } else {
+        x
+      }
+    },
     reliab = function(t, s) { exp(-(self$mvf(t+s) - self$mvf(s))) },
     residual = function(t) { self$omega() * private$Ft(t, lower.tail=FALSE) },
     ffp = function(t) { exp(-self$residual(t)) },
@@ -127,7 +139,8 @@ ExpSRM <- R6::R6Class("ExpSRM",
       pexp(t, rate=self$rate(), lower.tail=lower.tail)
     },
     invFt = function(p) { qexp(p, rate=self$rate()) },
-    ft = function(t) { dexp(t, rate=self$rate()) }
+    ft = function(t) { dexp(t, rate=self$rate()) },
+    rf = function(n) { rexp(n, rate=self$rate()) }
   ),
   public = list(
     name = "exp",
@@ -155,7 +168,8 @@ GammaSRM <- R6::R6Class("GammaSRM",
       pgamma(t, shape=self$shape(), rate=self$rate(), lower.tail=lower.tail)
     },
     invFt = function(p) { qgamma(p, shape=self$shape(), rate=self$rate()) },
-    ft = function(t) { dgamma(t, shape=self$shape(), rate=self$rate()) }
+    ft = function(t) { dgamma(t, shape=self$shape(), rate=self$rate()) },
+    rf = function(n) { rgamma(n, shape=self$shape(), rate=self$rate()) }
   ),
   public = list(
     name = "gamma",
@@ -189,6 +203,9 @@ ParetoSRM <- R6::R6Class("ParetoSRM",
     },
     ft = function(t) {
       dpareto2(t, shape=self$shape(), scale=self$scale())
+    },
+    rf = function(n) {
+      rpareto2(n, shape=self$shape(), scale=self$scale())
     }
   ),
   public = list(
@@ -218,7 +235,8 @@ TNormSRM <- R6::R6Class("TNormSRM",
       ptnorm(t, mean=self$mean(), sd=self$sd(), lower.tail=lower.tail)
     },
     invFt = function(p) { qtnorm(p, mean=self$mean(), sd=self$sd()) },
-    ft = function(t) { dtnorm(t, mean=self$mean(), sd=self$sd()) }
+    ft = function(t) { dtnorm(t, mean=self$mean(), sd=self$sd()) },
+    rf = function(n) { rtnorm(n, mean=self$mean(), sd=self$sd()) }
   ),
   public = list(
     name = "tnorm",
@@ -252,6 +270,9 @@ LNormSRM <- R6::R6Class("LNormSRM",
     },
     ft = function(t) {
       dlnorm(t, meanlog=self$meanlog(), sdlog=self$sdlog())
+    },
+    rf = function(n) {
+      rlnorm(n, meanlog=self$meanlog(), sdlog=self$sdlog())
     }
   ),
   public = list(
@@ -286,6 +307,9 @@ TLogisSRM <- R6::R6Class("TLogisSRM",
     },
     ft = function(t) {
       dtlogis(t, location=self$location(), scale=self$scale())
+    },
+    rf = function(n) {
+      rtlogis(n, location=self$location(), scale=self$scale())
     }
   ),
   public = list(
@@ -329,6 +353,9 @@ LLogisSRM <- R6::R6Class("LLogisSRM",
     },
     ft = function(t) {
       dllogis(t, locationlog=self$locationlog(), scalelog=self$scalelog())
+    },
+    rf = function(n) {
+      rllogis(n, locationlog=self$locationlog(), scalelog=self$scalelog())
     }
   ),
   public = list(
@@ -366,7 +393,8 @@ TXVMaxSRM <- R6::R6Class("TXVMaxSRM",
       ptgumbel(t, loc=self$loc(), scale=self$scale(), lower.tail=lower.tail)
     },
     invFt = function(p) { qtgumbel(p, loc=self$loc(), scale=self$scale()) },
-    ft = function(t) { dtgumbel(t, loc=self$loc(), scale=self$scale()) }
+    ft = function(t) { dtgumbel(t, loc=self$loc(), scale=self$scale()) },
+    rf = function(n) { rtgumbel(n, loc=self$loc(), scale=self$scale()) }
   ),
   public = list(
     name = "txvmax",
@@ -409,6 +437,9 @@ LXVMaxSRM <- R6::R6Class("LXVMaxSRM",
     },
     ft = function(t) {
       dlgumbel(t, loclog=self$loclog(), scalelog=self$scalelog())
+    },
+    rf = function(n) {
+      rlgumbel(n, loclog=self$loclog(), scalelog=self$scalelog())
     }
   ),
   public = list(
@@ -451,6 +482,9 @@ TXVMinSRM <- R6::R6Class("TXVMinSRM",
     },
     ft = function(t) {
       dtgumbel.min(t, loc=self$loc(), scale=self$scale())
+    },
+    rf = function(n) {
+      rtgumbel.min(n, loc=self$loc(), scale=self$scale())
     }
   ),
   public = list(
@@ -493,6 +527,9 @@ LXVMinSRM <- R6::R6Class("LXVMinSRM",
     },
     ft = function(t) {
       dlgumbel.min(t, loclog=self$loclog(), scalelog=self$scalelog())
+    },
+    rf = function(n) {
+      rlgumbel.min(n, loclog=self$loclog(), scalelog=self$scalelog())
     }
   ),
   public = list(

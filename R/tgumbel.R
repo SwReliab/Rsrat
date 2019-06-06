@@ -56,6 +56,11 @@ qtgumbel <- function(p, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE) {
   qgumbel(p=pdash, loc=loc, scale=scale, lower=FALSE, log=FALSE)
 }
 
+#' @rdname tgumbel
+rtgumbel <- function(n, loc = 0, scale = 1) {
+  qtgumbel(runif(n), loc=loc, scale=scale)
+}
+
 #' truncated Gumbel distribution (minimum)
 #'
 #' Density, distribution function, and quantile function for
@@ -116,3 +121,9 @@ qtgumbel.min <- function(p, loc = 0, scale = 1, lower.tail = TRUE,
   pdash <- (1 - p) * pgumbel(0, loc=loc, scale=scale, lower=FALSE, log=FALSE, min=TRUE)
   qgumbel(p=pdash, loc=loc, scale=scale, lower=FALSE, log=FALSE, min=TRUE)
 }
+
+#' @rdname tgumbel.min
+rtgumbel.min <- function(n, loc = 0, scale = 1) {
+  qtgumbel.min(runif(n), loc=loc, scale=scale)
+}
+

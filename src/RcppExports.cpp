@@ -303,6 +303,20 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rgumbel
+NumericVector rgumbel(int n, double loc, double scale, bool min);
+RcppExport SEXP _Rsrat_rgumbel(SEXP nSEXP, SEXP locSEXP, SEXP scaleSEXP, SEXP minSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n(nSEXP);
+    Rcpp::traits::input_parameter< double >::type loc(locSEXP);
+    Rcpp::traits::input_parameter< double >::type scale(scaleSEXP);
+    Rcpp::traits::input_parameter< bool >::type min(minSEXP);
+    rcpp_result_gen = Rcpp::wrap(rgumbel(n, loc, scale, min));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_Rsrat_em_exp_emstep", (DL_FUNC) &_Rsrat_em_exp_emstep, 2},
@@ -328,6 +342,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_Rsrat_dgumbel", (DL_FUNC) &_Rsrat_dgumbel, 5},
     {"_Rsrat_pgumbel", (DL_FUNC) &_Rsrat_pgumbel, 6},
     {"_Rsrat_qgumbel", (DL_FUNC) &_Rsrat_qgumbel, 6},
+    {"_Rsrat_rgumbel", (DL_FUNC) &_Rsrat_rgumbel, 4},
     {NULL, NULL, 0}
 };
 

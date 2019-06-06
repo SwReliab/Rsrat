@@ -63,3 +63,8 @@ qtlogis <- function(p, location = 0, scale = 1, lower.tail = TRUE,
   qlogis(p=pdash, location=location, scale=scale, lower.tail=FALSE,
     log.p=FALSE)
 }
+
+#' @rdname tlogis
+rtlogis <- function(n, location = 0, scale = 1) {
+  qtlogis(runif(n), location=location, scale=scale)
+}
