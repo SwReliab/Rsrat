@@ -5,6 +5,7 @@
 \alias{dtnorm}
 \alias{ptnorm}
 \alias{qtnorm}
+\alias{rtnorm}
 \title{truncated normal distribution}
 \usage{
 dtnorm(x, mean = 0, sd = 1, log = FALSE)
@@ -12,6 +13,8 @@ dtnorm(x, mean = 0, sd = 1, log = FALSE)
 ptnorm(q, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
 
 qtnorm(p, mean = 0, sd = 1, lower.tail = TRUE, log.p = FALSE)
+
+rtnorm(n, mean = 0, sd = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

@@ -5,6 +5,7 @@
 \alias{dpareto2}
 \alias{ppareto2}
 \alias{qpareto2}
+\alias{rpareto2}
 \title{Pareto distribution (type 2)}
 \usage{
 dpareto2(x, shape = 1, scale = 1, log = FALSE)
@@ -12,6 +13,8 @@ dpareto2(x, shape = 1, scale = 1, log = FALSE)
 ppareto2(q, shape = 1, scale = 1, lower.tail = TRUE, log.p = FALSE)
 
 qpareto2(p, shape = 1, scale = 1, lower.tail = TRUE, log.p = FALSE)
+
+rpareto2(n, shape = 1, scale = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}
@@ -27,14 +30,14 @@ qpareto2(p, shape = 1, scale = 1, lower.tail = TRUE, log.p = FALSE)
 \item{p}{A numeric vector of probabilities.}
 }
 \value{
-'dpareto2' gives the desity, 'ppareto2' gives the distribution, and
-'qpareto2' gives the quantile function.
+'dpareto2' gives the desity, 'ppareto2' gives the distribution,
+'qpareto2' gives the quantile function and 'rpareto2' generate samples.
 }
 \description{
 Density, distribution function, and quantile function for
 Pareto (type 2) distribution.
 }
 \details{
-The Pareto type 2distribution has the cumulative distribution function
+The Pareto type 2 distribution has the cumulative distribution function
 F(q) = 1 - (scale / (q + scale))^shape
 }

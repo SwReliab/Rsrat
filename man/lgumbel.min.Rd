@@ -5,6 +5,7 @@
 \alias{dlgumbel.min}
 \alias{plgumbel.min}
 \alias{qlgumbel.min}
+\alias{rlgumbel.min}
 \title{log-Gumbel distribution (Weibull)}
 \usage{
 dlgumbel.min(x, loclog = 0, scalelog = 1, log = FALSE)
@@ -14,6 +15,8 @@ plgumbel.min(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
 
 qlgumbel.min(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE)
+
+rlgumbel.min(n, loclog = 0, scalelog = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

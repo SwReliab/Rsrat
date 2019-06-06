@@ -4,6 +4,7 @@
 \alias{dgumbel}
 \alias{pgumbel}
 \alias{qgumbel}
+\alias{rgumbel}
 \alias{gumbel}
 \title{Gumbel distribution}
 \usage{
@@ -14,6 +15,8 @@ pgumbel(q, loc = 0, scale = 1, lower = TRUE, log = FALSE,
 
 qgumbel(p, loc = 0, scale = 1, lower = TRUE, log = FALSE,
   min = FALSE)
+
+rgumbel(n, loc = 0, scale = 1, min = FALSE)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

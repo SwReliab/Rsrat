@@ -5,6 +5,7 @@
 \alias{dtgumbel}
 \alias{ptgumbel}
 \alias{qtgumbel}
+\alias{rtgumbel}
 \title{truncated Gumbel distribution (maximum)}
 \usage{
 dtgumbel(x, loc = 0, scale = 1, log = FALSE)
@@ -12,6 +13,8 @@ dtgumbel(x, loc = 0, scale = 1, log = FALSE)
 ptgumbel(q, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 
 qtgumbel(p, loc = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
+
+rtgumbel(n, loc = 0, scale = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

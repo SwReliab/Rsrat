@@ -5,6 +5,7 @@
 \alias{dlgumbel}
 \alias{plgumbel}
 \alias{qlgumbel}
+\alias{rlgumbel}
 \title{log-Gumbel distribution (Frechet)}
 \usage{
 dlgumbel(x, loclog = 0, scalelog = 1, log = FALSE)
@@ -14,6 +15,8 @@ plgumbel(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
 
 qlgumbel(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE)
+
+rlgumbel(n, loclog = 0, scalelog = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

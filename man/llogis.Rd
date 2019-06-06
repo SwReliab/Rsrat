@@ -5,6 +5,7 @@
 \alias{dllogis}
 \alias{pllogis}
 \alias{qllogis}
+\alias{rllogis}
 \title{log-logistic distribution}
 \usage{
 dllogis(x, locationlog = 0, scalelog = 1, log = FALSE)
@@ -14,6 +15,8 @@ pllogis(q, locationlog = 0, scalelog = 1, lower.tail = TRUE,
 
 qllogis(p, locationlog = 0, scalelog = 1, lower.tail = TRUE,
   log.p = FALSE)
+
+rllogis(n, locationlog = 0, scalelog = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}

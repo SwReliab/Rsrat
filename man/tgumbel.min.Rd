@@ -5,6 +5,7 @@
 \alias{dtgumbel.min}
 \alias{ptgumbel.min}
 \alias{qtgumbel.min}
+\alias{rtgumbel.min}
 \title{truncated Gumbel distribution (minimum)}
 \usage{
 dtgumbel.min(x, loc = 0, scale = 1, log = FALSE)
@@ -14,6 +15,8 @@ ptgumbel.min(q, loc = 0, scale = 1, lower.tail = TRUE,
 
 qtgumbel.min(p, loc = 0, scale = 1, lower.tail = TRUE,
   log.p = FALSE)
+
+rtgumbel.min(n, loc = 0, scale = 1)
 }
 \arguments{
 \item{x, q}{A numeric vector of quantiles.}
