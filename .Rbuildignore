@@ -7,3 +7,6 @@
 ^cran-comments\.md$
 ^\.travis\.yml$
 ^build\.xml$
+^Rsrat\.Rcheck$
+^Rsrat.*\.tar\.gz$
+^Rsrat.*\.tgz$

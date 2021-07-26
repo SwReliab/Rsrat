@@ -10,11 +10,9 @@
 \usage{
 dtlogis(x, location = 0, scale = 1, log = FALSE)
 
-ptlogis(q, location = 0, scale = 1, lower.tail = TRUE,
-  log.p = FALSE)
+ptlogis(q, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 
-qtlogis(p, location = 0, scale = 1, lower.tail = TRUE,
-  log.p = FALSE)
+qtlogis(p, location = 0, scale = 1, lower.tail = TRUE, log.p = FALSE)
 
 rtlogis(n, location = 0, scale = 1)
 }

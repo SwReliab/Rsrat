@@ -4,10 +4,21 @@
 \alias{dmvfplot}
 \title{Draw a graph of diff of mean value functions on discrete time domain}
 \usage{
-dmvfplot(time = NULL, fault = NULL, type = NULL, te = NULL,
-  data = data.frame(), dmvf = list(), xlab = "time",
-  ylab = "# of faults", datalab = "data", xmax = NA, ymax = NA,
-  colors = mmcolors, ...)
+dmvfplot(
+  time = NULL,
+  fault = NULL,
+  type = NULL,
+  te = NULL,
+  data = data.frame(),
+  srms = list(),
+  xlab = "time",
+  ylab = "# of faults",
+  datalab = "data",
+  xmax = NA,
+  ymax = NA,
+  colors = mmcolors,
+  ...
+)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -22,7 +33,7 @@ This is used to represent the fault time data. If 0, no fault is detected at the
 
 \item{data}{A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.}
 
-\item{dmvf}{A list of NHPP classes. See details.}
+\item{srms}{A list of estimated results.}
 
 \item{xlab}{A character string, indicating the label of x-axis.}
 
@@ -45,9 +56,6 @@ An object of ggplot.
 This function draws a graph of mean value function with data and NHPP classes.
 }
 \details{
-The dmvf argument should be a list of NHPP classes. In the function, \code{dmvf}
-and \code{name} attributes are used. Therefore, the list with \code{dmvf} and
-\code{name} can be used as an element of the list of dmvf argument.
 The return value is an object of ggplot2, and thus a line is added like
 \code{dmvfplot(...) + geom_point(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))
  + geom_line(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))}.
@@ -56,5 +64,5 @@ The return value is an object of ggplot2, and thus a line is added like
 data(dacs)
 result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
             selection = NULL)
-dmvfplot(fault=tohma, dmvf=lapply(result, function(s) s$srm))
+dmvfplot(fault=tohma, srms=result)
 }

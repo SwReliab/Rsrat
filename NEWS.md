@@ -1,3 +1,7 @@
+# Rsrat 1.6.0
+
+* Change the interface for mvfplot and dmvfplot.
+
 # Rsrat 1.5.6
 
 * Enhancement: Add the function to generate samples.

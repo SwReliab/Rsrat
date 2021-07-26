@@ -5,9 +5,17 @@
 \alias{srm.nhpp.options}
 \title{NHPP-based software reliability model}
 \usage{
-fit.srm.nhpp(time = NULL, fault = NULL, type = NULL, te = NULL,
-  data = data.frame(), srm.names = srm.models, selection = "AIC",
-  control = list(), ...)
+fit.srm.nhpp(
+  time = NULL,
+  fault = NULL,
+  type = NULL,
+  te = NULL,
+  data = data.frame(),
+  srm.names = srm.models,
+  selection = "AIC",
+  control = list(),
+  ...
+)
 
 srm.nhpp.options()
 }

@@ -14,11 +14,18 @@ reliability growth model with NHPP (non-homogeneous Poisson process).
 
 ## Installation
 
-You can install Rsrat from github with:
+You can install Rsrat from GitHub with:
 
 ``` r
-# install.packages("devtools")
-devtools::install_github("okamumu/Rsrat")
+install.packages("devtools")
+devtools::install_github("SwReliab/Rsrat")
+```
+
+Alternatively, you can use Remote to install Rsrat from GitHub
+
+``` r
+install.packages("remotes")
+remotes::install_github("SwReliab/Rsrat")
 ```
 
 ## Example
@@ -35,11 +42,11 @@ data(dacs)
 
 ### tohma is a grouped data
 tohma
-#>   [1]  5  5  5  5  6  8  2  7  4  2 31  4 24 49 14 12  8  9  4  7  6  9  4
-#>  [24]  4  2  4  3  9  2  5  4  1  4  3  6 13 19 15  7 15 21  8  6 20 10  3
-#>  [47]  3  8  5  1  2  2  2  7  2  0  2  3  2  7  3  0  1  0  1  0  0  1  1
-#>  [70]  0  0  1  1  0  0  0  1  2  0  1  0  0  0  0  0  0  2  0  0  0  0  0
-#>  [93]  0  0  0  1  0  0  0  1  0  0  1  0  0  1  0  0  1  0  1
+#>   [1]  5  5  5  5  6  8  2  7  4  2 31  4 24 49 14 12  8  9  4  7  6  9  4  4  2
+#>  [26]  4  3  9  2  5  4  1  4  3  6 13 19 15  7 15 21  8  6 20 10  3  3  8  5  1
+#>  [51]  2  2  2  7  2  0  2  3  2  7  3  0  1  0  1  0  0  1  1  0  0  1  1  0  0
+#>  [76]  0  1  2  0  1  0  0  0  0  0  0  2  0  0  0  0  0  0  0  0  1  0  0  0  1
+#> [101]  0  0  1  0  0  1  0  0  1  0  1
 
 ### Esimate all models and select the best one in terms of AIC
 (result <- fit.srm.nhpp(fault=tohma))
@@ -51,7 +58,7 @@ tohma
 #> Convergence: TRUE
 
 ### Draw the graph 
-mvfplot(fault=tohma, mvf=list(result$srm))
+mvfplot(fault=tohma, srms=result)
 ```
 
 <img src="man/figures/README-example1-1.png" width="100%" />
@@ -61,8 +68,8 @@ The second example illustrates the estimation for two specified models.
 ``` r
 ### All models in the package
 srm.models
-#>  [1] "exp"    "gamma"  "pareto" "tnorm"  "lnorm"  "tlogis" "llogis"
-#>  [8] "txvmax" "lxvmax" "txvmin" "lxvmin"
+#>  [1] "exp"    "gamma"  "pareto" "tnorm"  "lnorm"  "tlogis" "llogis" "txvmax"
+#>  [9] "lxvmax" "txvmin" "lxvmin"
 
 ### Estimate two models and no select
 (result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL))
@@ -84,10 +91,17 @@ srm.models
 #> Convergence: TRUE
 
 ### Draw the graph
-mvfplot(fault=tohma, mvf=lapply(result, function(m) m$srm))
+mvfplot(fault=tohma, srms=result)
 ```
 
 <img src="man/figures/README-example2-1.png" width="100%" />
+
+``` r
+### Draw the graph (dmvf)
+dmvfplot(fault=tohma, srms=result)
+```
+
+<img src="man/figures/README-example2-2.png" width="100%" />
 
 The third example shows the case where the fault data are fault
 detection data.
@@ -97,24 +111,23 @@ detection data.
 #### Time intervals for all faults
 #### The last value is a negative value, that indicates the time interval in which there is no fault detection after the last fault detection.
 sys1
-#>   [1]     3    30   113    81   115     9     2    91   112    15   138
-#>  [12]    50    77    24   108    88   670   120    26   114   325    55
-#>  [23]   242    68   422   180    10  1146   600    15    36     4     0
-#>  [34]     8   227    65   176    58   457   300    97   263   452   255
-#>  [45]   197   193     6    79   816  1351   148    21   233   134   357
-#>  [56]   193   236    31   369   748     0   232   330   365  1222   543
-#>  [67]    10    16   529   379    44   129   810   290   300   529   281
-#>  [78]   160   828  1011   445   296  1755  1064  1783   860   983   707
-#>  [89]    33   868   724  2323  2930  1461   843    12   261  1800   865
-#> [100]  1435    30   143   108     0  3110  1247   943   700   875   245
-#> [111]   729  1897   447   386   446   122   990   948  1082    22    75
-#> [122]   482  5509   100    10  1071   371   790  6150  3321  1045   648
+#>   [1]     3    30   113    81   115     9     2    91   112    15   138    50
+#>  [13]    77    24   108    88   670   120    26   114   325    55   242    68
+#>  [25]   422   180    10  1146   600    15    36     4     0     8   227    65
+#>  [37]   176    58   457   300    97   263   452   255   197   193     6    79
+#>  [49]   816  1351   148    21   233   134   357   193   236    31   369   748
+#>  [61]     0   232   330   365  1222   543    10    16   529   379    44   129
+#>  [73]   810   290   300   529   281   160   828  1011   445   296  1755  1064
+#>  [85]  1783   860   983   707    33   868   724  2323  2930  1461   843    12
+#>  [97]   261  1800   865  1435    30   143   108     0  3110  1247   943   700
+#> [109]   875   245   729  1897   447   386   446   122   990   948  1082    22
+#> [121]    75   482  5509   100    10  1071   371   790  6150  3321  1045   648
 #> [133]  5485  1160  1864  4116 -2526
 
 ### Esimate
 (result <- fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0]))
-#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
-#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter, reltol =
+#> con$reltol, : Did not converge to MLE by max iteration.
 #> Model name: gamma
 #>     omega      shape       rate  
 #> 1.545e+02  6.357e-01  1.618e-05  
@@ -123,7 +136,7 @@ sys1
 #> Convergence: TRUE
 
 ### Draw the graph
-mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], mvf=list(result$srm))
+mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], srms=result)
 ```
 
 <img src="man/figures/README-example3-1.png" width="100%" />
@@ -134,17 +147,17 @@ models are drawn.
 ``` r
 ### Esimate and return all the estimated results
 (result <- fit.srm.nhpp(fault=sys1g, selection=NULL))
-#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
-#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter, reltol =
+#> con$reltol, : Did not converge to MLE by max iteration.
 
-#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
-#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter, reltol =
+#> con$reltol, : Did not converge to MLE by max iteration.
 
-#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
-#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter, reltol =
+#> con$reltol, : Did not converge to MLE by max iteration.
 
-#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter,
-#> reltol = con$reltol, : Did not converge to MLE by max iteration.
+#> Warning in emfit(srm, data, initialize = TRUE, maxiter = con$maxiter, reltol =
+#> con$reltol, : Did not converge to MLE by max iteration.
 #> $exp
 #> Model name: exp
 #>     omega       rate  
@@ -244,7 +257,7 @@ models are drawn.
 #> Convergence: TRUE
 
 ### Draw the graph
-mvfplot(fault=sys1g, mvf=lapply(result, function(x) x$srm))
+mvfplot(fault=sys1g, srms=result)
 ```
 
 <img src="man/figures/README-example4-1.png" width="100%" />

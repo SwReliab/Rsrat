@@ -10,11 +10,9 @@
 \usage{
 dllogis(x, locationlog = 0, scalelog = 1, log = FALSE)
 
-pllogis(q, locationlog = 0, scalelog = 1, lower.tail = TRUE,
-  log.p = FALSE)
+pllogis(q, locationlog = 0, scalelog = 1, lower.tail = TRUE, log.p = FALSE)
 
-qllogis(p, locationlog = 0, scalelog = 1, lower.tail = TRUE,
-  log.p = FALSE)
+qllogis(p, locationlog = 0, scalelog = 1, lower.tail = TRUE, log.p = FALSE)
 
 rllogis(n, locationlog = 0, scalelog = 1)
 }

@@ -4,9 +4,16 @@
 \alias{get.issues.github}
 \title{Issues in GitHub}
 \usage{
-get.issues.github(repo, query = "", user = NULL, password = "",
-  authtype = "basic", url = "https://api.github.com/repos",
-  startPage = 1L, perPage = 100L)
+get.issues.github(
+  repo,
+  query = "",
+  user = NULL,
+  password = "",
+  authtype = "basic",
+  url = "https://api.github.com/repos",
+  startPage = 1L,
+  perPage = 100L
+)
 }
 \arguments{
 \item{repo}{A character string indicating a repository such as "hadley/devtools"}

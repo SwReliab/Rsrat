@@ -4,8 +4,13 @@
 \alias{count.date2}
 \title{count date 2}
 \usage{
-count.date2(ddate, cdate, date.min = NULL, date.max = Sys.time(),
-  by = "1 month")
+count.date2(
+  ddate,
+  cdate,
+  date.min = NULL,
+  date.max = Sys.time(),
+  by = "1 month"
+)
 }
 \arguments{
 \item{ddate}{A vector of character strings for detection dates.}

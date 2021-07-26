@@ -10,11 +10,9 @@
 \usage{
 dlgumbel.min(x, loclog = 0, scalelog = 1, log = FALSE)
 
-plgumbel.min(q, loclog = 0, scalelog = 1, lower.tail = TRUE,
-  log.p = FALSE)
+plgumbel.min(q, loclog = 0, scalelog = 1, lower.tail = TRUE, log.p = FALSE)
 
-qlgumbel.min(p, loclog = 0, scalelog = 1, lower.tail = TRUE,
-  log.p = FALSE)
+qlgumbel.min(p, loclog = 0, scalelog = 1, lower.tail = TRUE, log.p = FALSE)
 
 rlgumbel.min(n, loclog = 0, scalelog = 1)
 }

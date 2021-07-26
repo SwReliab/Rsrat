@@ -4,7 +4,9 @@
 \name{srm.models}
 \alias{srm.models}
 \title{Model names}
-\format{An object of class \code{character} of length 11.}
+\format{
+An object of class \code{character} of length 11.
+}
 \usage{
 srm.models
 }

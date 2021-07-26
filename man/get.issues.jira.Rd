@@ -4,10 +4,16 @@
 \alias{get.issues.jira}
 \title{Issues in JIRA}
 \usage{
-get.issues.jira(query, fields = "created", user = NULL,
-  password = "", authtype = "basic",
+get.issues.jira(
+  query,
+  fields = "created",
+  user = NULL,
+  password = "",
+  authtype = "basic",
   url = "https://issues.apache.org/jira/rest/api/2/search",
-  startAt = 0, maxResults = 50)
+  startAt = 0,
+  maxResults = 50
+)
 }
 \arguments{
 \item{query}{A character string for a query}

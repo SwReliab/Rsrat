@@ -4,10 +4,21 @@
 \alias{mvfplot}
 \title{Draw a graph of mean value functions}
 \usage{
-mvfplot(time = NULL, fault = NULL, type = NULL, te = NULL,
-  data = data.frame(), mvf = list(), xlab = "time",
-  ylab = "# of faults", datalab = "data", xmax = NA, ymax = NA,
-  colors = mmcolors, ...)
+mvfplot(
+  time = NULL,
+  fault = NULL,
+  type = NULL,
+  te = NULL,
+  data = data.frame(),
+  srms = list(),
+  xlab = "time",
+  ylab = "# of faults",
+  datalab = "data",
+  xmax = NA,
+  ymax = NA,
+  colors = mmcolors,
+  ...
+)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}
@@ -22,7 +33,7 @@ This is used to represent the fault time data. If 0, no fault is detected at the
 
 \item{data}{A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.}
 
-\item{mvf}{A list of NHPP classes. See details.}
+\item{srms}{A list of estimated results.}
 
 \item{xlab}{A character string, indicating the label of x-axis.}
 
@@ -45,9 +56,6 @@ An object of ggplot.
 This function draws a graph of mean value function with data and NHPP classes.
 }
 \details{
-The mvf argument should be a list of NHPP classes. In the function, \code{mvf}
-and \code{name} attributes are used. Therefore, the list with \code{mvf} and
-\code{name} can be used as an element of the list of mvf argument.
 The return value is an object of ggplot2, and thus a line is added like
 \code{mvfplot(...) + stat_function(fun=mvf)}.
 }
@@ -55,5 +63,5 @@ The return value is an object of ggplot2, and thus a line is added like
 data(dacs)
 result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
             selection = NULL)
-mvfplot(fault=tohma, mvf=lapply(result, function(s) s$srm))
+mvfplot(fault=tohma, srms=result)
 }
