@@ -10,11 +10,9 @@
 \usage{
 dgumbel(x, loc = 0, scale = 1, log = FALSE, min = FALSE)
 
-pgumbel(q, loc = 0, scale = 1, lower = TRUE, log = FALSE,
-  min = FALSE)
+pgumbel(q, loc = 0, scale = 1, lower = TRUE, log = FALSE, min = FALSE)
 
-qgumbel(p, loc = 0, scale = 1, lower = TRUE, log = FALSE,
-  min = FALSE)
+qgumbel(p, loc = 0, scale = 1, lower = TRUE, log = FALSE, min = FALSE)
 
 rgumbel(n, loc = 0, scale = 1, min = FALSE)
 }

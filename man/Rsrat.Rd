@@ -3,7 +3,6 @@
 \docType{package}
 \name{Rsrat}
 \alias{Rsrat}
-\alias{Rsrat-package}
 \title{Rsrat: A Software Reliability Assessment Tool with NHPP-Based Models}
 \description{
 This package provides estimation programs for software reliability growth

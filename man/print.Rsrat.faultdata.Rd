@@ -4,8 +4,7 @@
 \alias{print.Rsrat.faultdata}
 \title{Printing software fault data}
 \usage{
-\method{print}{Rsrat.faultdata}(x, ..., digits = NULL, quote = FALSE,
-  right = TRUE, row.names = TRUE)
+\method{print}{Rsrat.faultdata}(x, ..., digits = NULL, quote = FALSE, right = TRUE, row.names = TRUE)
 }
 \arguments{
 \item{x}{An object of Rsrat.faultdata.}

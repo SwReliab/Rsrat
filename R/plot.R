@@ -1,10 +1,63 @@
+#' Model name
+#'
+#' This function provides the model name.
+#'
+#' @param srm An object of a model
+#' @return A string of model name
+
+srmname <- function(srm) {
+  if ("srm.nhpp.result" %in% class(srm)) {
+    srm <- srm$srm
+  }
+  srm$name
+}
+
+#' Mean value function
+#'
+#' This function provides the mean value function for a given model.
+#'
+#' @param t A numeric vector for time
+#' @param srm An object of a model
+#' @return A vector of mean value function
+#' @examples
+#' data(dacs)
+#' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+#'             selection = NULL)
+#' mvf(c(1,2,3), result$exp)
+#' @export
+
+mvf <- function(t, srm) {
+  if ("srm.nhpp.result" %in% class(srm)) {
+    srm <- srm$srm
+  }
+  srm$mvf(t)
+}
+
+#' Difference of mean value function
+#'
+#' This function provides the difference of mean value function for a given model.
+#'
+#' @param t A numeric vector for time
+#' @param srm An object of a model
+#' @return A vector of mean value function
+#' @examples
+#' data(dacs)
+#' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+#'             selection = NULL)
+#' dmvf(c(1,2,3), result$exp)
+#' @export
+
+dmvf <- function(t, srm) {
+  if ("srm.nhpp.result" %in% class(srm)) {
+    srm <- srm$srm
+  }
+  srm$dmvf(t)
+}
+
 #' Draw a graph of mean value functions
 #'
 #' This function draws a graph of mean value function with data and NHPP classes.
 #'
-#' The mvf argument should be a list of NHPP classes. In the function, \code{mvf}
-#' and \code{name} attributes are used. Therefore, the list with \code{mvf} and
-#' \code{name} can be used as an element of the list of mvf argument.
 #' The return value is an object of ggplot2, and thus a line is added like
 #' \code{mvfplot(...) + stat_function(fun=mvf)}.
 #'
@@ -15,7 +68,7 @@
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
 #' @param data A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.
-#' @param mvf A list of NHPP classes. See details.
+#' @param srms A list of estimated results.
 #' @param xlab A character string, indicating the label of x-axis.
 #' @param ylab A character string, indicating the label of y-axis.
 #' @param datalab A character string, indicating the label of data in legend.
@@ -28,11 +81,11 @@
 #' data(dacs)
 #' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
 #'             selection = NULL)
-#' mvfplot(fault=tohma, mvf=lapply(result, function(s) s$srm))
+#' mvfplot(fault=tohma, srms=result)
 #' @export
 
 mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
-  mvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
+  srms = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
   if (class(data) != "Rsrat.faultdata") {
     data <- faultdata.nhpp(substitute(time), substitute(fault),
@@ -43,19 +96,21 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_point(aes_(colour=datalab))
 
-  for (s in mvf) {
-    gp <- gp + stat_function(fun=s$mvf, aes_(colour=s$name))
+  if ("list" %in% class(srms)) {
+    for (s in srms) {
+      gp <- gp + stat_function(fun=mvf, args=list(srm=s), aes_(colour=srmname(s)))
+    }
+    gp + scale_colour_manual(NULL, values = colors)
+  } else {
+    gp <- gp + stat_function(fun=mvf, args=list(srm=srms), aes_(colour=srmname(srms)))
+    gp + scale_colour_manual(NULL, values = colors)
   }
-  gp + scale_colour_manual(NULL, values = colors)
 }
 
 #' Draw a graph of diff of mean value functions on discrete time domain
 #'
 #' This function draws a graph of mean value function with data and NHPP classes.
 #'
-#' The dmvf argument should be a list of NHPP classes. In the function, \code{dmvf}
-#' and \code{name} attributes are used. Therefore, the list with \code{dmvf} and
-#' \code{name} can be used as an element of the list of dmvf argument.
 #' The return value is an object of ggplot2, and thus a line is added like
 #' \code{dmvfplot(...) + geom_point(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))
 #'  + geom_line(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))}.
@@ -67,7 +122,7 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
 #' @param data A dataframe. The arguments; time, fault, type, te can also be selected as the columns of dataframe.
-#' @param dmvf A list of NHPP classes. See details.
+#' @param srms A list of estimated results.
 #' @param xlab A character string, indicating the label of x-axis.
 #' @param ylab A character string, indicating the label of y-axis.
 #' @param datalab A character string, indicating the label of data in legend.
@@ -80,11 +135,11 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
 #' data(dacs)
 #' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
 #'             selection = NULL)
-#' dmvfplot(fault=tohma, dmvf=lapply(result, function(s) s$srm))
+#' dmvfplot(fault=tohma, srms=result)
 #' @export
 
 dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = data.frame(),
-  dmvf = list(), xlab = "time", ylab = "# of faults", datalab = "data",
+  srms = list(), xlab = "time", ylab = "# of faults", datalab = "data",
   xmax = NA, ymax = NA, colors = mmcolors, ...) {
   if (class(data) != "Rsrat.faultdata") {
     data <- faultdata.nhpp(substitute(time), substitute(fault),
@@ -94,16 +149,26 @@ dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = d
   n <- as.numeric(data$fault + data$type)
 
   data <- data.frame(x=t, y=n)
-  for (s in dmvf) {
-    data <- cbind(data, s$dmvf(t))
+  if ("list" %in% class(srms)) {
+    for (s in srms) {
+      data <- cbind(data, dmvf(t, s))
+    }
+    colnames(data) <- c("x", "y", sapply(srms, srmname))
+  } else {
+    data <- cbind(data, dmvf(t, srms))
+    colnames(data) <- c("x", "y", srmname(srms))
   }
-  colnames(data) <- c("x", "y", sapply(dmvf, function(s) s$name))
 
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_bar(stat="identity", position="identity", alpha=0.5, aes_(fill=datalab))
-  for (s in dmvf) {
-    gp <- gp + geom_point(stat="identity", position="identity", aes_string(x="x", y=s$name, colour=shQuote(s$name)))
-    gp <- gp + geom_line(stat="identity", position="identity", aes_string(x="x", y=s$name, colour=shQuote(s$name)))
+  if ("list" %in% class(srms)) {
+    for (s in srms) {
+      # gp <- gp + geom_point(stat="identity", position="identity", aes_string(x="x", y=srmname(s), colour=shQuote(srmname(s))))
+      gp <- gp + geom_line(stat="identity", position="identity", aes_string(x="x", y=srmname(s), colour=shQuote(srmname(s))))
+    }
+  } else {
+    # gp <- gp + geom_point(stat="identity", position="identity", aes_string(x="x", y=srmname(srms), colour=shQuote(srmname(srms))))
+    gp <- gp + geom_line(stat="identity", position="identity", aes_string(x="x", y=srmname(srms), colour=shQuote(srmname(srms))))
   }
   gp + scale_colour_manual(NULL, values = colors[2:length(colors)]) + scale_fill_manual(NULL, values = colors[1])
 }

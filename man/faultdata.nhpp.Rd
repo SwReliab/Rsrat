@@ -4,8 +4,14 @@
 \alias{faultdata.nhpp}
 \title{Software fault data}
 \usage{
-faultdata.nhpp(time, fault, type, te, data = data.frame(),
-  envir = parent.frame())
+faultdata.nhpp(
+  time,
+  fault,
+  type,
+  te,
+  data = data.frame(),
+  envir = parent.frame()
+)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}

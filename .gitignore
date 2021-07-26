@@ -27,3 +27,6 @@ vignettes/*.pdf
 *.rds
 .Rproj.user
 .DS_Store
+Rsrat.Rcheck/
+Rsrat*.tar.gz
+Rsrat*.tgz

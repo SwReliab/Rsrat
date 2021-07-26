@@ -15,31 +15,8 @@
 \alias{TXVMinSRM}
 \alias{LXVMinSRM}
 \title{Class for NHPP-based software reliability model}
-\format{\code{\link{R6Class}} object.}
-\usage{
-NHPP
-
-ExpSRM
-
-GammaSRM
-
-ParetoSRM
-
-TNormSRM
-
-LNormSRM
-
-TLogisSRM
-
-LLogisSRM
-
-TXVMaxSRM
-
-LXVMaxSRM
-
-TXVMinSRM
-
-LXVMinSRM
+\format{
+\code{\link{R6Class}} object.
 }
 \value{
 Object of \code{\link{R6Class}} with methods for NHPP-based software reliability model.
@@ -91,4 +68,1307 @@ Class for NHPP-based software reliability model
 \seealso{
 \code{\link{srm}}
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-print}{\code{NHPP$print()}}
+\item \href{#method-omega}{\code{NHPP$omega()}}
+\item \href{#method-mvf}{\code{NHPP$mvf()}}
+\item \href{#method-dmvf}{\code{NHPP$dmvf()}}
+\item \href{#method-inv_mvf}{\code{NHPP$inv_mvf()}}
+\item \href{#method-intensity}{\code{NHPP$intensity()}}
+\item \href{#method-sample}{\code{NHPP$sample()}}
+\item \href{#method-reliab}{\code{NHPP$reliab()}}
+\item \href{#method-residual}{\code{NHPP$residual()}}
+\item \href{#method-ffp}{\code{NHPP$ffp()}}
+\item \href{#method-imtbf}{\code{NHPP$imtbf()}}
+\item \href{#method-cmtbf}{\code{NHPP$cmtbf()}}
+\item \href{#method-median}{\code{NHPP$median()}}
+\item \href{#method-init_params}{\code{NHPP$init_params()}}
+\item \href{#method-set_params}{\code{NHPP$set_params()}}
+\item \href{#method-set_data}{\code{NHPP$set_data()}}
+\item \href{#method-em}{\code{NHPP$em()}}
+\item \href{#method-llf}{\code{NHPP$llf()}}
+\item \href{#method-comp_error}{\code{NHPP$comp_error()}}
+\item \href{#method-clone}{\code{NHPP$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
+\subsection{Method \code{print()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$print(digits = max(3, getOption("digits") - 3), ...)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-omega"></a>}}
+\if{latex}{\out{\hypertarget{method-omega}{}}}
+\subsection{Method \code{omega()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$omega()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-mvf"></a>}}
+\if{latex}{\out{\hypertarget{method-mvf}{}}}
+\subsection{Method \code{mvf()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$mvf(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-dmvf"></a>}}
+\if{latex}{\out{\hypertarget{method-dmvf}{}}}
+\subsection{Method \code{dmvf()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$dmvf(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-inv_mvf"></a>}}
+\if{latex}{\out{\hypertarget{method-inv_mvf}{}}}
+\subsection{Method \code{inv_mvf()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$inv_mvf(x)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-intensity"></a>}}
+\if{latex}{\out{\hypertarget{method-intensity}{}}}
+\subsection{Method \code{intensity()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$intensity(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-sample"></a>}}
+\if{latex}{\out{\hypertarget{method-sample}{}}}
+\subsection{Method \code{sample()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$sample(diff = TRUE, lower = 0, upper = +Inf)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-reliab"></a>}}
+\if{latex}{\out{\hypertarget{method-reliab}{}}}
+\subsection{Method \code{reliab()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$reliab(t, s)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-residual"></a>}}
+\if{latex}{\out{\hypertarget{method-residual}{}}}
+\subsection{Method \code{residual()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$residual(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-ffp"></a>}}
+\if{latex}{\out{\hypertarget{method-ffp}{}}}
+\subsection{Method \code{ffp()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$ffp(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-imtbf"></a>}}
+\if{latex}{\out{\hypertarget{method-imtbf}{}}}
+\subsection{Method \code{imtbf()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$imtbf(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-cmtbf"></a>}}
+\if{latex}{\out{\hypertarget{method-cmtbf}{}}}
+\subsection{Method \code{cmtbf()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$cmtbf(t)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-median"></a>}}
+\if{latex}{\out{\hypertarget{method-median}{}}}
+\subsection{Method \code{median()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$median(s, p = 0.5)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_params"></a>}}
+\if{latex}{\out{\hypertarget{method-set_params}{}}}
+\subsection{Method \code{set_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$set_params(params)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_data"></a>}}
+\if{latex}{\out{\hypertarget{method-set_data}{}}}
+\subsection{Method \code{set_data()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$set_data(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-llf"></a>}}
+\if{latex}{\out{\hypertarget{method-llf}{}}}
+\subsection{Method \code{llf()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$llf(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-comp_error"></a>}}
+\if{latex}{\out{\hypertarget{method-comp_error}{}}}
+\subsection{Method \code{comp_error()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$comp_error(res0, res1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{ExpSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-rate}{\code{ExpSRM$rate()}}
+\item \href{#method-new}{\code{ExpSRM$new()}}
+\item \href{#method-init_params}{\code{ExpSRM$init_params()}}
+\item \href{#method-em}{\code{ExpSRM$em()}}
+\item \href{#method-clone}{\code{ExpSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-rate"></a>}}
+\if{latex}{\out{\hypertarget{method-rate}{}}}
+\subsection{Method \code{rate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExpSRM$rate()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExpSRM$new(omega = 1, rate = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExpSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExpSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExpSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{GammaSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-shape}{\code{GammaSRM$shape()}}
+\item \href{#method-rate}{\code{GammaSRM$rate()}}
+\item \href{#method-new}{\code{GammaSRM$new()}}
+\item \href{#method-init_params}{\code{GammaSRM$init_params()}}
+\item \href{#method-em}{\code{GammaSRM$em()}}
+\item \href{#method-clone}{\code{GammaSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-shape"></a>}}
+\if{latex}{\out{\hypertarget{method-shape}{}}}
+\subsection{Method \code{shape()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$shape()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-rate"></a>}}
+\if{latex}{\out{\hypertarget{method-rate}{}}}
+\subsection{Method \code{rate()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$rate()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$new(omega = 1, shape = 1, rate = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$em(params, data, divide = 15)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{ParetoSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-shape}{\code{ParetoSRM$shape()}}
+\item \href{#method-scale}{\code{ParetoSRM$scale()}}
+\item \href{#method-new}{\code{ParetoSRM$new()}}
+\item \href{#method-init_params}{\code{ParetoSRM$init_params()}}
+\item \href{#method-em}{\code{ParetoSRM$em()}}
+\item \href{#method-clone}{\code{ParetoSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-shape"></a>}}
+\if{latex}{\out{\hypertarget{method-shape}{}}}
+\subsection{Method \code{shape()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$shape()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\if{latex}{\out{\hypertarget{method-scale}{}}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$scale()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$new(omega = 1, shape = 1, scale = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{TNormSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-mean}{\code{TNormSRM$mean()}}
+\item \href{#method-sd}{\code{TNormSRM$sd()}}
+\item \href{#method-new}{\code{TNormSRM$new()}}
+\item \href{#method-init_params}{\code{TNormSRM$init_params()}}
+\item \href{#method-em}{\code{TNormSRM$em()}}
+\item \href{#method-clone}{\code{TNormSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-mean"></a>}}
+\if{latex}{\out{\hypertarget{method-mean}{}}}
+\subsection{Method \code{mean()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$mean()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-sd"></a>}}
+\if{latex}{\out{\hypertarget{method-sd}{}}}
+\subsection{Method \code{sd()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$sd()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$new(omega = 1, mean = 0, sd = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{LNormSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-meanlog}{\code{LNormSRM$meanlog()}}
+\item \href{#method-sdlog}{\code{LNormSRM$sdlog()}}
+\item \href{#method-new}{\code{LNormSRM$new()}}
+\item \href{#method-init_params}{\code{LNormSRM$init_params()}}
+\item \href{#method-em}{\code{LNormSRM$em()}}
+\item \href{#method-clone}{\code{LNormSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-meanlog"></a>}}
+\if{latex}{\out{\hypertarget{method-meanlog}{}}}
+\subsection{Method \code{meanlog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$meanlog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-sdlog"></a>}}
+\if{latex}{\out{\hypertarget{method-sdlog}{}}}
+\subsection{Method \code{sdlog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$sdlog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$new(omega = 1, meanlog = 0, sdlog = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{TLogisSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-location}{\code{TLogisSRM$location()}}
+\item \href{#method-scale}{\code{TLogisSRM$scale()}}
+\item \href{#method-new}{\code{TLogisSRM$new()}}
+\item \href{#method-init_params}{\code{TLogisSRM$init_params()}}
+\item \href{#method-em}{\code{TLogisSRM$em()}}
+\item \href{#method-clone}{\code{TLogisSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-location"></a>}}
+\if{latex}{\out{\hypertarget{method-location}{}}}
+\subsection{Method \code{location()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$location()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\if{latex}{\out{\hypertarget{method-scale}{}}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$scale()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$new(omega = 1, location = 0, scale = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{LLogisSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-locationlog}{\code{LLogisSRM$locationlog()}}
+\item \href{#method-scalelog}{\code{LLogisSRM$scalelog()}}
+\item \href{#method-new}{\code{LLogisSRM$new()}}
+\item \href{#method-init_params}{\code{LLogisSRM$init_params()}}
+\item \href{#method-em}{\code{LLogisSRM$em()}}
+\item \href{#method-clone}{\code{LLogisSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-locationlog"></a>}}
+\if{latex}{\out{\hypertarget{method-locationlog}{}}}
+\subsection{Method \code{locationlog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$locationlog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scalelog"></a>}}
+\if{latex}{\out{\hypertarget{method-scalelog}{}}}
+\subsection{Method \code{scalelog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$scalelog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$new(omega = 1, locationlog = 0, scalelog = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{TXVMaxSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-loc}{\code{TXVMaxSRM$loc()}}
+\item \href{#method-scale}{\code{TXVMaxSRM$scale()}}
+\item \href{#method-new}{\code{TXVMaxSRM$new()}}
+\item \href{#method-init_params}{\code{TXVMaxSRM$init_params()}}
+\item \href{#method-em}{\code{TXVMaxSRM$em()}}
+\item \href{#method-clone}{\code{TXVMaxSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-loc"></a>}}
+\if{latex}{\out{\hypertarget{method-loc}{}}}
+\subsection{Method \code{loc()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$loc()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\if{latex}{\out{\hypertarget{method-scale}{}}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$scale()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$new(omega = 1, loc = 0, scale = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{LXVMaxSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-loclog}{\code{LXVMaxSRM$loclog()}}
+\item \href{#method-scalelog}{\code{LXVMaxSRM$scalelog()}}
+\item \href{#method-new}{\code{LXVMaxSRM$new()}}
+\item \href{#method-init_params}{\code{LXVMaxSRM$init_params()}}
+\item \href{#method-em}{\code{LXVMaxSRM$em()}}
+\item \href{#method-clone}{\code{LXVMaxSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-loclog"></a>}}
+\if{latex}{\out{\hypertarget{method-loclog}{}}}
+\subsection{Method \code{loclog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$loclog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scalelog"></a>}}
+\if{latex}{\out{\hypertarget{method-scalelog}{}}}
+\subsection{Method \code{scalelog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$scalelog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$new(omega = 1, loclog = 0, scalelog = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{TXVMinSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-loc}{\code{TXVMinSRM$loc()}}
+\item \href{#method-scale}{\code{TXVMinSRM$scale()}}
+\item \href{#method-new}{\code{TXVMinSRM$new()}}
+\item \href{#method-init_params}{\code{TXVMinSRM$init_params()}}
+\item \href{#method-em}{\code{TXVMinSRM$em()}}
+\item \href{#method-clone}{\code{TXVMinSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-loc"></a>}}
+\if{latex}{\out{\hypertarget{method-loc}{}}}
+\subsection{Method \code{loc()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$loc()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scale"></a>}}
+\if{latex}{\out{\hypertarget{method-scale}{}}}
+\subsection{Method \code{scale()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$scale()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$new(omega = 1, loc = 0, scale = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}
+\section{Super class}{
+\code{\link[Rsrat:NHPP]{Rsrat::NHPP}} -> \code{LXVMinSRM}
+}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-loclog}{\code{LXVMinSRM$loclog()}}
+\item \href{#method-scalelog}{\code{LXVMinSRM$scalelog()}}
+\item \href{#method-new}{\code{LXVMinSRM$new()}}
+\item \href{#method-init_params}{\code{LXVMinSRM$init_params()}}
+\item \href{#method-em}{\code{LXVMinSRM$em()}}
+\item \href{#method-clone}{\code{LXVMinSRM$clone()}}
+}
+}
+\if{html}{
+\out{<details ><summary>Inherited methods</summary>}
+\itemize{
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="cmtbf">}\href{../../Rsrat/html/NHPP.html#method-cmtbf}{\code{Rsrat::NHPP$cmtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="comp_error">}\href{../../Rsrat/html/NHPP.html#method-comp_error}{\code{Rsrat::NHPP$comp_error()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="dmvf">}\href{../../Rsrat/html/NHPP.html#method-dmvf}{\code{Rsrat::NHPP$dmvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="ffp">}\href{../../Rsrat/html/NHPP.html#method-ffp}{\code{Rsrat::NHPP$ffp()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="imtbf">}\href{../../Rsrat/html/NHPP.html#method-imtbf}{\code{Rsrat::NHPP$imtbf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="intensity">}\href{../../Rsrat/html/NHPP.html#method-intensity}{\code{Rsrat::NHPP$intensity()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="inv_mvf">}\href{../../Rsrat/html/NHPP.html#method-inv_mvf}{\code{Rsrat::NHPP$inv_mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="llf">}\href{../../Rsrat/html/NHPP.html#method-llf}{\code{Rsrat::NHPP$llf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="median">}\href{../../Rsrat/html/NHPP.html#method-median}{\code{Rsrat::NHPP$median()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="mvf">}\href{../../Rsrat/html/NHPP.html#method-mvf}{\code{Rsrat::NHPP$mvf()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="omega">}\href{../../Rsrat/html/NHPP.html#method-omega}{\code{Rsrat::NHPP$omega()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="print">}\href{../../Rsrat/html/NHPP.html#method-print}{\code{Rsrat::NHPP$print()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="reliab">}\href{../../Rsrat/html/NHPP.html#method-reliab}{\code{Rsrat::NHPP$reliab()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
+}
+\out{</details>}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-loclog"></a>}}
+\if{latex}{\out{\hypertarget{method-loclog}{}}}
+\subsection{Method \code{loclog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$loclog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-scalelog"></a>}}
+\if{latex}{\out{\hypertarget{method-scalelog}{}}}
+\subsection{Method \code{scalelog()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$scalelog()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$new(omega = 1, loclog = 0, scalelog = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-init_params"></a>}}
+\if{latex}{\out{\hypertarget{method-init_params}{}}}
+\subsection{Method \code{init_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$init_params(data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-em"></a>}}
+\if{latex}{\out{\hypertarget{method-em}{}}}
+\subsection{Method \code{em()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$em(params, data)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

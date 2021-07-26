@@ -4,8 +4,13 @@
 \alias{faultdata}
 \title{Software fault data}
 \usage{
-faultdata(time = NULL, fault = NULL, type = NULL, te = NULL,
-  data = data.frame())
+faultdata(
+  time = NULL,
+  fault = NULL,
+  type = NULL,
+  te = NULL,
+  data = data.frame()
+)
 }
 \arguments{
 \item{time}{A numeric vector for time intervals.}

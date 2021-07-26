@@ -18,11 +18,18 @@ Rsrat provides the package to evalute the software reliability from the fault da
 
 ## Installation
 
-You can install Rsrat from github with:
+You can install Rsrat from GitHub with:
 
 ```{r gh-installation, eval = FALSE}
-# install.packages("devtools")
-devtools::install_github("okamumu/Rsrat")
+install.packages("devtools")
+devtools::install_github("SwReliab/Rsrat")
+```
+
+Alternatively, you can use Remote to install Rsrat from GitHub
+
+```{r gh-installation2, eval = FALSE}
+install.packages("remotes")
+remotes::install_github("SwReliab/Rsrat")
 ```
 
 ## Example
@@ -43,7 +50,7 @@ tohma
 (result <- fit.srm.nhpp(fault=tohma))
 
 ### Draw the graph 
-mvfplot(fault=tohma, mvf=list(result$srm))
+mvfplot(fault=tohma, srms=result)
 ```
 
 The second example illustrates the estimation for two specified models.
@@ -56,7 +63,10 @@ srm.models
 (result <- fit.srm.nhpp(fault=tohma, srm.names=c("exp", "gamma"), selection=NULL))
 
 ### Draw the graph
-mvfplot(fault=tohma, mvf=lapply(result, function(m) m$srm))
+mvfplot(fault=tohma, srms=result)
+
+### Draw the graph (dmvf)
+dmvfplot(fault=tohma, srms=result)
 ```
 
 The third example shows the case where the fault data are fault detection data.
@@ -71,7 +81,7 @@ sys1
 (result <- fit.srm.nhpp(time=sys1[sys1>=0], te=-sys1[sys1<0]))
 
 ### Draw the graph
-mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], mvf=list(result$srm))
+mvfplot(time=sys1[sys1>=0], te=-sys1[sys1<0], srms=result)
 ```
 
 The fourth example illustrates the case where the mvfs for all the models are drawn.
@@ -81,5 +91,5 @@ The fourth example illustrates the case where the mvfs for all the models are dr
 (result <- fit.srm.nhpp(fault=sys1g, selection=NULL))
 
 ### Draw the graph
-mvfplot(fault=sys1g, mvf=lapply(result, function(x) x$srm))
+mvfplot(fault=sys1g, srms=result)
 ```
