@@ -54,6 +54,27 @@ dmvf <- function(t, srm) {
   srm$dmvf(t)
 }
 
+#' Rate function
+#'
+#' This function provides the rate function for a given model.
+#'
+#' @param t A numeric vector for time
+#' @param srm An object of a model
+#' @return A vector of rate function
+#' @examples
+#' data(dacs)
+#' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+#'             selection = NULL)
+#' rate(c(1,2,3), result$exp)
+#' @export
+
+rate <- function(t, srm) {
+  if ("srm.nhpp.result" %in% class(srm)) {
+    srm <- srm$srm
+  }
+  srm$intensity(t)
+}
+
 #' Draw a graph of mean value functions
 #'
 #' This function draws a graph of mean value function with data and NHPP classes.
@@ -117,7 +138,7 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
 #'
 #' @param time A numeric vector for time intervals.
 #' @param fault An integer vector for the number of faults detected in time intervals.
-#' The fault detected just at the end of time interal is not counted.
+#' The fault detected just at the end of time interval is not counted.
 #' @param type Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 #' This is used to represent the fault time data. If 0, no fault is detected at the end of interval.
 #' @param te A numeric value for the time interval from the last fault to the observation time.
@@ -171,6 +192,72 @@ dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = d
     gp <- gp + geom_line(stat="identity", position="identity", aes_string(x="x", y=srmname(srms), colour=shQuote(srmname(srms))))
   }
   gp + scale_colour_manual(NULL, values = colors[2:length(colors)]) + scale_fill_manual(NULL, values = colors[1])
+}
+
+#' Draw a graph of rate functions on continuous time domain
+#'
+#' This function draws a graph of rate functions with data and NHPP classes.
+#'
+#' The return value is an object of ggplot2, and thus a line is added like
+#' \code{rateplot(...) + geom_point(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))
+#'  + geom_line(stat="identity", position="identity", aes_string(x="x", y="exp", colour=shQuote("exp")))}.
+#'
+#' @param time A numeric vector for time intervals.
+#' @param fault An integer vector for the number of faults detected in time
+#' intervals. The fault detected just at the end of time interal is not counted.
+#' @param type Either 0 or 1. If 1, a fault is detected just at the end of
+#' corresponding time interval. This is used to represent the fault time data.
+#' If 0, no fault is detected at the end of interval.
+#' @param te A numeric value for the time interval from the last fault to the
+#' observation time.
+#' @param data A dataframe. The arguments; time, fault, type, te can also be
+#' selected as the columns of dataframe.
+#' @param srms A list of estimated results.
+#' @param xlab A character string, indicating the label of x-axis.
+#' @param ylab A character string, indicating the label of y-axis.
+#' @param datalab A character string, indicating the label of data in legend.
+#' @param xmax A numeric value, indicating the maximum value of xlim.
+#' If NA, the maximum value is automatically determined.
+#' @param ymax A numeric value, indicating the maximum value of ylim.
+#' If NA, the maximum value is automatically determined.
+#' @param colors A vector of strings, indicating the colors in plot.
+#' @param ... Other parameters.
+#' @return An object of ggplot.
+#' @examples
+#' data(dacs)
+#' result <- fit.srm.nhpp(fault=tohma, srm.names = c("exp", "gamma"),
+#'             selection = NULL)
+#' rateplot(fault=tohma, srms=result)
+#' @export
+
+rateplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
+                     data = data.frame(), srms = list(), xlab = "time",
+                     ylab = "detection rate", datalab = "data (kernel density)", xmax = NA,
+                     ymax = NA, colors = mmcolors, ...) {
+  if (class(data) != "Rsrat.faultdata") {
+    data <- faultdata.nhpp(substitute(time), substitute(fault),
+                           substitute(type), substitute(te), data, parent.frame())
+  }
+  t <- as.numeric(cumsum(data$time))
+  n <- as.numeric(data$fault + data$type)
+  pp <- c()
+  for (i in 1:length(t)) {
+    pp <- c(pp, rep(t[i], n[i]))
+  }
+  ff <- density(pp)
+  
+  data <- data.frame(x=ff$x, y=ff$y * sum(n))
+  gp <- ggplot(data) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
+  gp <- gp + geom_line(stat="identity", position="identity", aes_string(x="x", y="y", colour=shQuote(datalab)))
+  if ("list" %in% class(srms)) {
+    for (s in srms) {
+      gp <- gp + stat_function(fun=rate, args=list(srm=s), aes_(colour=srmname(s)))
+    }
+    gp + scale_colour_manual(NULL, values = colors)
+  } else {
+    gp <- gp + stat_function(fun=rate, args=list(srm=srms), aes_(colour=srmname(srms)))
+    gp + scale_colour_manual(NULL, values = colors)
+  }
 }
 
 mmcolors <- c(

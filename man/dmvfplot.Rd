@@ -24,7 +24,7 @@ dmvfplot(
 \item{time}{A numeric vector for time intervals.}
 
 \item{fault}{An integer vector for the number of faults detected in time intervals.
-The fault detected just at the end of time interal is not counted.}
+The fault detected just at the end of time interval is not counted.}
 
 \item{type}{Either 0 or 1. If 1, a fault is detected just at the end of corresponding time interval.
 This is used to represent the fault time data. If 0, no fault is detected at the end of interval.}

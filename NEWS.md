@@ -1,3 +1,7 @@
+# Rsrat 1.6.1
+
+* Add rateplot
+
 # Rsrat 1.6.0
 
 * Change the interface for mvfplot and dmvfplot.
