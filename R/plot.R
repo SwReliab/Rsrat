@@ -118,7 +118,6 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
   }
   n <- data$fault + data$type
   data <- data.frame(x=cumsum(data$time)[n != 0], y=cumsum(n)[n != 0])
-  print(xmax)
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_point(aes_(colour=datalab))
   gp <- gp + geom_vline(xintercept=present, linetype="dotted")
