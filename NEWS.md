@@ -1,3 +1,8 @@
+# Rsrat 1.6.1
+
+* Add rateplot
+* Modify xmax of mvfplot
+
 # Rsrat 1.6.0
 
 * Change the interface for mvfplot and dmvfplot.

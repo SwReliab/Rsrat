@@ -6,7 +6,7 @@
 #' @docType package
 #' @name Rsrat
 #' @import R6 ggplot2
-#' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm
+#' @importFrom stats dlogis dnorm plogis pnorm qlogis qnorm density
 #' @importFrom Matrix Matrix
 #' @importFrom utils URLencode
 #' @importFrom httr GET content
