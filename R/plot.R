@@ -114,6 +114,7 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
   }
   n <- data$fault + data$type
   data <- data.frame(x=cumsum(data$time)[n != 0], y=cumsum(n)[n != 0])
+  xmax <- sum(data$time)
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_point(aes_(colour=datalab))
 
@@ -232,23 +233,40 @@ dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = d
 
 rateplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
                      data = data.frame(), srms = list(), xlab = "time",
-                     ylab = "detection rate", datalab = "data (kernel density)", xmax = NA,
+                     ylab = "detection rate", datalab = "data", xmax = NA,
                      ymax = NA, colors = mmcolors, ...) {
   if (class(data) != "Rsrat.faultdata") {
     data <- faultdata.nhpp(substitute(time), substitute(fault),
                            substitute(type), substitute(te), data, parent.frame())
   }
-  t <- as.numeric(cumsum(data$time))
-  n <- as.numeric(data$fault + data$type)
-  pp <- c()
-  for (i in 1:length(t)) {
-    pp <- c(pp, rep(t[i], n[i]))
+  tt <- c()
+  nn <- c()
+  tmpt <- 0
+  tmpn <- 0
+  for (i in 1:length(data$time)) {
+    t <- data$time[i]
+    n <- data$fault[i] + data$type[i]
+    if (t == 0 && n == 0) {
+      continue
+    }
+    if (t == 0) {
+      if (tmpt == 0) {
+        nn[length(nn)] <- nn[length(nn)] + n
+      } else {
+        tmpn <- tmpn + n
+      }
+    } else if (n == 0) {
+      tmpt <- tmpt + t
+    } else {
+      tt <- c(tt, t + tmpt)
+      nn <- c(nn, n + tmpn)
+      tmpt <- 0
+      tmpn <- 0
+    }
   }
-  ff <- density(pp)
-  
-  data <- data.frame(x=ff$x, y=ff$y * sum(n))
-  gp <- ggplot(data) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
-  gp <- gp + geom_line(stat="identity", position="identity", aes_string(x="x", y="y", colour=shQuote(datalab)))
+  data <- data.frame(x=as.numeric(cumsum(tt)), y= nn / tt)
+  gp <- ggplot(data) + labs(x=xlab, y=ylab) + xlim(c(1.0e-8,xmax)) + ylim(c(0,ymax))
+  gp <- gp + geom_area(stat="identity", position="identity", alpha=0.3, aes_string(x="x", y="y"))
   if ("list" %in% class(srms)) {
     for (s in srms) {
       gp <- gp + stat_function(fun=rate, args=list(srm=s), aes_(colour=srmname(s)))
