@@ -51,6 +51,7 @@ tohma
 
 ### Draw the graph 
 mvfplot(fault=tohma, srms=result)
+rateplot(fault=tohma, srms=result)
 ```
 
 The second example illustrates the estimation for two specified models.
@@ -67,6 +68,7 @@ mvfplot(fault=tohma, srms=result)
 
 ### Draw the graph (dmvf)
 dmvfplot(fault=tohma, srms=result)
+rateplot(fault=tohma, srms=result)
 ```
 
 The third example shows the case where the fault data are fault detection data.
