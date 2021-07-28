@@ -112,11 +112,16 @@ mvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = da
     data <- faultdata.nhpp(substitute(time), substitute(fault),
       substitute(type), substitute(te), data, parent.frame())
   }
+  present <- sum(data$time)
+  if (is.na(xmax)) {
+    xmax <- present * 1.2
+  }
   n <- data$fault + data$type
   data <- data.frame(x=cumsum(data$time)[n != 0], y=cumsum(n)[n != 0])
-  xmax <- sum(data$time)
+  print(xmax)
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_point(aes_(colour=datalab))
+  gp <- gp + geom_vline(xintercept=present, linetype="dotted")
 
   if ("list" %in% class(srms)) {
     for (s in srms) {
@@ -167,6 +172,7 @@ dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = d
     data <- faultdata.nhpp(substitute(time), substitute(fault),
       substitute(type), substitute(te), data, parent.frame())
   }
+  present <- sum(data$time)
   t <- as.numeric(cumsum(data$time))
   n <- as.numeric(data$fault + data$type)
 
@@ -183,6 +189,7 @@ dmvfplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL, data = d
 
   gp <- ggplot(data, aes_string(x="x", y="y")) + labs(x=xlab, y=ylab) + xlim(c(0,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_bar(stat="identity", position="identity", alpha=0.5, aes_(fill=datalab))
+  # gp <- gp + geom_vline(xintercept=present, linetype="dotted")
   if ("list" %in% class(srms)) {
     for (s in srms) {
       # gp <- gp + geom_point(stat="identity", position="identity", aes_string(x="x", y=srmname(s), colour=shQuote(srmname(s))))
@@ -239,6 +246,11 @@ rateplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
     data <- faultdata.nhpp(substitute(time), substitute(fault),
                            substitute(type), substitute(te), data, parent.frame())
   }
+  present <- sum(data$time)
+  if (is.na(xmax)) {
+    xmax <- present * 1.2
+  }
+
   tt <- c()
   nn <- c()
   tmpt <- 0
@@ -265,8 +277,9 @@ rateplot <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
     }
   }
   data <- data.frame(x=as.numeric(cumsum(tt)), y= nn / tt)
-  gp <- ggplot(data) + labs(x=xlab, y=ylab) + xlim(c(1.0e-8,xmax)) + ylim(c(0,ymax))
+  gp <- ggplot(data) + labs(x=xlab, y=ylab) + xlim(c(0.1,xmax)) + ylim(c(0,ymax))
   gp <- gp + geom_area(stat="identity", position="identity", alpha=0.3, aes_string(x="x", y="y"))
+  gp <- gp + geom_vline(xintercept=present, linetype="dotted")
   if ("list" %in% class(srms)) {
     for (s in srms) {
       gp <- gp + stat_function(fun=rate, args=list(srm=s), aes_(colour=srmname(s)))
