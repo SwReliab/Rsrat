@@ -1,3 +1,7 @@
+# Rsrat 1.6.2
+
+* Add auth for GitHub with personal access token
+
 # Rsrat 1.6.1
 
 * Add rateplot

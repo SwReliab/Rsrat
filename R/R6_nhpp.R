@@ -2,43 +2,8 @@
 #'
 #' @docType class
 #' @name NHPP
-#' @return Object of \code{\link{R6Class}} with methods for NHPP-based software reliability model.
 #' @format \code{\link{R6Class}} object.
-#' @field name A character string for the name of model.
-#' @field params A numeric vector for the model parameters.
-#' @field df An integer for the degrees of freedom of the model.
-#' @field data Data to esimate parameters.
-#'
-#' @section Methods:
-#' \describe{
-#'   \item{\code{print()}}{This method prints model parameters.}
-#'   \item{\code{omega()}}{This method returns the number of total faults.}
-#'   \item{\code{mvf(t)}}{This method returns the mean value function at time t.}
-#'   \item{\code{dmvf(t)}}{This method returns the mean value function on discrete time domain.}
-#'   \item{\code{inv_mvf(x)}}{This method returns the time at which the mean value function attains x.}
-#'   \item{\code{intensity(t)}}{This method returns the intensity function at time t.}
-#'   \item{\code{sample(diff, lower, upper)}}{This method generate failure detection times of NHPP over [lower,upper). If diff is ture, the method provides time interval.}
-#'   \item{\code{reliab(t, s)}}{This method returns the software reliability at time t from the orign s.}
-#'   \item{\code{residual(t)}}{This method returns the expected residual number of faults at time t.}
-#'   \item{\code{ffp(t)}}{This method returns the fault-free probability at time t.}
-#'   \item{\code{imtbf(t)}}{This method returns the instantaneous MTBF at time t.}
-#'   \item{\code{cmtbf(t)}}{This method returns the cumulative MTBF at time t.}
-#'   \item{\code{median(s, p = 0.5)}}{This method returns the time at which the software reliability attains the proability p from the orign s.}
-#'   \item{\code{init_params(data)}}{This method changes the model parameters based on a given data. This is used to set the initial value for the fitting algorithm.}
-#'   \item{\code{set_params(params)}}{This method sets the model parameters.}
-#'   \item{\code{em(params, data)}}{This method returns a list with an updated parameter vector (param),
-#'          absolute difference of parameter vector (pdiff),
-#'          log-likelihood function for a given parameter vector (llf),
-#'          the number of total faults (total) via EM algorithm for a given data.
-#'          \emph{divide} in GammaSRM is the number of integration points.}
-#'   \item{\code{llf(data)}}{This method returns the log-likelihood function for a given data.}
-#'   \item{\code{comp_error(res0, res1)}}{This method computes the aerror and rerror from the
-#'          the two results. The default is the difference of log-likelihood.}
-#' }
 #' @seealso \code{\link{srm}}
-NULL
-
-#' @rdname NHPP
 #' @export
 NHPP <- R6::R6Class("NHPP",
   private = list(
@@ -48,20 +13,51 @@ NHPP <- R6::R6Class("NHPP",
     rf = function(n) { NA }
   ),
   public = list(
+    #' @field name A character string for the name of model.
     name = NA,
+
+    #' @field params A numeric vector for the model parameters.
     params = NA,
+
+    #' @field df An integer for the degrees of freedom of the model.
     df = NA,
+
+    #' @field data Data to esimate parameters.
     data = NA,
+
+    #' @description
+    #' Print model parameters.
+    #' @param digits An integer to determine the number of digits for print.
+    #' @param ... Others
     print = function(digits = max(3, getOption("digits") - 3), ...) {
       cat(gettextf("Model name: %s\n", self$name))
       print.default(format(self$params, digits = digits), print.gap = 2, quote = FALSE)
     },
+
+    #' @description
+    #' The number of total faults.
+    #' @return The number of total faults.
     omega = function() { self$params[1L] },
+
+    #' @description 
+    #' The mean value function.
+    #' @param t Time
+    #' @return The expected number of faults detected before time t. 
     mvf = function(t) { self$omega() * private$Ft(t) },
+
+    #' @description 
+    #' The difference of mean value function on discrete time domain.
+    #' @param t A vector for time series.
+    #' @return A vector of the expected number of faults in each time interval.
     dmvf = function(t) {
       t <- c(0, t)
       diff(self$omega() * private$Ft(t))
     },
+
+    #' @description 
+    #' The inverse of mean value function.
+    #' @param x The number of faults.
+    #' @return The first passage time at which the mean value function exceeds x.
     inv_mvf = function(x) {
       p <- x / self$omega()
       sapply(p, function(pp) {
@@ -72,7 +68,21 @@ NHPP <- R6::R6Class("NHPP",
         }
       })
     },
+
+    #' @description 
+    #' The intensity function.
+    #' @param t Time
+    #' @return The intensity (the first derivative of mean value function) at time t.
     intensity = function(t) { self$omega() * private$ft(t) },
+
+    #' @description 
+    #' Generate samples of fault-detection times following the NHPP
+    #' over [lower,upper). If diff is true, the method provides
+    #' time interval of samples.
+    #' @param diff A logical meaning the generated samples are time intervals or not.
+    #' @param lower A value indicating the minimum of time domain.
+    #' @param upper A value indicating the maximum of time domain.
+    #' @return A vector of samples following NHPP.
     sample = function(diff = TRUE, lower = 0, upper = +Inf) {
       n <- rpois(1, self$omega())
       x <- private$rf(n)
@@ -83,11 +93,44 @@ NHPP <- R6::R6Class("NHPP",
         x
       }
     },
+
+    #' @description 
+    #' The reliability function.
+    #' @param t A value of time from s.
+    #' @param s A value of current time.
+    #' @return The probability that no fault is detected during [s, t+s)
     reliab = function(t, s) { exp(-(self$mvf(t+s) - self$mvf(s))) },
+
+    #' @description 
+    #' The expected number of residual faults at time t.
+    #' @param t A value of time.
+    #' @return The expected residual number of faults at time t.
     residual = function(t) { self$omega() * private$Ft(t, lower.tail=FALSE) },
+
+    #' @description 
+    #' The fault-free probability at time t.
+    #' @param t A value of time.
+    #' @return The probability that software does not have any fault at time t.
     ffp = function(t) { exp(-self$residual(t)) },
+
+    #' @description 
+    #' The instantaneous MTBF at time t.
+    #' @param t A value of time.
+    #' @return The inverse of intensity at time t.
     imtbf = function(t) { 1 / self$intensity(t) },
+
+    #' @description
+    #' The cumulative MTBF at time t.
+    #' @param t A value of time.
+    #' @return the cumulative MTBF.
     cmtbf = function(t) { t / self$mvf(t) },
+
+    #' @description 
+    #' The time at which the software reliability attains the probability p
+    #' from the orign s.
+    #' @param s A value of origin time.
+    #' @param p A value of probability.
+    #' @return the time at which the software reiability become p.
     median = function(s, p = 0.5) {
       if (p > self$ffp(s)) {
         private$invFt((self$mvf(s) - log(p)) / self$omega())
@@ -95,10 +138,42 @@ NHPP <- R6::R6Class("NHPP",
         NA
       }
     },
+
+    #' @description 
+    #' Set initial parameters from a given data.
+    #' This is used to set the initial value for
+    #' the fitting algorithm.
+    #' @param data Data.
     init_params = function(data) { NA },
+
+    #' @description 
+    #' Set model parameters.
+    #' @param params Parameters.
     set_params = function(params) { self$params <- params },
+
+    #' @description
+    #' Set data to be used in the fitting algorithm.
+    #' @param data Data.
     set_data = function(data) { self$data <- data },
+
+    #' @description 
+    #' Execute an EM step.
+    #' @param params Parameters.
+    #' @param data Data.
+    #' @return
+    #' A list with the following
+    #' \describe{
+    #' \item{param}{Updated parameters.}
+    #' \item{pdiff}{Absolute difference of parameter vector.}
+    #' \item{llf}{Log-likelihood function for a given parameter vector.}
+    #' \item{total}{The number of total faults.}
+    #' }
     em = function(params, data) { NA },
+
+    #' @description 
+    #' The log-likelihood function for a given data.
+    #' @param data Data.
+    #' @return Log-likelihood function.
     llf = function(data) {
       n <- data$len
       te <- sum(data$time)
@@ -121,6 +196,13 @@ NHPP <- R6::R6Class("NHPP",
       retval <- retval - self$omega() * private$Ft(te)
       retval
     },
+
+    #' @description 
+    #' Provides the absolute error and relative error from the
+    #' the two results. The default is the difference of log-likelihood.
+    #' @param res0 One result
+    #' @param res1 Another result
+    #' @return A vector of abusolute error, relative error and the difference.
     comp_error = function(res0, res1) {
       sdiff <- res1$llf - res0$llf
       aerror <- abs(res1$llf - res0$llf)

@@ -9,7 +9,7 @@ get.opendate.github(
   query = "state=all&labels=bug",
   user = NULL,
   password = "",
-  authtype = "basic",
+  authtype = "token",
   url = "https://api.github.com/repos",
   startPage = 1L,
   perPage = 100L,
@@ -25,9 +25,9 @@ get.opendate.github(
 
 \item{user}{A string for user}
 
-\item{password}{A string for password}
+\item{password}{A string for password or personal access token}
 
-\item{authtype}{A string for authentication. The default is \code{basic}.}
+\item{authtype}{A string for authentication. The default is \code{token} (personal access toke).}
 
 \item{url}{An URL for GitHub}
 

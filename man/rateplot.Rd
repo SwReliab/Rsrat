@@ -13,7 +13,7 @@ rateplot(
   srms = list(),
   xlab = "time",
   ylab = "detection rate",
-  datalab = "data (kernel density)",
+  datalab = "data",
   xmax = NA,
   ymax = NA,
   colors = mmcolors,

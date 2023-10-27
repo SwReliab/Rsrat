@@ -5,15 +5,15 @@
 #' @param repo A character string indicating a repository such as "hadley/devtools"
 #' @param query A character string for a query
 #' @param user A string for user
-#' @param password A string for password
-#' @param authtype A string for authentication. The default is \code{basic}.
+#' @param password A string for password or personal access token
+#' @param authtype A string for authentication. The default is \code{token} (personal access toke).
 #' @param url An URL for GitHub
 #' @param startPage An integer to identify the start page
 #' @param perPage An integer to the number of issues for a page
 #' @export
 
-get.issues.github <- function(repo, query = "", user = NULL, password = "", authtype = "basic",
-  url = "https://api.github.com/repos", startPage = 1L, perPage = 100L) {
+get.issues.github <- function(repo, query = "", user = NULL, password = "", authtype = "token",
+                              url = "https://api.github.com/repos", startPage = 1L, perPage = 100L) {
   url <- paste(url, "/", repo, "/issues?", URLencode(query), sep="")
   cat(sprintf("URL: %s\n", url))
   issues <- c()
@@ -25,15 +25,17 @@ get.issues.github <- function(repo, query = "", user = NULL, password = "", auth
       tmpurl <- paste(url, URLencode(paste("&page=", startPage, "&per_page=", perPage, sep="")), sep="")
     }
     cat(sprintf("  Getting page %d ...\n", startPage))
-    if (is.null(user)) {
-      rec <- httr::content(httr::GET(tmpurl))
+    rec <- switch(authtype,
+                  "basic" = if (is.null(user)) {
+                    httr::content(httr::GET(tmpurl))
+                  } else {
+                    httr::content(httr::GET(tmpurl, httr::authenticate(user, password, authtype)))
+                  },
+                  "token" = httr::content(httr::GET(tmpurl, add_headers(Authorization = paste("Bearer ", password, sep="")))),
+                  NULL)
+    if ("documentation_url" %in% names(rec)) {
+      stop(rec$message)
     }
-    else {
-      rec <- httr::content(httr::GET(tmpurl, httr::authenticate(user, password, authtype)))
-    }
-    # if (rec$documentation_url == "https://developer.github.com/v3/#rate-limiting") {
-    #   stop(rec$message)
-    # }
     if (length(rec) == 0) {
       break
     }
@@ -53,8 +55,8 @@ get.issues.github <- function(repo, query = "", user = NULL, password = "", auth
 #' @param repo A character string indicating a repository such as "hadley/devtools"
 #' @param query A character string for a query
 #' @param user A string for user
-#' @param password A string for password
-#' @param authtype A string for authentication. The default is \code{basic}.
+#' @param password A string for password or personal access token
+#' @param authtype A string for authentication. The default is \code{token} (personal access toke).
 #' @param url An URL for GitHub
 #' @param startPage An integer to identify the start page
 #' @param perPage An integer to the number of issues for a page
@@ -63,7 +65,7 @@ get.issues.github <- function(repo, query = "", user = NULL, password = "", auth
 #' @param by A character string. A increment of date. "1 month", "1 day", etc. are available.
 #' @export
 
-get.opendate.github <- function(repo, query = "state=all&labels=bug", user = NULL, password = "", authtype = "basic",
+get.opendate.github <- function(repo, query = "state=all&labels=bug", user = NULL, password = "", authtype = "token",
   url = "https://api.github.com/repos", startPage = 1L, perPage = 100L,
   date.min = NULL, date.max = Sys.time(), by = "1 month") {
   data <- get.issues.github(repo, query, user, password, authtype, url, startPage, perPage)
@@ -78,8 +80,8 @@ get.opendate.github <- function(repo, query = "state=all&labels=bug", user = NUL
 #' @param repo A character string indicating a repository such as "hadley/devtools"
 #' @param query A character string for a query
 #' @param user A string for user
-#' @param password A string for password
-#' @param authtype A string for authentication. The default is \code{basic}.
+#' @param password A string for password or personal access token
+#' @param authtype A string for authentication. The default is \code{token} (personal access toke).
 #' @param url An URL for GitHub
 #' @param startPage An integer to identify the start page
 #' @param perPage An integer to the number of issues for a page
@@ -88,7 +90,7 @@ get.opendate.github <- function(repo, query = "state=all&labels=bug", user = NUL
 #' @param by A character string. A increment of date. "1 month", "1 day", etc. are available.
 #' @export
 
-get.openclosedate.github <- function(repo, query = "state=all&labels=bug", user = NULL, password = "", authtype = "basic",
+get.openclosedate.github <- function(repo, query = "state=all&labels=bug", user = NULL, password = "", authtype = "token",
   url = "https://api.github.com/repos", startPage = 1L, perPage = 100L,
   date.min = NULL, date.max = Sys.time(), by = "1 month") {
   data <- get.issues.github(repo, query, user, password, authtype, url, startPage, perPage)
