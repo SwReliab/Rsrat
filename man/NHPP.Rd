@@ -55,6 +55,7 @@ Class for NHPP-based software reliability model
 \item \href{#method-imtbf}{\code{NHPP$imtbf()}}
 \item \href{#method-cmtbf}{\code{NHPP$cmtbf()}}
 \item \href{#method-median}{\code{NHPP$median()}}
+\item \href{#method-get_params}{\code{NHPP$get_params()}}
 \item \href{#method-init_params}{\code{NHPP$init_params()}}
 \item \href{#method-set_params}{\code{NHPP$set_params()}}
 \item \href{#method-set_data}{\code{NHPP$set_data()}}
@@ -328,6 +329,15 @@ the time at which the software reiability become p.
 }
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -477,6 +487,7 @@ The objects of this class are cloneable with this method.
 \itemize{
 \item \href{#method-rate}{\code{ExpSRM$rate()}}
 \item \href{#method-new}{\code{ExpSRM$new()}}
+\item \href{#method-get_params}{\code{ExpSRM$get_params()}}
 \item \href{#method-init_params}{\code{ExpSRM$init_params()}}
 \item \href{#method-em}{\code{ExpSRM$em()}}
 \item \href{#method-clone}{\code{ExpSRM$clone()}}
@@ -520,6 +531,15 @@ The objects of this class are cloneable with this method.
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExpSRM$new(omega = 1, rate = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ExpSRM$get_params()}\if{html}{\out{</div>}}
 }
 
 }
@@ -568,6 +588,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-shape}{\code{GammaSRM$shape()}}
 \item \href{#method-rate}{\code{GammaSRM$rate()}}
 \item \href{#method-new}{\code{GammaSRM$new()}}
+\item \href{#method-get_params}{\code{GammaSRM$get_params()}}
 \item \href{#method-init_params}{\code{GammaSRM$init_params()}}
 \item \href{#method-em}{\code{GammaSRM$em()}}
 \item \href{#method-clone}{\code{GammaSRM$clone()}}
@@ -624,6 +645,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{GammaSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -668,6 +698,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-shape}{\code{ParetoSRM$shape()}}
 \item \href{#method-scale}{\code{ParetoSRM$scale()}}
 \item \href{#method-new}{\code{ParetoSRM$new()}}
+\item \href{#method-get_params}{\code{ParetoSRM$get_params()}}
 \item \href{#method-init_params}{\code{ParetoSRM$init_params()}}
 \item \href{#method-em}{\code{ParetoSRM$em()}}
 \item \href{#method-clone}{\code{ParetoSRM$clone()}}
@@ -724,6 +755,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{ParetoSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -768,6 +808,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-mean}{\code{TNormSRM$mean()}}
 \item \href{#method-sd}{\code{TNormSRM$sd()}}
 \item \href{#method-new}{\code{TNormSRM$new()}}
+\item \href{#method-get_params}{\code{TNormSRM$get_params()}}
 \item \href{#method-init_params}{\code{TNormSRM$init_params()}}
 \item \href{#method-em}{\code{TNormSRM$em()}}
 \item \href{#method-clone}{\code{TNormSRM$clone()}}
@@ -824,6 +865,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TNormSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -868,6 +918,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-meanlog}{\code{LNormSRM$meanlog()}}
 \item \href{#method-sdlog}{\code{LNormSRM$sdlog()}}
 \item \href{#method-new}{\code{LNormSRM$new()}}
+\item \href{#method-get_params}{\code{LNormSRM$get_params()}}
 \item \href{#method-init_params}{\code{LNormSRM$init_params()}}
 \item \href{#method-em}{\code{LNormSRM$em()}}
 \item \href{#method-clone}{\code{LNormSRM$clone()}}
@@ -924,6 +975,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LNormSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -968,6 +1028,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-location}{\code{TLogisSRM$location()}}
 \item \href{#method-scale}{\code{TLogisSRM$scale()}}
 \item \href{#method-new}{\code{TLogisSRM$new()}}
+\item \href{#method-get_params}{\code{TLogisSRM$get_params()}}
 \item \href{#method-init_params}{\code{TLogisSRM$init_params()}}
 \item \href{#method-em}{\code{TLogisSRM$em()}}
 \item \href{#method-clone}{\code{TLogisSRM$clone()}}
@@ -1024,6 +1085,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TLogisSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -1068,6 +1138,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-locationlog}{\code{LLogisSRM$locationlog()}}
 \item \href{#method-scalelog}{\code{LLogisSRM$scalelog()}}
 \item \href{#method-new}{\code{LLogisSRM$new()}}
+\item \href{#method-get_params}{\code{LLogisSRM$get_params()}}
 \item \href{#method-init_params}{\code{LLogisSRM$init_params()}}
 \item \href{#method-em}{\code{LLogisSRM$em()}}
 \item \href{#method-clone}{\code{LLogisSRM$clone()}}
@@ -1124,6 +1195,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LLogisSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -1168,6 +1248,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-loc}{\code{TXVMaxSRM$loc()}}
 \item \href{#method-scale}{\code{TXVMaxSRM$scale()}}
 \item \href{#method-new}{\code{TXVMaxSRM$new()}}
+\item \href{#method-get_params}{\code{TXVMaxSRM$get_params()}}
 \item \href{#method-init_params}{\code{TXVMaxSRM$init_params()}}
 \item \href{#method-em}{\code{TXVMaxSRM$em()}}
 \item \href{#method-clone}{\code{TXVMaxSRM$clone()}}
@@ -1224,6 +1305,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMaxSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -1268,6 +1358,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-loclog}{\code{LXVMaxSRM$loclog()}}
 \item \href{#method-scalelog}{\code{LXVMaxSRM$scalelog()}}
 \item \href{#method-new}{\code{LXVMaxSRM$new()}}
+\item \href{#method-get_params}{\code{LXVMaxSRM$get_params()}}
 \item \href{#method-init_params}{\code{LXVMaxSRM$init_params()}}
 \item \href{#method-em}{\code{LXVMaxSRM$em()}}
 \item \href{#method-clone}{\code{LXVMaxSRM$clone()}}
@@ -1324,6 +1415,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMaxSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -1368,6 +1468,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-loc}{\code{TXVMinSRM$loc()}}
 \item \href{#method-scale}{\code{TXVMinSRM$scale()}}
 \item \href{#method-new}{\code{TXVMinSRM$new()}}
+\item \href{#method-get_params}{\code{TXVMinSRM$get_params()}}
 \item \href{#method-init_params}{\code{TXVMinSRM$init_params()}}
 \item \href{#method-em}{\code{TXVMinSRM$em()}}
 \item \href{#method-clone}{\code{TXVMinSRM$clone()}}
@@ -1424,6 +1525,15 @@ The objects of this class are cloneable with this method.
 
 }
 \if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TXVMinSRM$get_params()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
 \if{latex}{\out{\hypertarget{method-init_params}{}}}
 \subsection{Method \code{init_params()}}{
@@ -1468,6 +1578,7 @@ The objects of this class are cloneable with this method.
 \item \href{#method-loclog}{\code{LXVMinSRM$loclog()}}
 \item \href{#method-scalelog}{\code{LXVMinSRM$scalelog()}}
 \item \href{#method-new}{\code{LXVMinSRM$new()}}
+\item \href{#method-get_params}{\code{LXVMinSRM$get_params()}}
 \item \href{#method-init_params}{\code{LXVMinSRM$init_params()}}
 \item \href{#method-em}{\code{LXVMinSRM$em()}}
 \item \href{#method-clone}{\code{LXVMinSRM$clone()}}
@@ -1520,6 +1631,15 @@ The objects of this class are cloneable with this method.
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$new(omega = 1, loclog = 0, scalelog = 1)}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-get_params"></a>}}
+\if{latex}{\out{\hypertarget{method-get_params}{}}}
+\subsection{Method \code{get_params()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{LXVMinSRM$get_params()}\if{html}{\out{</div>}}
 }
 
 }

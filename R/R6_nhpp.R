@@ -139,6 +139,10 @@ NHPP <- R6::R6Class("NHPP",
       }
     },
 
+    #' @descripton
+    #' Get a flatten parameter vector
+    get_params = function() { NA },
+    
     #' @description 
     #' Set initial parameters from a given data.
     #' This is used to set the initial value for
@@ -232,6 +236,9 @@ ExpSRM <- R6::R6Class("ExpSRM",
       self$params <- c(omega, rate)
       names(self$params) <- c("omega", "rate")
     },
+    get_params = function() {
+      self$params
+    },
     init_params = function(data) {
       self$params <- c(data$total, 1.0/data$mean)
     },
@@ -261,6 +268,9 @@ GammaSRM <- R6::R6Class("GammaSRM",
     initialize = function(omega = 1, shape = 1, rate = 1) {
       self$params <- c(omega, shape, rate)
       names(self$params) <- c("omega", "shape", "rate")
+    },
+    get_params = function() {
+      self$params
     },
     init_params = function(data) {
       self$params <- c(data$total, 1.0, 1.0/data$mean)
@@ -299,6 +309,9 @@ ParetoSRM <- R6::R6Class("ParetoSRM",
       self$params <- c(omega, shape, scale)
       names(self$params) <- c("omega", "shape", "scale")
     },
+    get_params = function() {
+      self$params
+    },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, 1.0)
     },
@@ -328,6 +341,9 @@ TNormSRM <- R6::R6Class("TNormSRM",
     initialize = function(omega = 1, mean = 0, sd = 1) {
       self$params <- c(omega, mean, sd)
       names(self$params) <- c("omega", "mean", "sd")
+    },
+    get_params = function() {
+      self$params
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, data$mean)
@@ -366,6 +382,9 @@ LNormSRM <- R6::R6Class("LNormSRM",
       self$params <- c(omega, meanlog, sdlog)
       names(self$params) <- c("omega", "meanlog", "sdlog")
     },
+    get_params = function() {
+      self$params
+    },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, max(log(data$mean), 1.0))
     },
@@ -402,6 +421,9 @@ TLogisSRM <- R6::R6Class("TLogisSRM",
     initialize = function(omega = 1, location = 0, scale = 1) {
       self$params <- c(omega, location, scale)
       names(self$params) <- c("omega", "location", "scale")
+    },
+    get_params = function() {
+      self$params
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, data$mean)
@@ -449,6 +471,9 @@ LLogisSRM <- R6::R6Class("LLogisSRM",
       self$params <- c(omega, locationlog, scalelog)
       names(self$params) <- c("omega", "locationlog", "scalelog")
     },
+    get_params = function() {
+      self$params
+    },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, max(log(data$mean), 1.0))
     },
@@ -486,6 +511,9 @@ TXVMaxSRM <- R6::R6Class("TXVMaxSRM",
     initialize = function(omega = 1, loc = 0, scale = 1) {
       self$params <- c(omega, loc, scale)
       names(self$params) <- c("omega", "loc", "scale")
+    },
+    get_params = function() {
+      self$params
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, data$max/3)
@@ -533,6 +561,9 @@ LXVMaxSRM <- R6::R6Class("LXVMaxSRM",
       self$params <- c(omega, loclog, scalelog)
       names(self$params) <- c("omega", "loclog", "scalelog")
     },
+    get_params = function() {
+      self$params
+    },
     init_params = function(data) {
       self$params <- c(1.0, 1.0, max(log(data$max), 1.0))
     },
@@ -578,6 +609,9 @@ TXVMinSRM <- R6::R6Class("TXVMinSRM",
       self$params <- c(omega, loc, scale)
       names(self$params) <- c("omega", "loc", "scale")
     },
+    get_params = function() {
+      self$params
+    },
     init_params = function(data) {
       self$params <- c(data$total, -data$mean, data$max/3)
     },
@@ -622,6 +656,9 @@ LXVMinSRM <- R6::R6Class("LXVMinSRM",
     initialize = function(omega = 1, loclog = 0, scalelog = 1) {
       self$params <- c(omega, loclog, scalelog)
       names(self$params) <- c("omega", "loclog", "scalelog")
+    },
+    get_params = function() {
+      self$params
     },
     init_params = function(data) {
       self$params <- c(1.0, 0.0, max(log(data$max), 1.0))

@@ -1,3 +1,7 @@
+# Rsrat 1.6.3
+
+* Add get_params method to get a flatten parameter vectors
+
 # Rsrat 1.6.2
 
 * Add auth for GitHub with personal access token
