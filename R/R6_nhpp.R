@@ -140,7 +140,8 @@ NHPP <- R6::R6Class("NHPP",
     },
 
     #' @descripton
-    #' Make a flatten parameter vector
+    #' Make a flatten parameter vector.
+    #' @param params A vector of parameters.
     get_params = function(params) { params },
     
     #' @description 
@@ -154,6 +155,11 @@ NHPP <- R6::R6Class("NHPP",
     #' Set model parameters.
     #' @param params Parameters.
     set_params = function(params) { self$params <- params },
+
+    #' @description 
+    #' Set omega parameter.
+    #' @param x A value of omega.
+    set_omega = function(x) { self$params[1L] <- x },
 
     #' @description
     #' Set data to be used in the fitting algorithm.

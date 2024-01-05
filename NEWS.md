@@ -1,6 +1,7 @@
 # Rsrat 1.6.3
 
 * Add get_params method to get a flatten parameter vectors
+* Add set_omega method to set an omega value
 
 # Rsrat 1.6.2
 

@@ -58,6 +58,7 @@ Class for NHPP-based software reliability model
 \item \href{#method-get_params}{\code{NHPP$get_params()}}
 \item \href{#method-init_params}{\code{NHPP$init_params()}}
 \item \href{#method-set_params}{\code{NHPP$set_params()}}
+\item \href{#method-set_omega}{\code{NHPP$set_omega()}}
 \item \href{#method-set_data}{\code{NHPP$set_data()}}
 \item \href{#method-em}{\code{NHPP$em()}}
 \item \href{#method-llf}{\code{NHPP$llf()}}
@@ -336,6 +337,13 @@ the time at which the software reiability become p.
 \if{html}{\out{<div class="r">}}\preformatted{NHPP$get_params(params)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{params}}{A vector of parameters.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
@@ -369,6 +377,23 @@ Set model parameters.
 \if{html}{\out{<div class="arguments">}}
 \describe{
 \item{\code{params}}{Parameters.}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-set_omega"></a>}}
+\if{latex}{\out{\hypertarget{method-set_omega}{}}}
+\subsection{Method \code{set_omega()}}{
+Set omega parameter.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$set_omega(x)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{x}}{A value of omega.}
 }
 \if{html}{\out{</div>}}
 }
@@ -512,6 +537,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -604,6 +630,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -705,6 +732,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -806,6 +834,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -907,6 +936,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -1008,6 +1038,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -1109,6 +1140,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -1210,6 +1242,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -1311,6 +1344,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -1412,6 +1446,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
@@ -1513,6 +1548,7 @@ The objects of this class are cloneable with this method.
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="residual">}\href{../../Rsrat/html/NHPP.html#method-residual}{\code{Rsrat::NHPP$residual()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="sample">}\href{../../Rsrat/html/NHPP.html#method-sample}{\code{Rsrat::NHPP$sample()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_data">}\href{../../Rsrat/html/NHPP.html#method-set_data}{\code{Rsrat::NHPP$set_data()}}\out{</span>}
+\item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_omega">}\href{../../Rsrat/html/NHPP.html#method-set_omega}{\code{Rsrat::NHPP$set_omega()}}\out{</span>}
 \item \out{<span class="pkg-link" data-pkg="Rsrat" data-topic="NHPP" data-id="set_params">}\href{../../Rsrat/html/NHPP.html#method-set_params}{\code{Rsrat::NHPP$set_params()}}\out{</span>}
 }
 \out{</details>}
