@@ -333,6 +333,7 @@ the time at which the software reiability become p.
 \if{html}{\out{<a id="method-get_params"></a>}}
 \if{latex}{\out{\hypertarget{method-get_params}{}}}
 \subsection{Method \code{get_params()}}{
+Make a flatten parameter vector.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{NHPP$get_params(params)}\if{html}{\out{</div>}}
 }
@@ -387,15 +388,20 @@ Set model parameters.
 \subsection{Method \code{set_omega()}}{
 Set omega parameter.
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{NHPP$set_omega(x)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{NHPP$set_omega(params, x)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
+\item{\code{params}}{Parameters.}
+
 \item{\code{x}}{A value of omega.}
 }
 \if{html}{\out{</div>}}
+}
+\subsection{Returns}{
+Parameters.
 }
 }
 \if{html}{\out{<hr>}}
@@ -546,6 +552,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-rate"></a>}}
 \if{latex}{\out{\hypertarget{method-rate}{}}}
 \subsection{Method \code{rate()}}{
+Get a rate parameter.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExpSRM$rate()}\if{html}{\out{</div>}}
 }
@@ -555,10 +562,20 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Constructor
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{ExpSRM$new(omega = 1, rate = 1)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{omega}}{A value of omega parameter.}
+
+\item{\code{rate}}{A value of rate parameter.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}
@@ -639,6 +656,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-shape"></a>}}
 \if{latex}{\out{\hypertarget{method-shape}{}}}
 \subsection{Method \code{shape()}}{
+Get a shape parameter.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GammaSRM$shape()}\if{html}{\out{</div>}}
 }
@@ -648,6 +666,7 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-rate"></a>}}
 \if{latex}{\out{\hypertarget{method-rate}{}}}
 \subsection{Method \code{rate()}}{
+Get a rate parameter.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GammaSRM$rate()}\if{html}{\out{</div>}}
 }
@@ -657,10 +676,22 @@ The objects of this class are cloneable with this method.
 \if{html}{\out{<a id="method-new"></a>}}
 \if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
+Constructor.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{GammaSRM$new(omega = 1, shape = 1, rate = 1)}\if{html}{\out{</div>}}
 }
 
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{omega}}{A value of omega parameter.}
+
+\item{\code{shape}}{A value of shape parameter.}
+
+\item{\code{rate}}{A value of rate parameter.}
+}
+\if{html}{\out{</div>}}
+}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-init_params"></a>}}

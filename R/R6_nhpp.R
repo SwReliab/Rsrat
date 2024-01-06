@@ -139,7 +139,7 @@ NHPP <- R6::R6Class("NHPP",
       }
     },
 
-    #' @descripton
+    #' @description
     #' Make a flatten parameter vector.
     #' @param params A vector of parameters.
     get_params = function(params) { params },
@@ -158,8 +158,13 @@ NHPP <- R6::R6Class("NHPP",
 
     #' @description 
     #' Set omega parameter.
+    #' @param params Parameters.
     #' @param x A value of omega.
-    set_omega = function(x) { self$params[1L] <- x },
+    #' @return Parameters.
+    set_omega = function(params, x) {
+      params[1L] <- x
+      params
+    },
 
     #' @description
     #' Set data to be used in the fitting algorithm.
@@ -237,7 +242,13 @@ ExpSRM <- R6::R6Class("ExpSRM",
   public = list(
     name = "exp",
     df = 2,
+    #' @description 
+    #' Get a rate parameter.
     rate = function() { self$params[2L] },
+    #' @description
+    #' Constructor
+    #' @param omega A value of omega parameter.
+    #' @param rate A value of rate parameter.
     initialize = function(omega = 1, rate = 1) {
       self$params <- c(omega, rate)
       names(self$params) <- c("omega", "rate")
@@ -266,8 +277,17 @@ GammaSRM <- R6::R6Class("GammaSRM",
   public = list(
     name = "gamma",
     df = 3,
+    #' @description
+    #' Get a shape parameter.
     shape = function() { self$params[2L] },
+    #' @description 
+    #' Get a rate parameter.
     rate = function() { self$params[3L] },
+    #' @description
+    #' Constructor.
+    #' @param omega A value of omega parameter.
+    #' @param shape A value of shape parameter.
+    #' @param rate A value of rate parameter.
     initialize = function(omega = 1, shape = 1, rate = 1) {
       self$params <- c(omega, shape, rate)
       names(self$params) <- c("omega", "shape", "rate")
