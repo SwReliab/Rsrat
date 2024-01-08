@@ -61,7 +61,8 @@ faultdata <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
 #' # faultdata.nhpp(time=t, fault=n, data=test.data) # This style causes an error in faultdata.nhpp
 #' @export
 
-faultdata.nhpp <- function(time, fault, type, te, data = data.frame(),
+faultdata.nhpp <- function(time = NULL, fault = NULL, type = NULL, te = NULL,
+                           data = data.frame(),
                            envir = parent.frame()) {
   time <- eval(time, data, envir)
   fault <- eval(fault, data, envir)

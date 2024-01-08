@@ -5,10 +5,10 @@
 \title{Software fault data}
 \usage{
 faultdata.nhpp(
-  time,
-  fault,
-  type,
-  te,
+  time = NULL,
+  fault = NULL,
+  type = NULL,
+  te = NULL,
   data = data.frame(),
   envir = parent.frame()
 )
