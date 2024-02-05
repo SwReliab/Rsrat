@@ -31,7 +31,7 @@ get.issues.github <- function(repo, query = "", user = NULL, password = "", auth
                   } else {
                     httr::content(httr::GET(tmpurl, httr::authenticate(user, password, authtype)))
                   },
-                  "token" = httr::content(httr::GET(tmpurl, add_headers(Authorization = paste("Bearer ", password, sep="")))),
+                  "token" = httr::content(httr::GET(tmpurl, httr::add_headers(Authorization = paste("Bearer ", password, sep="")))),
                   NULL)
     if ("documentation_url" %in% names(rec)) {
       stop(rec$message)

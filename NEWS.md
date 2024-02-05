@@ -1,3 +1,7 @@
+# Rsrat 1.6.4
+
+* Bugfix: put httr:: to add_header in github-issues
+
 # Rsrat 1.6.3
 
 * Add get_params method to get a flatten parameter vectors

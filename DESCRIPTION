@@ -1,8 +1,8 @@
 Package: Rsrat
 Type: Package
 Title: A Software Reliability Assessment Tool with NHPP-Based Models
-Version: 1.6.3
-Date: 2024-01-05
+Version: 1.6.4
+Date: 2024-02-05
 Author: Hiroyuki OKAMURA
 Maintainer: Hiroyuki OKAMURA <okamu@hiroshima-u.ac.jp>
 Description: This package provides estimation programs for software
